@@ -1,0 +1,110 @@
+{
+  "village-desktop": {
+    "status": "passed",
+    "checks": {
+      "group_movement": {
+        "selected": 12,
+        "received_move": 12,
+        "moved": 11
+      },
+      "pause": {
+        "elapsed": 20.40000000000002,
+        "unchanged_after_browser_ms": 3000
+      },
+      "gather_and_deliver": {
+        "timber_before": 180,
+        "timber_after": 280,
+        "gathered": 100
+      },
+      "recruitment": {
+        "population": 14,
+        "food_cost": 30,
+        "gold_cost": 20
+      },
+      "construction": {
+        "site": [
+          24,
+          22
+        ],
+        "timber_cost": 45,
+        "stone_cost": 15,
+        "completed": true,
+        "housing": 20
+      }
+    },
+    "browser_errors": []
+  },
+  "charters-desktop": {
+    "status": "passed",
+    "checks": {
+      "pack_purchase": {
+        "gold_cost_each": 40,
+        "purchases": 2,
+        "insufficient_funds_rejected": true
+      },
+      "reveal_collection_ratify_persistence": {
+        "cards_added": 3,
+        "rare_guarantee": true,
+        "no_duplicate_collection": true,
+        "active": "elder-seal",
+        "doctrine": "industry",
+        "reload_persists": true
+      }
+    },
+    "browser_errors": []
+  },
+  "village-mobile": {
+    "status": "passed",
+    "checks": {
+      "group_movement": {
+        "selected": 12,
+        "received_move": 12,
+        "moved": 12
+      },
+      "pause": {
+        "elapsed": 20.50000000000002,
+        "unchanged_after_browser_ms": 3000
+      },
+      "gather_and_deliver": {
+        "timber_before": 180,
+        "timber_after": 247,
+        "gathered": 67
+      },
+      "recruitment": {
+        "population": 14,
+        "food_cost": 30,
+        "gold_cost": 20
+      },
+      "construction": {
+        "site": [
+          24,
+          22
+        ],
+        "timber_cost": 45,
+        "stone_cost": 15,
+        "completed": true,
+        "housing": 20
+      }
+    },
+    "browser_errors": []
+  },
+  "charters-mobile": {
+    "status": "passed",
+    "checks": {
+      "pack_purchase": {
+        "gold_cost_each": 40,
+        "purchases": 2,
+        "insufficient_funds_rejected": true
+      },
+      "reveal_collection_ratify_persistence": {
+        "cards_added": 3,
+        "rare_guarantee": true,
+        "no_duplicate_collection": true,
+        "active": "stonecutters",
+        "doctrine": "harvest",
+        "reload_persists": true
+      }
+    },
+    "browser_errors": []
+  }
+}

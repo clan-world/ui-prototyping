@@ -1,68 +1,103 @@
-# Playtest Clan World
+# Playtest the Mossfell village
 
-Use this route to check the complete local loop: gathering, card deployment, shrine control, recovery, rewards, pack opening, and persistence.
+Check the continuous village mounted by `ClanController`. The earlier expedition route and its saved browser results do not apply to this implementation.
 
-## Check the starting state
+## Start a fresh test
 
-- Start the game with `pnpm dev` and open [localhost:3010](http://localhost:3010).
-- Use a fresh browser profile or storage origin if you need the exact starter state. The expected profile has six collected starter cards, three packs, 120 gold, and a six-card deck.
-- Keep the starter deck for the route below. Its order is Mosswood Scout, Stoneguard, Riverwitch, Emberfox, Rune Smith, and Frost Ward.
-- Check a desktop viewport and a narrow portrait viewport. Confirm the hand, destination shortcuts, health, energy, pause, and selected-site action remain reachable.
+- Run `pnpm dev` and open [localhost:3010](http://localhost:3010).
+- Use a fresh browser context for repeatable resources: 180 timber, 110 stone, 140 food, 20 iron, and 85 gold.
+- Confirm Elder Aldric and twelve other clan members, population 13/16, and six workers already gathering.
+- Confirm three sealed packs and The Forester ratified in the archive.
+- Test desktop and narrow portrait layouts. Check resource counters, roster access, selected-unit controls, construction, charters, and map gestures.
 
-## Follow the expedition route
+## Check orders and cargo
 
-Select each destination before selecting its card. This sends the warden to the site. Then select the named card and use Deploy card, or select the same destination again.
-
-| Elapsed | Clock remaining | Destination | Deploy | Check |
-| --- | --- | --- | --- | --- |
-| 0:00 | 3:00 | Grove | Mosswood Scout, slot 1 | Warden moves; timber and score increase; card enters cooldown |
-| 0:20 | 2:40 | Quarry | Stoneguard, slot 2 | Stone increases; a second resource site is active |
-| 0:40 | 2:20 | Spring | Riverwitch, slot 3 | Essence increases; harvests restore health |
-| 1:00 | 2:00 | Shrine | Rune Smith, slot 5 | Control increases; claimed shrine adds passive points |
-| 1:50 | 1:10 | Camp | None | Warden leaves danger; health recovers |
-| 2:15 | 0:45 | Shrine | Stoneguard, slot 2 | Guard supports the final contest |
-| 2:30 | 0:30 | Shrine | Rune Smith, slot 5 | Final shrine scoring continues through the finish |
-
-- This route wins in the automated engine test with seed `7331`. Browser expeditions use a fresh seed, so adjust recovery timing if health falls or the rival contests the shrine.
-- At the finish, check the final score, gold, XP, pack reward, and Clan statistics. A win earns a pack. The first completed non-retreat expedition also earns a pack.
-- A run that ends early is a retreat and cannot award a victory. Test this separately through Pause, End expedition, and End 1 expedition.
+1. Select an idle clansman in the roster. Use Timber in Assign work.
+2. Follow the person to a tree. Check walking and chopping frames, job label, and increasing cargo.
+3. Wait for a load of 10 and watch the return journey. Timber enters the stockpile when the load reaches compatible storage.
+4. Confirm the worker returns to gather. Move the Elder near the worksite and check that production speeds up.
+5. Select a group with a drag box or Select all. Send it to clear ground and check that destinations spread out.
+6. Hold Shift while issuing a second move. Confirm it starts after the first destination is reached.
+7. Queue movement after gathering. Confirm it starts after a load is delivered.
+8. Use Return with partial cargo, then Stop. Supplies must not duplicate or change resource type.
+9. Send a person across the river and behind a building. Check reachable routes and bridges, with no blocked diagonal shortcuts.
 
 ### In plain words
 
-Use the starter deck as a six-tool kit: gather with specialists, use a guard when danger rises, and recover before the final shrine contest. The route checks whether each choice produces a visible result.
+Watch one worker all the way from the shared store to the worksite and back. The resource counter should reflect a delivered load, not each swing of the tool.
 
-## Check packs and collection
+## Check construction and recruitment
 
-1. Open Packs from the result or navigation.
-2. Drag horizontally across a sealed pack. Repeat with the Rip pack button on another pack.
-3. Reveal cards individually, then check Reveal all. Each pack contains three cards, with at least one rare, epic, or legendary card.
-4. Collect the cards and open Collection. Check artwork, names, rarity, copy counts, and undiscovered states.
-5. Inspect an owned card outside the deck. Select Add to deck, choose a slot to replace, and confirm the deck still contains six different owned cards.
-6. Forge a pack for 120 gold. Check that one pack is added and exactly 120 gold is removed. If gold is insufficient, check the feedback and unchanged balances.
+1. Select available builders, open Build, and choose Clansman's cottage.
+2. Try placement over a building, resource, water, and occupied ground. Invalid sites must reject placement without charging resources.
+3. Place the cottage on clear, reachable land. Its cost is 45 timber and 15 stone. Check one charge and construction beginning only after workers arrive.
+4. Let construction finish. Housing capacity should rise by four; inspection should show completion.
+5. Recruit a clansman. Check one additional person and costs of 30 food and 20 gold.
+6. Test insufficient housing or supplies separately. Check feedback and unchanged balances.
+7. Build a storehouse near distant work and observe its use for deliveries. Build a market and check increased gold income after completion.
+8. Check all eleven build choices: cottage, woodcutter's lodge, quarry lodge, wheat field, watchtower, well, storehouse, tavern, blacksmith, market, and chapel.
 
-## Check controls and persistence
+## Check charters and production
 
-- Use destination shortcuts on mobile, including Camp and Shrine while those sites are outside the camera view.
-- Use WASD and arrow keys on desktop, select cards with 1 through 6, act with Space, and pause with Escape.
-- Check cooldown and insufficient-energy feedback. A rejected deployment must not consume energy.
-- Pause, return to Camp, and resume. Confirm the same expedition continues. Switch browser tabs and confirm the expedition pauses.
-- Reload after collecting cards or finishing a run. Confirm the profile persists. An active expedition does not survive a page reload.
-- Revisit the result flow and reload. Confirm the same reward is not claimed again.
-- Open the field guide and card detail dialogs. Check keyboard focus, Tab order, Escape, and touch close controls.
-- Test sound, fullscreen, and Share challenge where the browser supports them. Sharing produces score text, not a multiplayer challenge link.
+1. Open Charters, then Open sealed charters. Test Break seal and a horizontal drag across the letter.
+2. Reveal one card, then Reveal all. Each pack adds three copies and includes a rare or legendary charter.
+3. Keep the charters, reopen the archive, and check counts. Closing the reveal must not grant the cards twice.
+4. Ratify an owned charter. Only one card should be marked Ratified.
+5. Check its effect: gathering +20%, construction +20%, or carrying movement +10%. Copies and higher rarity do not stack another effect.
+6. Acquire a pack for 40 gold. Check the deduction and added pack. With insufficient gold, no purchase should occur.
+7. Deliver 150 total resources. Check one milestone pack. Reload and confirm the same delivery total does not award it again.
 
-## Record verification
+## Check camera, mobile, and pause
 
-| Check | Recorded state |
+- Test WASD, arrows, middle-button drag, Space-drag, wheel zoom, and the minimap on desktop.
+- Test E for the Elder, M for movement, G for work, B for Build, R for Return, F for Follow, and 1 for non-Elder selection.
+- On touch, tap a person and then a target. Drag to pan and pinch to zoom. Dragging must not issue an order.
+- Open and close mobile Clan, Build, Map, and Charters panels. After choosing a building, the placement controls and map must remain usable.
+- Pause with P or the pause button. Check 1x, 2x, and 4x speed after resuming.
+- Open the manual, archive, and pack dialog during work. Simulation should pause while each dialog is open.
+- Switch tabs and confirm the hidden village does not accumulate progress.
+- Check Paths, Names, selection rings, selected-unit details, sound, and dialog keyboard focus.
+
+## Check saves and settlement replacement
+
+- Save while someone carries cargo and construction is incomplete. Reload and check resources, people, cargo, orders, queues, and progress. Routes may be recalculated.
+- Reload after opening and ratifying charters. Check packs, copies, and the active doctrine.
+- Let the five-second autosave run, then reload. Check the save status and restored world.
+- Open Menu, New settlement, then cancel. The existing village must remain intact.
+- Test Replace 1 village in a disposable browser context. The village resets; collected charters remain.
+- Check unavailable storage separately. Save failures must be visible and must not claim persistence.
+
+## Run automated checks
+
+```sh
+pnpm typecheck
+pnpm test
+pnpm build
+python3 scripts/qa_clan_village.py
+```
+
+- Run the browser command with the game server running. It uses Python Playwright; inspect `--help` for URL and Chrome-path options.
+- Village unit tests validate simulation without a browser. Browser journeys exercise rendered controls and persistence.
+- `scripts/qa_user_journeys.py` targets the retired expedition UI. Its screenshots and passes are historical evidence only.
+- `pnpm test:e2e` has no current village TypeScript specs. It does not replace the Python journey script.
+
+## Record current verification
+
+| Check | Status for the village implementation |
 | --- | --- |
+| Village simulation tests | 13 passed |
+| Full test suite | 36 passed: 13 village, 22 retained expedition, and 1 API contract test |
 | Workspace typecheck | Passed |
-| Shared engine and profile tests | 22 passed |
-| API HTTP contract test | 1 passed |
-| Desktop browser interaction | Passed at 1440 x 960: packs, collection, deck replacement, persistence, gathering, deployment, pause, results, and replay |
-| Mobile browser interaction | Passed at 390 x 844: shrine damage, visible camp destination, recovery, and home/resume |
-| Visual clipping and touch-target review | Mobile recovery controls remain in the viewport with no horizontal overflow; final visual review is separate |
 | Production build | Passed with Next.js Webpack |
+| Desktop browser journeys | 2 passed at 1440 x 960: village economy and charter archive |
+| Mobile browser journeys | 2 passed at 390 x 844: village economy and charter archive |
+| Browser errors | Zero page, console, or network errors across the four journeys |
+| Physical-device gestures and audio | Manual verification required |
 
-Run `python3 scripts/qa_user_journeys.py` with the local game server running to repeat the browser journeys. The script uses normal rendered controls, reads local storage for assertions, and accelerates elapsed game time through the Playwright clock. It does not inject game or profile state. [The QA report](../artifacts/qa/REPORT.md) links the recorded outcomes.
+The current [browser result record](../artifacts/qa/village/results-all-all.json) contains all four passing journeys. Screenshots and traces are in [the village QA directory](../artifacts/qa/village/).
 
-Physical-device behavior, audio quality, native sharing, fullscreen, pack dragging, and the complete keyboard/dialog focus route still need the manual checks above.
+- The desktop route delivered 100 timber and the mobile route delivered 67. Both selected twelve members and confirmed movement and a fully unchanged saved state while paused.
+- Both routes recruited a fourteenth member for 30 food and 20 gold, then completed a cottage for 45 timber and 15 stone, raising housing capacity to 20.
+- Both charter routes bought two packs for 40 gold each, rejected a third purchase with insufficient gold, added three cards once, confirmed the rarity guarantee, and restored the ratified doctrine after reload.
+- The browser script acts through rendered controls and reads saved state for assertions. Playwright's clock advances elapsed browser time; the script does not inject simulation state or write local storage.
+- Physical-device pinch and drag, sound quality, the complete keyboard route, settlement replacement, and interrupted-work browser reloads remain manual checks. The unit suite covers additional simulation and save cases separately.

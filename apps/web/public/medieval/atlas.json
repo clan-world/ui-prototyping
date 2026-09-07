@@ -1,0 +1,534 @@
+{
+  "buildings": {
+    "file": "buildings.png",
+    "width": 1536,
+    "height": 1024,
+    "columns": 4,
+    "rows": 3,
+    "rowBoundaries": [
+      0,
+      330,
+      674,
+      1024
+    ],
+    "hasAlpha": true,
+    "fullyTransparentPercent": 63.9,
+    "cells": [
+      {
+        "index": 0,
+        "name": "hall",
+        "source": [
+          0,
+          0,
+          384,
+          330
+        ],
+        "trim": [
+          25,
+          17,
+          334,
+          301
+        ],
+        "anchor": [
+          192,
+          318
+        ]
+      },
+      {
+        "index": 1,
+        "name": "house",
+        "source": [
+          384,
+          0,
+          384,
+          330
+        ],
+        "trim": [
+          494,
+          72,
+          208,
+          229
+        ],
+        "anchor": [
+          214,
+          301
+        ]
+      },
+      {
+        "index": 2,
+        "name": "lumber-camp",
+        "source": [
+          768,
+          0,
+          384,
+          330
+        ],
+        "trim": [
+          836,
+          95,
+          256,
+          225
+        ],
+        "anchor": [
+          196,
+          320
+        ]
+      },
+      {
+        "index": 3,
+        "name": "quarry",
+        "source": [
+          1152,
+          0,
+          384,
+          330
+        ],
+        "trim": [
+          1223,
+          42,
+          291,
+          271
+        ],
+        "anchor": [
+          216.5,
+          313
+        ]
+      },
+      {
+        "index": 4,
+        "name": "farm",
+        "source": [
+          0,
+          330,
+          384,
+          344
+        ],
+        "trim": [
+          51,
+          406,
+          299,
+          258
+        ],
+        "anchor": [
+          200.5,
+          334
+        ]
+      },
+      {
+        "index": 5,
+        "name": "watchtower",
+        "source": [
+          384,
+          330,
+          384,
+          344
+        ],
+        "trim": [
+          522,
+          343,
+          154,
+          307
+        ],
+        "anchor": [
+          215,
+          320
+        ]
+      },
+      {
+        "index": 6,
+        "name": "well",
+        "source": [
+          768,
+          330,
+          384,
+          344
+        ],
+        "trim": [
+          880,
+          475,
+          136,
+          164
+        ],
+        "anchor": [
+          180,
+          309
+        ]
+      },
+      {
+        "index": 7,
+        "name": "storehouse",
+        "source": [
+          1152,
+          330,
+          384,
+          344
+        ],
+        "trim": [
+          1204,
+          394,
+          297,
+          246
+        ],
+        "anchor": [
+          200.5,
+          310
+        ]
+      },
+      {
+        "index": 8,
+        "name": "tavern",
+        "source": [
+          0,
+          674,
+          384,
+          350
+        ],
+        "trim": [
+          39,
+          695,
+          286,
+          284
+        ],
+        "anchor": [
+          182,
+          305
+        ]
+      },
+      {
+        "index": 9,
+        "name": "forge",
+        "source": [
+          384,
+          674,
+          384,
+          350
+        ],
+        "trim": [
+          457,
+          698,
+          259,
+          270
+        ],
+        "anchor": [
+          202.5,
+          294
+        ]
+      },
+      {
+        "index": 10,
+        "name": "market",
+        "source": [
+          768,
+          674,
+          384,
+          350
+        ],
+        "trim": [
+          824,
+          752,
+          266,
+          222
+        ],
+        "anchor": [
+          189,
+          300
+        ]
+      },
+      {
+        "index": 11,
+        "name": "chapel",
+        "source": [
+          1152,
+          674,
+          384,
+          350
+        ],
+        "trim": [
+          1217,
+          682,
+          267,
+          293
+        ],
+        "anchor": [
+          198.5,
+          301
+        ]
+      }
+    ]
+  },
+  "props": {
+    "file": "props.png",
+    "width": 1448,
+    "height": 1086,
+    "columns": 4,
+    "rows": 3,
+    "rowBoundaries": [
+      0,
+      438,
+      737,
+      1086
+    ],
+    "hasAlpha": true,
+    "fullyTransparentPercent": 61.97,
+    "cells": [
+      {
+        "index": 0,
+        "name": "oak",
+        "source": [
+          0,
+          0,
+          362,
+          438
+        ],
+        "trim": [
+          42,
+          50,
+          312,
+          350
+        ],
+        "anchor": [
+          198,
+          400
+        ]
+      },
+      {
+        "index": 1,
+        "name": "birch",
+        "source": [
+          362,
+          0,
+          362,
+          438
+        ],
+        "trim": [
+          453,
+          29,
+          210,
+          371
+        ],
+        "anchor": [
+          196,
+          400
+        ]
+      },
+      {
+        "index": 2,
+        "name": "pine",
+        "source": [
+          724,
+          0,
+          362,
+          438
+        ],
+        "trim": [
+          819,
+          29,
+          207,
+          371
+        ],
+        "anchor": [
+          198.5,
+          400
+        ]
+      },
+      {
+        "index": 3,
+        "name": "apple-tree",
+        "source": [
+          1086,
+          0,
+          362,
+          438
+        ],
+        "trim": [
+          1143,
+          108,
+          252,
+          292
+        ],
+        "anchor": [
+          183,
+          400
+        ]
+      },
+      {
+        "index": 4,
+        "name": "granite",
+        "source": [
+          0,
+          438,
+          362,
+          299
+        ],
+        "trim": [
+          50,
+          489,
+          290,
+          226
+        ],
+        "anchor": [
+          195,
+          277
+        ]
+      },
+      {
+        "index": 5,
+        "name": "iron-ore",
+        "source": [
+          362,
+          438,
+          362,
+          299
+        ],
+        "trim": [
+          433,
+          480,
+          247,
+          235
+        ],
+        "anchor": [
+          194.5,
+          277
+        ]
+      },
+      {
+        "index": 6,
+        "name": "copper-ore",
+        "source": [
+          724,
+          438,
+          362,
+          299
+        ],
+        "trim": [
+          786,
+          494,
+          242,
+          225
+        ],
+        "anchor": [
+          183,
+          281
+        ]
+      },
+      {
+        "index": 7,
+        "name": "berry-bush",
+        "source": [
+          1086,
+          438,
+          362,
+          299
+        ],
+        "trim": [
+          1148,
+          501,
+          246,
+          214
+        ],
+        "anchor": [
+          185,
+          277
+        ]
+      },
+      {
+        "index": 8,
+        "name": "logs",
+        "source": [
+          0,
+          737,
+          362,
+          349
+        ],
+        "trim": [
+          58,
+          797,
+          280,
+          227
+        ],
+        "anchor": [
+          198,
+          287
+        ]
+      },
+      {
+        "index": 9,
+        "name": "crate",
+        "source": [
+          362,
+          737,
+          362,
+          349
+        ],
+        "trim": [
+          462,
+          802,
+          175,
+          202
+        ],
+        "anchor": [
+          187.5,
+          267
+        ]
+      },
+      {
+        "index": 10,
+        "name": "cart",
+        "source": [
+          724,
+          737,
+          362,
+          349
+        ],
+        "trim": [
+          763,
+          787,
+          284,
+          224
+        ],
+        "anchor": [
+          181,
+          274
+        ]
+      },
+      {
+        "index": 11,
+        "name": "rune-stone",
+        "source": [
+          1086,
+          737,
+          362,
+          349
+        ],
+        "trim": [
+          1167,
+          754,
+          197,
+          278
+        ],
+        "anchor": [
+          179.5,
+          295
+        ]
+      }
+    ]
+  },
+  "ground": {
+    "file": "ground-tiles.png",
+    "width": 1254,
+    "height": 1254,
+    "columns": 4,
+    "rows": 4,
+    "hasAlpha": false,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5,
+    "rowMaterials": [
+      "grass",
+      "dirt",
+      "sand",
+      "water"
+    ],
+    "note": "Use fractional source rectangles, or sample a centered 300x300 interior in each cell to avoid any boundary pixels."
+  },
+  "note": "Image generation retained four-column row-major ordering but did not preserve equal row heights for transparent sheets. Use explicit source or trim rectangles, not uniform width/4,height/3 cropping. trim is [x,y,width,height] in atlas pixels; source is the full assigned cell; anchor is bottom-center relative to source. Bounds use alpha>32 to ignore faint extraction fringes. PNG files are unmodified imagegen outputs."
+}

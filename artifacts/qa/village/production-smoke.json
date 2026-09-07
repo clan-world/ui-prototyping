@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "server": "Next.js production",
+  "viewports": [
+    "1440x900",
+    "390x844"
+  ],
+  "mobile_panel_switching": true,
+  "browser_errors": []
+}

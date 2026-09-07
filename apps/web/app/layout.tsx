@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import "./globals.css";
+import "./medieval.css";
 
 export const metadata: Metadata = {
-  title: "Clan World | The wild is calling",
-  description: "Build your clan. Discover the wild. Collect a world of cards.",
+  title: "Clan World | Elders’ Reach",
+  description:
+    "Command a medieval clan. Lead your clansmen, build a village, and write its history.",
   applicationName: "Clan World",
+  icons: { icon: "/icon.svg" },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -16,7 +18,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#0b1413",
+  themeColor: "#30291f",
   viewportFit: "cover",
 };
 

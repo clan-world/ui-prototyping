@@ -4,12 +4,13 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Clan World",
     short_name: "Clan World",
-    description: "The Wildwood chronicles: gather, collect, and conquer.",
+    description:
+      "Elders’ Reach: command your clan, gather supplies, and build a village.",
     start_url: "/",
     display: "standalone",
     orientation: "any",
-    background_color: "#0b1c15",
-    theme_color: "#0b1c15",
+    background_color: "#30291f",
+    theme_color: "#30291f",
     icons: [
       { src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },
     ],
