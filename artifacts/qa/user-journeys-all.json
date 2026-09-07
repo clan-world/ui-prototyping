@@ -1,0 +1,39 @@
+{
+  "packs": {
+    "status": "passed",
+    "packs_remaining": 1,
+    "collection_copies": 12,
+    "deck_size": 6,
+    "reload_persists": true
+  },
+  "expedition": {
+    "status": "passed",
+    "timber_before": 0,
+    "timber_after_travel": 12,
+    "deployment_energy": [
+      10,
+      8
+    ],
+    "pause_freezes": true,
+    "completed_runs": 1,
+    "reward": {
+      "gold": 37,
+      "xp": 65,
+      "packs": 1
+    },
+    "reward_claims": 1,
+    "replay_starts": true
+  },
+  "mobile": {
+    "status": "passed",
+    "viewport": "390x844",
+    "health": [
+      100,
+      88,
+      100
+    ],
+    "camp_control_visible": true,
+    "horizontal_overflow": false,
+    "home_can_resume": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "clan-world",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.15.1",
+  "scripts": {
+    "dev": "pnpm --filter @clan-world/web dev",
+    "dev:all": "turbo run dev",
+    "dev:api": "pnpm --filter @clan-world/api dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "test:e2e": "pnpm --filter @clan-world/web test:e2e"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "turbo": "^2.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

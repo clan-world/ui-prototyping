@@ -1,0 +1,26 @@
+{
+  "name": "@clan-world/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --noEmit && tsup src/index.ts --format esm --platform node --out-dir dist",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@clan-world/shared": "workspace:*",
+    "@clan-world/db": "workspace:*",
+    "effect": "^3.22.1",
+    "@effect/platform": "^0.97.1",
+    "@effect/platform-node": "^0.108.1"
+  },
+  "devDependencies": {
+    "@effect/vitest": "^0.30.0",
+    "tsx": "^4.20.0",
+    "tsup": "^8.5.0",
+    "vitest": "^3.2.4"
+  }
+}
