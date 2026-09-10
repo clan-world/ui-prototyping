@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./medieval.css";
+import "./realm.css";
 
 export const metadata: Metadata = {
   title: "Clan World | Elders’ Reach",

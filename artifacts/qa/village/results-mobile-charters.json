@@ -1,0 +1,21 @@
+{
+  "charters-mobile": {
+    "status": "passed",
+    "checks": {
+      "pack_purchase": {
+        "gold_cost_each": 40,
+        "purchases": 2,
+        "insufficient_funds_rejected": true
+      },
+      "reveal_collection_ratify_persistence": {
+        "cards_added": 3,
+        "rare_guarantee": true,
+        "no_duplicate_collection": true,
+        "active": "elder-seal",
+        "doctrine": "industry",
+        "reload_persists": true
+      }
+    },
+    "browser_errors": []
+  }
+}

@@ -5,16 +5,16 @@
       "group_movement": {
         "selected": 12,
         "received_move": 12,
-        "moved": 11
+        "moved": 12
       },
       "pause": {
-        "elapsed": 20.40000000000002,
+        "elapsed": 20.50000000000002,
         "unchanged_after_browser_ms": 3000
       },
       "gather_and_deliver": {
         "timber_before": 180,
-        "timber_after": 280,
-        "gathered": 100
+        "timber_after": 227,
+        "gathered": 47
       },
       "recruitment": {
         "population": 14,
@@ -23,7 +23,7 @@
       },
       "construction": {
         "site": [
-          24,
+          23,
           22
         ],
         "timber_cost": 45,
@@ -46,8 +46,8 @@
         "cards_added": 3,
         "rare_guarantee": true,
         "no_duplicate_collection": true,
-        "active": "elder-seal",
-        "doctrine": "industry",
+        "active": "stonecutters",
+        "doctrine": "harvest",
         "reload_persists": true
       }
     },
@@ -62,13 +62,13 @@
         "moved": 12
       },
       "pause": {
-        "elapsed": 20.50000000000002,
+        "elapsed": 20.40000000000002,
         "unchanged_after_browser_ms": 3000
       },
       "gather_and_deliver": {
         "timber_before": 180,
-        "timber_after": 247,
-        "gathered": 67
+        "timber_after": 227,
+        "gathered": 47
       },
       "recruitment": {
         "population": 14,
@@ -77,7 +77,7 @@
       },
       "construction": {
         "site": [
-          24,
+          23,
           22
         ],
         "timber_cost": 45,
@@ -100,7 +100,7 @@
         "cards_added": 3,
         "rare_guarantee": true,
         "no_duplicate_collection": true,
-        "active": "stonecutters",
+        "active": "woodland-pact",
         "doctrine": "harvest",
         "reload_persists": true
       }

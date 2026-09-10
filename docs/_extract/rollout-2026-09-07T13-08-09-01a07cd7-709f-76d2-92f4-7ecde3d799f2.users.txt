@@ -1,0 +1,378 @@
+FILE: /Users/mikail/.codex/sessions/2026/09/07/rollout-2026-09-07T13-08-09-01a07cd7-709f-76d2-92f4-7ecde3d799f2.jsonl
+USER_MSG_COUNT: 5
+
+===== USER MSG #1 line=4 type=response_item =====
+# AGENTS.md instructions
+
+<INSTRUCTIONS>
+# Global instructions
+
+These rules govern how you write and present work in every project.
+They do not govern what you build.
+
+## Writing
+
+Read `~/.agents/styles/active.md`. It names one style file in
+`~/.agents/styles/`. Read that file and follow its rules for voice, tense,
+sentence structure, and word choice. If `active.md` says `none`, no style in
+this section is enforced.
+
+- To use a style for one reply or one session without changing the default,
+  read the named style file directly and follow it for that occasion only.
+- To change the default, run `~/.agents/bin/agent-style set <name>`. To turn
+  enforcement off, run `~/.agents/bin/agent-style off`. To list the available
+  styles, run `~/.agents/bin/agent-style list`.
+
+Scope:
+
+- The active style applies to explanation, findings, plans, reports, documents,
+  and artifacts.
+- The active style does not apply to code, identifiers, code comments, commit
+  messages, quoted text, or wording that the user dictates.
+- The active style does not apply to casual conversation. Do not force it onto
+  small talk.
+
+### Punctuation
+
+These rules apply always, regardless of the active style.
+
+- Never use an em-dash. This has no exceptions: it covers replies, documents,
+  artifacts, UI copy, code comments, and commit messages. Use a colon, a full
+  stop, a comma, or parentheses. Rewrite the sentence when none of those fit.
+  Check before you deliver: a grep for the character returns zero or the work
+  is not done.
+- Use the serial comma always.
+- No periods in an acronym or an initialism (API, not A.P.I.).
+- Never substitute "i.e." or "e.g." Write "that is" or "for example."
+
+## Formatting
+
+Applies to session output, generated artifacts, and .md files.
+
+- Prefer bullets to paragraphs. Use bullets for any answer with several facts:
+  architecture summaries, findings, options, status updates, specs, and reports.
+- If a bullet has a **bold term:** lead-in, stop the sentence at the colon. Put the
+  rest in sub-bullets below it.
+
+## Explanations
+
+Applies to concepts, systems, flows, and processes.
+
+- Always give the technical explanation. Never replace it. Never omit it.
+- Always add a plain-language companion:
+    - A short "In plain words" section or box beside the technical version.
+    - Everyday analogies. Keep the analogy vocabulary the same inside one project.
+- Add compact visuals when the subject has structure, flow, or sequence:
+    - Mermaid flowcharts and sequence diagrams. Keep each one small and focused.
+    - One concern per diagram.
+- This applies to artifacts, documents, and any long explanation.
+
+## Front ends and interfaces
+
+Applies to every UI you build or generate: web front ends, artifacts, dashboards,
+components, and any interface a person looks at.
+
+**The test: the F1 driver.**
+
+- Imagine the reader is a Formula 1 driver glancing at the dashboard at speed.
+- They get a few seconds to read the state and decide whether to act.
+- If they must read a sentence to learn the state, the design has failed.
+
+**Cut all explanatory copy.**
+
+- No subtitle defining a metric.
+- No helper text restating the number above it.
+- No sentence explaining what a chart shows.
+- Assume the reader knows what the metrics are.
+
+**Never present data or definitions inline.**
+
+- Put any explanation that survives behind a hover or a disclosure.
+- It paints nothing in the default view.
+
+**Let numbers and layout carry the meaning.**
+
+- Type scale, weight, and colour do the work that sentences were doing.
+- Colour carries meaning only. It is never decoration.
+- Use tabular numerals wherever a value updates in place.
+
+**Aesthetic: an instrument cluster, not an admin panel.**
+
+- High contrast, sharp edges, precise numerals, engineered texture.
+- Sleek and instrument-like. Not soft, not web-like, not a SaaS dashboard.
+
+**Make destructive actions safe from unintended consequences.**
+
+- Never pre-select anything destructive.
+- The control names the count and the action. Never a generic "Confirm".
+- A destructive action needs a deliberate second step that no one hits by accident.
+- Show the risk before the click. Do not explain it in a paragraph.
+
+**Measure the result, not the source.**
+
+- Count the words the page paints in its default state.
+- Count painted sentences of five or more words. Drive that number toward zero.
+- Source counts mislead. A page composes text from fragments, and one renders at
+  a time.
+
+## Operational work
+
+Applies to incident response, rebuilds, migrations, and runbook-driven tasks.
+
+- End every reply with the running runbook.
+- Keep one canonical list. Remove the completed items. Do not collect status noise.
+- Show the current step and the next step.
+- Mark each remaining step as blocked-on-user or blocked-on-me.
+</INSTRUCTIONS>
+# AGENTS.md instructions
+
+<INSTRUCTIONS>
+# Global instructions
+
+These rules govern how you write and present work in every project.
+They do not govern what you build.
+
+## Writing
+
+Read `~/.agents/styles/active.md`. It names one style file in
+`~/.agents/styles/`. Read that file and follow its rules for voice, tense,
+sentence structure, and word choice. If `active.md` says `none`, no style in
+this section is enforced.
+
+- To use a style for one reply or one session without changing the default,
+  read the named style file directly and follow it for that occasion only.
+- To change the default, run `~/.agents/bin/agent-style set <name>`. To turn
+  enforcement off, run `~/.agents/bin/agent-style off`. To list the available
+  styles, run `~/.agents/bin/agent-style list`.
+
+Scope:
+
+- The active style applies to explanation, findings, plans, reports, documents,
+  and artifacts.
+- The active style does not apply to code, identifiers, code comments, commit
+  messages, quoted text, or wording that the user dictates.
+- The active style does not apply to casual conversation. Do not force it onto
+  small talk.
+
+### Punctuation
+
+These rules apply always, regardless of the active style.
+
+- Never use an em-dash. This has no exceptions: it covers replies, documents,
+  artifacts, UI copy, code comments, and commit messages. Use a colon, a full
+  stop, a comma, or parentheses. Rewrite the sentence when none of those fit.
+  Check before you deliver: a grep for the character returns zero or the work
+  is not done.
+- Use the serial comma always.
+- No periods in an acronym or an initialism (API, not A.P.I.).
+- Never substitute "i.e." or "e.g." Write "that is" or "for example."
+
+## Formatting
+
+Applies to session output, generated artifacts, and .md files.
+
+- Prefer bullets to paragraphs. Use bullets for any answer with several facts:
+  architecture summaries, findings, options, status updates, specs, and reports.
+- If a bullet has a **bold term:** lead-in, stop the sentence at the colon. Put the
+  rest in sub-bullets below it.
+
+## Explanations
+
+Applies to concepts, systems, flows, and processes.
+
+- Always give the technical explanation. Never replace it. Never omit it.
+- Always add a plain-language companion:
+    - A short "In plain words" section or box beside the technical version.
+    - Everyday analogies. Keep the analogy vocabulary the same inside one project.
+- Add compact visuals when the subject has structure, flow, or sequence:
+    - Mermaid flowcharts and sequence diagrams. Keep each one small and focused.
+    - One concern per diagram.
+- This applies to artifacts, documents, and any long explanation.
+
+## Front ends and interfaces
+
+Applies to every UI you build or generate: web front ends, artifacts, dashboards,
+components, and any interface a person looks at.
+
+**The test: the F1 driver.**
+
+- Imagine the reader is a Formula 1 driver glancing at the dashboard at speed.
+- They get a few seconds to read the state and decide whether to act.
+- If they must read a sentence to learn the state, the design has failed.
+
+**Cut all explanatory copy.**
+
+- No subtitle defining a metric.
+- No helper text restating the number above it.
+- No sentence explaining what a chart s
+
+===== USER MSG #2 line=7 type=response_item =====
+<image name=[Image #1] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-eF8sib.png">
+<image name=[Image #1] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-eF8sib.png">
+</image>
+</image>
+<image name=[Image #2] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-rfGn0U.png">
+<image name=[Image #2] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-rfGn0U.png">
+</image>
+</image>
+<image name=[Image #3] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-eXc0oI.png">
+<image name=[Image #3] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-eXc0oI.png">
+</image>
+</image>
+<image name=[Image #4] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-a9L18F.png">
+<image name=[Image #4] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-a9L18F.png">
+</image>
+</image>
+<image name=[Image #5] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-HgDS99.png">
+<image name=[Image #5] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-HgDS99.png">
+</image>
+</image>
+<image name=[Image #6] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-FCeYVm.png">
+<image name=[Image #6] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-FCeYVm.png">
+</image>
+</image>
+<image name=[Image #7] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-B1fK8l.png">
+<image name=[Image #7] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-B1fK8l.png">
+</image>
+</image>
+<image name=[Image #8] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-50Jqrs.png">
+<image name=[Image #8] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-50Jqrs.png">
+</image>
+</image>
+<image name=[Image #9] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-PqJu9Z.png">
+<image name=[Image #9] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-PqJu9Z.png">
+</image>
+</image>
+Okay cool, so now let's do some tweaks to the actual game UI. You're going in, I guess, the right direction but there's still a lot of work to be done and it really is not achieving the look and feel that I wanted to have. It needs to feel like an actual game. It should not feel like someone is in a web browser and that is kind of what the UI is communicating right now, with just some of the styles and the layout and the sharpness and all that stuff.
+
+You are a very powerful model and I want to give you the autonomy to figure out exactly what I mean. What I've done is I've taken a bunch of screenshots from another application called Cambria. This is a game that is not very similar but the UI, the look and feel and the layout of different things, is pretty much what I'm going for and that's what I want you to try to achieve. The pixel art stuff that you've done so far is good but all of it, all in all, just needs to feel a lot more polished and finished as an actual game. Here are the screenshots. [Image #4][Image #5][Image #6][Image #7][Image #8][Image #9]
+
+And in addition to that I also think that having the cursor be customized for the game would also be pretty cool. It wasn't easy to screenshot the cursor because of the way that screenshotting on my computer works. So I used my phone to take some pictures of the cursor in different settings and different situations. It's literally a picture of my laptop screen so bear with me. The image format is also HEIC, which is the iPhone format, so again just bear with me on that. But here are those images. [Image #1][Image #2][Image #3]
+
+Now one other thing, and that is the map. The map looks pretty cool with the pixel art and the size of the clansmen and all that stuff but the
+  map needs to be a lot bigger and cover similar ground like the other original Clan Worlded. The different jurisdictions, the different places,
+  the different aspects of the map, the size of it, the ability to navigate and go around it. It would also be pretty cool if there were different
+  zoom levels. Each clan should have its own base and then the location of that base should be kind of randomized on the actual map.
+
+  The goal of the game, as far as I know, is to gather resources and then build up this monument of some kind. Anyway we're still playing around
+  with the balancing of the game, the data science part of it, the visuals and the UI. Making sure everything looks and feels good. Don't really
+  focus too much on automating the actual game because I think that's gonna take a different session with different thinking. Right now we wanna
+  focus on making sure we have the correct visual identity and making sure that the paths can be defined and there are genuine obstacles in the
+  way. The map itself is as high fidelity and real as possible and by real I don't mean graphics. The clansmen shouldn't be able to just walk
+  through a tree or walk on water so there should be proper pathways and all that stuff. All of the architecture, everything in and around it,
+  should also be pretty well formatted: all of the mountains, all of the different locations, all these things.
+
+  Go for it, give it a shot. Let's see what you could do!
+Okay cool, so now let's do some tweaks to the actual game UI. You're going in, I guess, the right direction but there's still a lot of work to be done and it really is not achieving the look and feel that I wanted to have. It needs to feel like an actual game. It should not feel like someone is in a web browser and that is kind of what the UI is communicating right now, with just some of the styles and the layout and the sharpness and all that stuff.
+
+You are a very powerful model and I want to give you the autonomy to figure out exactly what I mean. What I've done is I've taken a bunch of screenshots from another application called Cambria. This is a game that is not very similar but the UI, the look and feel and the layout of different things, is pretty much what I'm going for and that's what I want you to try to achieve. The pixel art stuff that you've done so far is good but all of it, all in all, just needs to feel a lot more polished and finished as an actual game. Here are the screenshots. [Image #4][Image #5][Image #6][Image #7][Image #8][Image #9]
+
+And in addition to that I also think that having the cursor be customized for the game would also be pretty cool. It wasn't easy to screenshot the cursor because of the way that screenshotting on my computer works. So I used my phone to take some pictures of the cursor in different settings and different situations. It's literally a picture of my laptop screen so bear with me. The image format is also HEIC, which is the iPhone format, so again just bear with me on that. But here are those images. [Image #1][Image #2][Image #3]
+
+Now one other thing, and that is the map. The map looks pretty cool with the pixel art and the size of the clansmen and all that stuff but the
+  map needs to be a lot bigger and cover similar ground like the other original Clan Worlded. The different jurisdictions, the different places,
+  the different aspects of the map, the size of it, the ability to navigate and go around it. It would also be pretty cool if there were different
+  zoom levels. Each clan should have its own base and then the location of that base should be kind of randomized on the actual map.
+
+  The goal of the game, as far as I know, is to gather resources and then build up this monument of some kind. Anyway we're still playing around
+  with the balancing of the game, the data science part of it, the visuals and the UI. Making sure everything looks and feels good. Don't really
+  focus too much on automating the actual game because I think that's gonna take a different session with different thinking. Right now we wanna
+  focus on making sure we have the correct visual identity and making sure that the path
+
+===== USER MSG #3 line=13 type=response_item =====
+<image name=[Image #1] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-eF8sib.png">
+<image name=[Image #1] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-eF8sib.png">
+</image>
+</image>
+<image name=[Image #2] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-rfGn0U.png">
+<image name=[Image #2] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-rfGn0U.png">
+</image>
+</image>
+<image name=[Image #3] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-eXc0oI.png">
+<image name=[Image #3] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-eXc0oI.png">
+</image>
+</image>
+<image name=[Image #4] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-a9L18F.png">
+<image name=[Image #4] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-a9L18F.png">
+</image>
+</image>
+<image name=[Image #5] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-HgDS99.png">
+<image name=[Image #5] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-HgDS99.png">
+</image>
+</image>
+<image name=[Image #6] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-FCeYVm.png">
+<image name=[Image #6] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-FCeYVm.png">
+</image>
+</image>
+<image name=[Image #7] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-B1fK8l.png">
+<image name=[Image #7] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-B1fK8l.png">
+</image>
+</image>
+<image name=[Image #8] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-50Jqrs.png">
+<image name=[Image #8] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-50Jqrs.png">
+</image>
+</image>
+<image name=[Image #9] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-PqJu9Z.png">
+<image name=[Image #9] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-PqJu9Z.png">
+</image>
+</image>
+Okay cool, so now let's do some tweaks to the actual game UI. You're going in, I guess, the right direction but there's still a lot of work to be done and it really is not achieving the look and feel that I wanted to have. It needs to feel like an actual game. It should not feel like someone is in a web browser and that is kind of what the UI is communicating right now, with just some of the styles and the layout and the sharpness and all that stuff.
+
+You are a very powerful model and I want to give you the autonomy to figure out exactly what I mean. What I've done is I've taken a bunch of screenshots from another application called Cambria. This is a game that is not very similar but the UI, the look and feel and the layout of different things, is pretty much what I'm going for and that's what I want you to try to achieve. The pixel art stuff that you've done so far is good but all of it, all in all, just needs to feel a lot more polished and finished as an actual game. Here are the screenshots. [Image #4][Image #5][Image #6][Image #7][Image #8][Image #9]
+
+And in addition to that I also think that having the cursor be customized for the game would also be pretty cool. It wasn't easy to screenshot the cursor because of the way that screenshotting on my computer works. So I used my phone to take some pictures of the cursor in different settings and different situations. It's literally a picture of my laptop screen so bear with me. The image format is also HEIC, which is the iPhone format, so again just bear with me on that. But here are those images. [Image #1][Image #2][Image #3]
+
+Now one other thing, and that is the map. The map looks pretty cool with the pixel art and the size of the clansmen and all that stuff but the
+  map needs to be a lot bigger and cover similar ground like the other original Clan Worlded. The different jurisdictions, the different places,
+  the different aspects of the map, the size of it, the ability to navigate and go around it. It would also be pretty cool if there were different
+  zoom levels. Each clan should have its own base and then the location of that base should be kind of randomized on the actual map.
+
+  The goal of the game, as far as I know, is to gather resources and then build up this monument of some kind. Anyway we're still playing around
+  with the balancing of the game, the data science part of it, the visuals and the UI. Making sure everything looks and feels good. Don't really
+  focus too much on automating the actual game because I think that's gonna take a different session with different thinking. Right now we wanna
+  focus on making sure we have the correct visual identity and making sure that the paths can be defined and there are genuine obstacles in the
+  way. The map itself is as high fidelity and real as possible and by real I don't mean graphics. The clansmen shouldn't be able to just walk
+  through a tree or walk on water so there should be proper pathways and all that stuff. All of the architecture, everything in and around it,
+  should also be pretty well formatted: all of the mountains, all of the different locations, all these things.
+
+  Go for it, give it a shot. Let's see what you could do!
+Okay cool, so now let's do some tweaks to the actual game UI. You're going in, I guess, the right direction but there's still a lot of work to be done and it really is not achieving the look and feel that I wanted to have. It needs to feel like an actual game. It should not feel like someone is in a web browser and that is kind of what the UI is communicating right now, with just some of the styles and the layout and the sharpness and all that stuff.
+
+You are a very powerful model and I want to give you the autonomy to figure out exactly what I mean. What I've done is I've taken a bunch of screenshots from another application called Cambria. This is a game that is not very similar but the UI, the look and feel and the layout of different things, is pretty much what I'm going for and that's what I want you to try to achieve. The pixel art stuff that you've done so far is good but all of it, all in all, just needs to feel a lot more polished and finished as an actual game. Here are the screenshots. [Image #4][Image #5][Image #6][Image #7][Image #8][Image #9]
+
+And in addition to that I also think that having the cursor be customized for the game would also be pretty cool. It wasn't easy to screenshot the cursor because of the way that screenshotting on my computer works. So I used my phone to take some pictures of the cursor in different settings and different situations. It's literally a picture of my laptop screen so bear with me. The image format is also HEIC, which is the iPhone format, so again just bear with me on that. But here are those images. [Image #1][Image #2][Image #3]
+
+Now one other thing, and that is the map. The map looks pretty cool with the pixel art and the size of the clansmen and all that stuff but the
+  map needs to be a lot bigger and cover similar ground like the other original Clan Worlded. The different jurisdictions, the different places,
+  the different aspects of the map, the size of it, the ability to navigate and go around it. It would also be pretty cool if there were different
+  zoom levels. Each clan should have its own base and then the location of that base should be kind of randomized on the actual map.
+
+  The goal of the game, as far as I know, is to gather resources and then build up this monument of some kind. Anyway we're still playing around
+  with the balancing of the game, the data science part of it, the visuals and the UI. Making sure everything looks and feels good. Don't really
+  focus too much on automating the actual game because I think that's gonna take a different session with different thinking. Right now we wanna
+  focus on making sure we have the correct visual identity and making sure that the path
+
+===== USER MSG #4 line=14 type=response_item =====
+Quick heads up: don't use any of these design skills or the interface polish skills. I don't want those things to influence the UI so do everything from scratch and do not use any existing front-end skills at all.
+Quick heads up: don't use any of these design skills or the interface polish skills. I don't want those things to influence the UI so do everything from scratch and do not use any existing front-end skills at all.
+
+===== USER MSG #5 line=22 type=response_item =====
+<image name=[Image #1] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-fSlxnk.png">
+<image name=[Image #1] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-fSlxnk.png">
+</image>
+</image>
+<image name=[Image #2] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-nSrCkl.png">
+<image name=[Image #2] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-nSrCkl.png">
+</image>
+</image>
+<image name=[Image #3] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-ywGyXK.png">
+<image name=[Image #3] path="/var/folders/m5/4z2q9hfs7t30cfy08hv6n91m0000gn/T/codex-clipboard-ywGyXK.png">
+</image>
+</image>
+Background and foreground of the art contrasts too much. I'm also not a fan of the isometric style. I think it should have a style much more like cambria in terms of the angle, the resolution of the background vs the sprites, etc.
+
+The HUDs and all of the overlays still have a sharpness that makes it feel institutional (that's the only word I could think to describe it lol). Take a look at these screenshots: [Image #1][Image #2][Image #3]. These reflect the button styles, logo styles, map styling, and should communicate the overall visual direction you should be going in. It also feels way too green and lacks the parchment paper and runes texture that it hsould have. With respect again to the components and the design (like the map and the butons, etc), maybe you should consider an alternative approach in terms of design libraries and stuff? Up to you but it just currently feels like that game is a bunch of div tags with basic styling. Give it another shot.
+Background and foreground of the art contrasts too much. I'm also not a fan of the isometric style. I think it should have a style much more like cambria in terms of the angle, the resolution of the background vs the sprites, etc.
+
+The HUDs and all of the overlays still have a sharpness that makes it feel institutional (that's the only word I could think to describe it lol). Take a look at these screenshots: [Image #1][Image #2][Image #3]. These reflect the button styles, logo styles, map styling, and should communicate the overall visual direction you should be going in. It also feels way too green and lacks the parchment paper and runes texture that it hsould have. With respect again to the components and the design (like the map and the butons, etc), maybe you should consider an alternative approach in terms of design libraries and stuff? Up to you but it just currently feels like that game is a bunch of div tags with basic styling. Give it another shot.
+

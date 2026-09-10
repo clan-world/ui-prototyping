@@ -1,0 +1,66 @@
+{
+  "url": "http://localhost:3010",
+  "status": "passed",
+  "viewports": {
+    "1512x982": {
+      "painted_hud_words": 125,
+      "painted_sentences_at_least_five_words": 0,
+      "overflow": false,
+      "canvas": {
+        "width": 756,
+        "height": 491,
+        "cssWidth": 1512,
+        "cssHeight": 982
+      },
+      "logoTop": 12,
+      "status": "passed",
+      "page_errors": [],
+      "http_errors": []
+    },
+    "1024x768": {
+      "painted_hud_words": 108,
+      "painted_sentences_at_least_five_words": 0,
+      "overflow": false,
+      "canvas": {
+        "width": 512,
+        "height": 384,
+        "cssWidth": 1024,
+        "cssHeight": 768
+      },
+      "logoTop": 10,
+      "status": "passed",
+      "page_errors": [],
+      "http_errors": []
+    },
+    "844x390": {
+      "painted_hud_words": 61,
+      "painted_sentences_at_least_five_words": 0,
+      "overflow": false,
+      "canvas": {
+        "width": 422,
+        "height": 195,
+        "cssWidth": 844,
+        "cssHeight": 390
+      },
+      "logoTop": 7,
+      "status": "passed",
+      "page_errors": [],
+      "http_errors": []
+    },
+    "390x844": {
+      "painted_hud_words": 38,
+      "painted_sentences_at_least_five_words": 0,
+      "overflow": false,
+      "canvas": {
+        "width": 195,
+        "height": 422,
+        "cssWidth": 390,
+        "cssHeight": 844
+      },
+      "logoTop": 0,
+      "status": "passed",
+      "page_errors": [],
+      "http_errors": []
+    }
+  }
+}

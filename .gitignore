@@ -11,3 +11,6 @@ test-results/
 .env.local
 .DS_Store
 artifacts/qa/village/*-trace.zip
+
+__pycache__/
+*.pyc

@@ -9,6 +9,7 @@ import {
 } from "react";
 import {
   BUILDING_SPECS,
+  isPlayerBuilding,
   createClanWorld,
   tickClan,
   issueOrder,
@@ -24,7 +25,7 @@ import {
   type Point,
 } from "@clan-world/shared";
 import { OBJECT_ART } from "../../lib/medieval/sprites";
-import { ClanMap, MiniMap, type MapHandle, type MapTarget } from "./ClanMap";
+import { ClanMap, MiniMap, type MapHandle, type MapTarget, type CameraState } from "./ClanMap";
 import { PixelIcon, type PixelIconName } from "./PixelIcon";
 import { SpritePortrait } from "./SpritePortrait";
 import {
@@ -188,7 +189,7 @@ export default function ClanController() {
     [speed, setSpeed] = useState(1),
     [showOrders, setShowOrders] = useState(true),
     [showNames, setShowNames] = useState(false),
-    [drawer, setDrawer] = useState(false),
+    [drawer, setDrawer] = useState(true),
     [buildKind, setBuildKind] = useState<BuildingKind | null>(null),
     [command, setCommand] = useState<Command>("context"),
     [inspected, setInspected] = useState<MapTarget | null>(null),
@@ -207,7 +208,8 @@ export default function ClanController() {
     [loaded, setLoaded] = useState(false),
     [saved, setSaved] = useState(true),
     [resetPrompt, setResetPrompt] = useState(false),
-    [mapSmall, setMapSmall] = useState(false);
+    [mapSmall, setMapSmall] = useState(false),
+    [camera, setCamera] = useState<CameraState | undefined>();
   const map = useRef<MapHandle>(null),
     worldRef = useRef(world),
     archiveRef = useRef(archive),
@@ -247,6 +249,7 @@ export default function ClanController() {
     } catch {
       setSaved(false);
     }
+    if ((window.innerWidth < 701 || window.innerHeight < 500)) setDrawer(false);
     setLoaded(true);
     return () => timers.current.forEach(clearTimeout);
   }, []);
@@ -460,7 +463,7 @@ export default function ClanController() {
     const chosen = world.units.find((u) => selected.includes(u.id))!;
     if (kind === "food") {
       const farm = world.buildings.find(
-        (b) => b.kind === "farm" && b.progress === 1,
+        (b) => b.kind === "farm" && b.progress === 1 && isPlayerBuilding(world, b),
       );
       if (farm) {
         send({ type: "gather", targetId: farm.id });
@@ -499,7 +502,7 @@ export default function ClanController() {
     setBuildKind(kind);
     setCommand("context");
     setInspected(null);
-    if (window.innerWidth < 700) setDrawer(false);
+    setDrawer(false);
     notify(`Place ${BUILDING_SPECS[kind].name.toLowerCase()} on clear ground.`);
     sound("tap");
   }
@@ -577,20 +580,30 @@ export default function ClanController() {
       (filter === "working" && u.status !== "idle"),
   );
   const mapReadyCallback = useCallback(() => setMapReady(true), []);
+  const cameraCallback = useCallback((next: CameraState) => setCamera(next), []);
+  function togglePanel(next: Panel) {
+    setDrawer((open) => panel === next ? !open : true);
+    setPanel(next);
+    sound("tap");
+  }
+  async function toggleFullscreen() {
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else await document.documentElement.requestFullscreen();
+    } catch {
+      notify("Fullscreen is unavailable in this browser.");
+    }
+  }
   return (
-    <main className="clan-game">
+    <main className="clan-game immersive-game">
       <header className="resource-bar">
         <button
           className="clan-wordmark"
           onClick={selectElder}
           aria-label="Select and center Elder"
         >
-          <span className="clan-crest">
-            <PixelIcon name="crown" size={25} />
-          </span>
-          <span>
-            CLAN WORLD<small>ELDERS’ REACH</small>
-          </span>
+          <span className="wordmark-art" aria-hidden="true" />
+          <span className="mobile-crest" aria-hidden="true"><PixelIcon name="crown" size={24} /></span>
         </button>
         <div className="resource-counters">
           {(["timber", "stone", "food", "iron", "gold"] as const).map(
@@ -636,72 +649,32 @@ export default function ClanController() {
           </button>
         </div>
       </header>
-      <section className="world-viewport">
+      <section className="world-viewport" data-camera-x={camera?.x} data-camera-y={camera?.y} data-camera-zoom={camera?.zoom}>
         <ClanMap
           ref={map}
           world={world}
           selected={selected}
           buildKind={buildKind}
+          command={command}
           showOrders={showOrders}
           showNames={showNames}
           paused={paused || help || chartersOpen || packOpen}
           onSelect={selectUnits}
           onTarget={contextTarget}
           onReady={mapReadyCallback}
+          onCameraChange={cameraCallback}
         />
         <div className="map-location">
-          <span>ELDERS’ REACH</span>
-          <small>Mossfell clanlands</small>
+          <small>THE CLANLANDS</small>
+          <span>{camera?.region ?? "Elders’ Reach"}</span>
         </div>
         <div className="map-options">
-          <button
-            className={`metal-button ${showOrders ? "engaged" : ""}`}
-            onClick={() => setShowOrders(!showOrders)}
-            aria-pressed={showOrders}
-            title="Show selected orders"
-          >
-            Paths
-          </button>
-          <button
-            className={`metal-button ${showNames ? "engaged" : ""}`}
-            onClick={() => setShowNames(!showNames)}
-            aria-pressed={showNames}
-            title="Show unit and building names"
-          >
-            Names
-          </button>
-          <button
-            className="metal-button"
-            onClick={() => setHelp(true)}
-            aria-label="Open field manual"
-          >
-            ?
-          </button>
+          <button className={`metal-button ${showOrders ? "engaged" : ""}`} onClick={() => setShowOrders(!showOrders)} aria-pressed={showOrders} title="Show selected paths" aria-label="Show selected paths"><PixelIcon name="move" /></button>
+          <button className={`metal-button ${showNames ? "engaged" : ""}`} onClick={() => setShowNames(!showNames)} aria-pressed={showNames} title="Show names" aria-label="Show names"><PixelIcon name="people" /></button>
+          <button className="metal-button" onClick={toggleFullscreen} title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+          <button className="metal-button" onClick={() => setHelp(true)} aria-label="Open field manual" title="Field manual">?</button>
         </div>
-        <div className="zoom-controls">
-          <button
-            className="metal-button"
-            aria-label="Zoom in"
-            onClick={() => map.current?.zoom(0.2)}
-          >
-            +
-          </button>
-          <button
-            className="metal-button"
-            aria-label="Zoom out"
-            onClick={() => map.current?.zoom(-0.2)}
-          >
-            −
-          </button>
-          <button
-            className="metal-button"
-            aria-label="Center selection"
-            onClick={() => map.current?.focus(leader)}
-          >
-            <PixelIcon name="eye" size={21} />
-          </button>
-        </div>
-        {paused && <div className="paused-ribbon">Village paused</div>}
+        {paused && <div className="paused-ribbon">Paused</div>}
         {buildKind && (
           <div className="placement-label">
             <PixelIcon name="hammer" size={20} />
@@ -720,7 +693,29 @@ export default function ClanController() {
             {message}
           </div>
         )}
-        <div className="map-coordinates">SEPTEMBER · TEMPERATE WOODLAND</div>
+      </section>
+      <nav className="realm-tools" aria-label="Realm tools">
+        <button className={drawer && panel === "clan" ? "active" : ""} onClick={() => togglePanel("clan")} title="Clansmen" aria-label="Toggle clansmen"><PixelIcon name="people" size={26} /><b>{world.population}</b></button>
+        <button className={drawer && panel === "build" ? "active" : ""} onClick={() => togglePanel("build")} title="Build village (B)" aria-label="Toggle build menu"><PixelIcon name="hammer" size={26} /></button>
+        <button onClick={() => setChartersOpen(true)} title="Clan charters" aria-label="Open clan charters"><PixelIcon name="book" size={26} /></button>
+        <button onClick={() => { setPackOpen(true); setPackPhase("sealed"); }} title="Sealed charters" aria-label="Open sealed charters"><span className="tiny-wax-seal">M</span><b>{archive.packs}</b></button>
+        <button className={drawer && panel === "chronicle" ? "active" : ""} onClick={() => togglePanel("chronicle")} title="Chronicle" aria-label="Toggle chronicle"><PixelIcon name="flag" size={26} /></button>
+      </nav>
+      <button className="monument-objective" onClick={() => { map.current?.zoomTo(1.15); map.current?.focus({ x: world.monument.x + world.monument.w / 2, y: world.monument.y + world.monument.h / 2 }); }} title="The realm monument. Construction progression is reserved for the balancing pass." aria-label="Find the realm monument">
+        <span className="monument-sigil" aria-hidden="true">♜</span>
+        <span><small>REALM MONUMENT</small><strong>{world.monument.name.replace(/^The /, "")}</strong><i><b style={{ width: `${world.monument.progress * 100}%` }} /></i></span>
+        <em>{Math.round(world.monument.progress * 100)}<small>%</small></em>
+      </button>
+      <section className={`minimap-block realm-minimap ${mapSmall ? "mobile-minimap-open" : ""}`} aria-label="World map">
+        <div className="minimap-heading"><PixelIcon name="eye" size={16} /><span>THE CLANLANDS</span><span className="compass-north">N ↑</span></div>
+        <MiniMap world={world} camera={camera} onFocus={(p) => map.current?.focus(p)} />
+        <div className="minimap-controls">
+          <button className="metal-button" aria-label="Zoom out" onClick={() => map.current?.zoom(-0.2)}>−</button>
+          <button className="zoom-readout" title="View the whole realm" aria-label="View the whole realm" onClick={() => { setDrawer(false); map.current?.zoomTo(0.35); }}>{Math.round((camera?.zoom ?? 1) * 100)}%</button>
+          <button className="metal-button" aria-label="Zoom in" onClick={() => map.current?.zoom(0.2)}>+</button>
+          <button className="metal-button" aria-label="Center selection" title="Center selection" onClick={() => map.current?.focus(leader)}><PixelIcon name="eye" size={19} /></button>
+          <button className="metal-button" aria-label="Center village" title="Center village" onClick={() => map.current?.reset()}><PixelIcon name="crown" size={19} /></button>
+        </div>
       </section>
       <aside className={`clan-sidebar ${drawer ? "drawer-open" : ""}`}>
         <div className="clan-sidebar-heading">
@@ -729,7 +724,7 @@ export default function ClanController() {
           </span>
           <div>
             <h1>Mossfell Clan</h1>
-            <span>Elder Aldric’s household</span>
+            <span>{world.population} CLANSMEN · {idle} IDLE</span>
           </div>
           <button
             className="mobile-close metal-button"
@@ -797,13 +792,14 @@ export default function ClanController() {
                   onClick={(e) => selectUnits([u.id], e.shiftKey)}
                   onDoubleClick={() => map.current?.focus(u)}
                   aria-label={`Select ${u.name}, ${u.status}`}
+                  title={`${u.name} · ${u.job} · ${u.status}`}
                   aria-pressed={selected.includes(u.id)}
                 >
                   <span className="roster-portrait">
                     <SpritePortrait unit={u} />
                   </span>
                   <span className="unit-row-text">
-                    <strong>{u.name}</strong>
+                    <strong>{u.name.replace(/^Elder /, "")}</strong>
                     <small>
                       {u.role === "elder" ? "Clan Elder" : u.job} <i>·</i>{" "}
                       {titleCase(u.status)}
@@ -817,7 +813,7 @@ export default function ClanController() {
               ))}
             </div>
             <div className="roster-footer">
-              <button className="wood-button recruit-button" onClick={recruit}>
+              <button className="wood-button recruit-button" onClick={recruit} title="Recruit clansman: 30 food, 20 gold">
                 <PixelIcon name="people" size={20} />
                 <span>
                   Recruit clansman<small>30 food · 20 gold</small>
@@ -835,7 +831,7 @@ export default function ClanController() {
             <div className="build-roster-heading">
               Raise a village
               <span>
-                {world.buildings.filter((b) => b.progress === 1).length}{" "}
+                {world.buildings.filter((b) => b.progress === 1 && isPlayerBuilding(world, b)).length}{" "}
                 buildings
               </span>
             </div>
@@ -914,17 +910,6 @@ export default function ClanController() {
         </div>
       </aside>
       <footer className="command-console">
-        <div
-          className={`minimap-block ${mapSmall ? "mobile-minimap-open" : ""}`}
-        >
-          <MiniMap world={world} onFocus={(p) => map.current?.focus(p)} />
-          <div>
-            <span>CLAN LANDS</span>
-            <button onClick={() => map.current?.reset()} title="Center village">
-              ⌖
-            </button>
-          </div>
-        </div>
         <section className="selection-panel">
           <div className="selection-portrait">
             <SpritePortrait
@@ -953,10 +938,10 @@ export default function ClanController() {
                   : inspectObject
                     ? titleCase(inspectObject.kind)
                     : chosen.length > 1
-                      ? `${chosen.length} clansmen selected`
+                      ? `${chosen.length} clansmen`
                       : chosen.length === 1
                         ? leader.name
-                        : "The Mossfell household"}
+                        : "Mossfell clan"}
               </h2>
               <span>
                 {inspectBuilding
@@ -965,9 +950,9 @@ export default function ClanController() {
                     ? `${inspectObject.stock} remaining`
                     : chosen.length === 1
                       ? leader.role === "elder"
-                        ? "Clan leader · Inspiration +35%"
+                        ? "Elder · Inspiration +35%"
                         : `${leader.job} · ${leader.status}`
-                      : "Give a common order"}
+                      : "Group command"}
               </span>
             </div>
             {inspectBuilding || inspectObject ? (
@@ -1021,7 +1006,7 @@ export default function ClanController() {
                           ? `${titleCase(leader.order.type)} order`
                           : `${titleCase(leader.status)}`
                     : "Awaiting orders"
-                  : "Select a clansman on the map"}
+                  : "No selection"}
                 {leader.queue.length ? ` · ${leader.queue.length} queued` : ""}
               </span>
             </div>
@@ -1143,9 +1128,9 @@ export default function ClanController() {
       <div className="bottom-status">
         <span>
           <i className={saved ? "save-dot" : "save-dot failed"} />
-          {saved ? "Village saved locally" : "Save unavailable"}
+          {saved ? "Saved" : "Save unavailable"}
         </span>
-        <span>Drag to select · Shift queues · Middle drag pans</span>
+        <span>CLAN WORLD · THE CLANLANDS</span>
         <div>
           <button
             onClick={() => {
@@ -1272,7 +1257,7 @@ export default function ClanController() {
                       (c) => c.id === archiveRef.current.active,
                     )?.doctrine;
                     const next = equipClanDoctrine(
-                      createClanWorld(),
+                      createClanWorld(Math.floor(Math.random() * 2147483647)),
                       doctrine ?? null,
                     );
                     setWorld(next);

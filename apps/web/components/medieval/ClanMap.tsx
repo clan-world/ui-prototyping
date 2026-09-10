@@ -10,6 +10,8 @@ import {
 import {
   BUILDING_SPECS,
   canPlaceBuilding,
+  isClanWalkable,
+  isPlayerBuilding,
   type BuildingKind,
   type ClanWorld,
   type Point,
@@ -23,204 +25,78 @@ import {
   type VillageArt,
 } from "../../lib/medieval/sprites";
 
+import {
+  project,
+  unproject,
+  TILE_SIZE,
+  polygon,
+  rectangle,
+  terrainCache,
+  mountainPeaks,
+  drawMountain,
+  drawMonument,
+  TERRAIN_COLORS,
+} from "./map-terrain";
+
 export type MapTarget = {
   type: "unit" | "object" | "building" | "ground";
   id?: string;
   x: number;
   y: number;
 };
+export type CameraState = Point & {
+  zoom: number;
+  region: string;
+  bounds: Point[];
+};
 export type MapHandle = {
   focus: (point: Point) => void;
   zoom: (change: number) => void;
   reset: () => void;
+  zoomTo: (zoom: number) => void;
 };
 type Props = {
   world: ClanWorld;
   selected: string[];
   buildKind: BuildingKind | null;
+  command?: "context" | "move" | "gather" | "guard" | "rally";
   showOrders: boolean;
   showNames: boolean;
   paused: boolean;
   onSelect: (ids: string[], append: boolean) => void;
   onTarget: (target: MapTarget, secondary: boolean, append: boolean) => void;
   onReady: () => void;
+  onCameraChange?: (camera: CameraState) => void;
 };
-const TW = 48,
-  TH = 24;
-export const iso = (x: number, y: number) => ({
-  x: ((x - y) * TW) / 2,
-  y: ((x + y) * TH) / 2,
-});
-const uniso = (x: number, y: number) => ({
-  x: x / TW + y / TH,
-  y: y / TH - x / TW,
-});
-function random(n: number) {
-  const a = Math.sin(n * 127.1 + 311.7) * 43758.5453;
-  return a - Math.floor(a);
+export { project } from "./map-terrain";
+const MIN_ZOOM = 0.1, MAX_ZOOM = 2.4;
+const clampZoom = (zoom: number) => Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoom));
+const CURSORS = {
+  arrow: "url('/medieval/cursors/arrow.svg') 4 3, default",
+  pointer: "url('/medieval/cursors/pointer.svg') 6 3, pointer",
+  grab: "url('/medieval/cursors/grab.svg') 19 20, grab",
+  grabbing: "url('/medieval/cursors/grabbing.svg') 19 20, grabbing",
+  blocked: "url('/medieval/cursors/blocked.svg') 20 20, not-allowed",
+};
+function home(world: ClanWorld) {
+  const base = world.clans?.find((clan) => clan.player)?.base;
+  const elder = world.units.find((unit) => unit.role === "elder");
+  return base ? { x: base.x + 3, y: base.y + 3 } : elder ?? { x: world.width / 2, y: world.height / 2 };
 }
-function polygon(c: CanvasRenderingContext2D, p: Point[], color: string) {
+function regionAt(world: ClanWorld, point: Point) {
+  return world.regions?.find(({ bounds: b }) => point.x >= b.x && point.x < b.x + b.w && point.y >= b.y && point.y < b.y + b.h)?.name ?? "The Wildlands";
+}
+function nameplate(c: CanvasRenderingContext2D, label: string, x: number, y: number, color = "#e4d6a4", large = false) {
+  c.save();
+  c.font = large ? "600 14px Georgia" : "11px monospace";
+  c.textAlign = "center";
+  c.lineJoin = "round";
+  c.lineWidth = 3;
+  c.strokeStyle = "#29271f";
+  c.strokeText(label, x, y);
   c.fillStyle = color;
-  c.beginPath();
-  p.forEach((v, i) => (i ? c.lineTo(v.x, v.y) : c.moveTo(v.x, v.y)));
-  c.closePath();
-  c.fill();
-}
-function diamond(
-  c: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  color: string,
-) {
-  polygon(
-    c,
-    [
-      { x, y },
-      { x: x + w / 2, y: y + h / 2 },
-      { x, y: y + h },
-      { x: x - w / 2, y: y + h / 2 },
-    ],
-    color,
-  );
-}
-function rectangle(
-  c: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  color: string,
-) {
-  c.fillStyle = color;
-  c.fillRect(Math.round(x), Math.round(y), w, h);
-}
-
-function terrainCache(world: ClanWorld, art?: VillageArt) {
-  const canvas = document.createElement("canvas");
-  canvas.width = (world.width + world.height) * 24 + 160;
-  canvas.height = (world.width + world.height) * 12 + 150;
-  const c = canvas.getContext("2d")!;
-  const origin = { x: world.height * 24 + 80, y: 48 };
-  c.translate(origin.x, origin.y);
-  c.imageSmoothingEnabled = false;
-  const patterns: Record<string, CanvasPattern | null> = {};
-  if (art)
-    for (const [material, row, col] of [
-      ["grass", 0, 1],
-      ["dirt", 1, 1],
-      ["sand", 2, 0],
-      ["water", 3, 1],
-      ["farm", 1, 3],
-    ] as const) {
-      const swatch = document.createElement("canvas");
-      swatch.width = 96;
-      swatch.height = 96;
-      const sc = swatch.getContext("2d")!;
-      sc.imageSmoothingEnabled = false;
-      sc.drawImage(
-        art.ground,
-        col * 313.5 + 7,
-        row * 313.5 + 7,
-        300,
-        300,
-        0,
-        0,
-        96,
-        96,
-      );
-      patterns[material] = c.createPattern(swatch, "repeat");
-    }
-  for (let depth = 0; depth < world.width + world.height; depth++)
-    for (let y = 0; y < world.height; y++) {
-      const x = depth - y;
-      if (x < 0 || x >= world.width) continue;
-      const tile = world.tiles[y]![x]!;
-      const p = iso(x, y);
-      const n = x * 719 + y * 197;
-      const colors =
-        tile.terrain === "grass"
-          ? ["#607343", "#647646", "#637547", "#68794a"]
-          : tile.terrain === "dirt"
-            ? ["#998769", "#958265", "#9b896b", "#998568"]
-            : tile.terrain === "sand"
-              ? ["#a69e78", "#a39b75", "#a89f7b", "#a79d77"]
-              : tile.terrain === "farm"
-                ? ["#65513a", "#68543c", "#725b3e", "#6e583d"]
-                : tile.terrain === "water"
-                  ? ["#486c6b", "#456c6b", "#476b6a", "#4a706f"]
-                  : ["#92734b", "#92724c", "#876b49", "#9c7d54"];
-      diamond(c, p.x, p.y, 48, 24, colors[Math.floor(random(n) * 4)]!);
-      const pattern = patterns[tile.terrain];
-      if (pattern) {
-        c.fillStyle = pattern;
-        c.globalAlpha = 0.65;
-        c.fill();
-        c.globalAlpha = 1;
-      }
-      const count = art
-        ? 0
-        : tile.terrain === "water"
-          ? 9
-          : tile.terrain === "grass"
-            ? 34
-            : 27;
-      for (let i = 0; i < count; i++) {
-        const u = random(n + i * 97),
-          v = random(n + i * 41 + 21),
-          s = iso(x + u, y + v);
-        const tint = random(n + i * 313);
-        const col =
-          tile.terrain === "grass"
-            ? tint > 0.82
-              ? "#85905a"
-              : tint > 0.48
-                ? "#70804d"
-                : tint > 0.17
-                  ? "#596f40"
-                  : "#53673b"
-            : tile.terrain === "dirt"
-              ? tint > 0.5
-                ? "#a18e6f"
-                : "#86785d"
-              : tile.terrain === "sand"
-                ? "#bcb086"
-                : tile.terrain === "water"
-                  ? "#73948b"
-                  : "#8b754c";
-        rectangle(
-          c,
-          s.x,
-          s.y,
-          tile.terrain === "water" ? 4 : 2,
-          tile.terrain === "water" ? 1 : 2,
-          col,
-        );
-        if (tile.terrain === "grass" && tint > 0.98) {
-          rectangle(c, s.x, s.y - 2, 1, 3, "#879763");
-        }
-      }
-      if (tile.terrain === "bridge") {
-        for (let i = 0; i < 5; i++) {
-          const q = iso(x + i / 5, y);
-          const r = iso(x + i / 5, y + 1);
-          c.strokeStyle = i % 2 ? "#67533d" : "#c0a576";
-          c.lineWidth = 1;
-          c.beginPath();
-          c.moveTo(q.x, q.y);
-          c.lineTo(r.x, r.y);
-          c.stroke();
-        }
-      }
-      if (tile.terrain === "dirt") {
-        for (let i = 0; i < 5; i++) {
-          const s = iso(x + random(n + i * 31), y + random(n + i * 17));
-          rectangle(c, s.x, s.y, 3, 1, "#c2b39166");
-        }
-      }
-    }
-  return { canvas, origin };
+  c.fillText(label, x, y);
+  c.restore();
 }
 
 function footprint(
@@ -232,7 +108,7 @@ function footprint(
   color: string,
   stroke?: string,
 ) {
-  const points = [iso(x, y), iso(x + w, y), iso(x + w, y + h), iso(x, y + h)];
+  const points = [project(x, y), project(x + w, y), project(x + w, y + h), project(x, y + h)];
   polygon(c, points, color);
   if (stroke) {
     c.strokeStyle = stroke;
@@ -245,7 +121,7 @@ function flag(
   x: number,
   y: number,
   t: number,
-  red = false,
+  color = "#707c9a",
 ) {
   rectangle(c, x, y - 32, 2, 31, "#544a35");
   polygon(
@@ -256,7 +132,7 @@ function flag(
       { x: x + 13, y: y - 23 },
       { x: x + 2, y: y - 24 },
     ],
-    red ? "#794638" : "#707c9a",
+    color,
   );
   rectangle(c, x + 5, y - 29, 2, 4, "#d9c891");
 }
@@ -266,11 +142,11 @@ export const ClanMap = forwardRef<MapHandle, Props>(
     const canvas = useRef<HTMLCanvasElement>(null),
       live = useRef(props),
       art = useRef<VillageArt | null>(null),
-      camera = useRef({ x: 24, y: 22, zoom: 1.35 }),
+      camera = useRef({ ...home(props.world), zoom: 1.25 }),
       size = useRef({ w: 1200, h: 700 });
-    const hover = useRef<{ x: number; y: number; target: MapTarget } | null>(
-        null,
-      ),
+    const hover = useRef<{ x: number; y: number; target: MapTarget; } | null>(
+      null,
+    ),
       selectionBox = useRef<{
         x: number;
         y: number;
@@ -290,10 +166,11 @@ export const ClanMap = forwardRef<MapHandle, Props>(
       keys = useRef(new Set<string>()),
       positions = useRef(new Map<string, Point>()),
       hitBoxes = useRef<
-        { target: MapTarget; x: number; y: number; w: number; h: number }[]
+        { target: MapTarget; x: number; y: number; w: number; h: number; }[]
       >([]),
       pointers = useRef(new Map<number, Point>()),
-      pinch = useRef<{ distance: number; zoom: number } | null>(null);
+      pinch = useRef<{ distance: number; zoom: number; } | null>(null);
+    const feedback = useRef<{ point: Point; at: number; blocked: boolean; } | null>(null);
     const [loading, setLoading] = useState(true),
       [error, setError] = useState(false);
     live.current = props;
@@ -305,17 +182,18 @@ export const ClanMap = forwardRef<MapHandle, Props>(
           camera.current.y = p.y;
         },
         zoom(change) {
-          camera.current.zoom = Math.max(
-            0.65,
-            Math.min(2.4, camera.current.zoom + change),
-          );
+          camera.current.zoom = clampZoom(camera.current.zoom + change);
+        },
+        zoomTo(zoom) {
+          const world = live.current.world;
+          camera.current.zoom = clampZoom(zoom <= 0.45 ? Math.min(zoom, size.current.w * 0.88 / (world.width * TILE_SIZE + 160), size.current.h * 0.72 / (world.height * TILE_SIZE + 160)) : zoom);
+          if (zoom <= 0.45) {
+            camera.current.x = live.current.world.width / 2;
+            camera.current.y = live.current.world.height / 2;
+          }
         },
         reset() {
-          camera.current = {
-            x: 24,
-            y: 22,
-            zoom: window.innerWidth < 700 ? 1.2 : 1.35,
-          };
+          camera.current = { ...home(live.current.world), zoom: 1.25 };
         },
       }),
       [],
@@ -341,10 +219,13 @@ export const ClanMap = forwardRef<MapHandle, Props>(
       const el = canvas.current!;
       const c = el.getContext("2d")!;
       let ground = terrainCache(live.current.world),
-        textured = false;
+        peaks = mountainPeaks(live.current.world),
+        groundSeed = live.current.world.seed,
+        groundTiles = live.current.world.tiles;
+      let lastCameraEvent = 0, lastCameraKey = "";
       let frame = 0,
         last = performance.now();
-      camera.current.zoom = el.clientWidth < 700 ? 1.25 : 1.35;
+      camera.current.zoom = el.clientWidth < 700 ? 1.05 : 1.25;
       const keyDown = (e: KeyboardEvent) => {
         if (
           document.querySelector("[role=dialog]") ||
@@ -367,9 +248,10 @@ export const ClanMap = forwardRef<MapHandle, Props>(
         ) {
           e.preventDefault();
           keys.current.add(e.key);
+          if (e.key === " ") el.style.cursor = CURSORS.grab;
         }
       };
-      const keyUp = (e: KeyboardEvent) => keys.current.delete(e.key),
+      const keyUp = (e: KeyboardEvent) => { keys.current.delete(e.key); if (e.key === " ") el.style.cursor = CURSORS.arrow; },
         blur = () => keys.current.clear();
       window.addEventListener("keydown", keyDown);
       window.addEventListener("keyup", keyUp);
@@ -381,20 +263,26 @@ export const ClanMap = forwardRef<MapHandle, Props>(
         const { world, selected, showOrders, showNames, buildKind, paused } =
           live.current;
         const a = art.current;
-        if (a && !textured) {
-          ground = terrainCache(world, a);
-          textured = true;
+        if (world.seed !== groundSeed || world.tiles !== groundTiles) {
+          if (world.seed !== groundSeed || world.tiles !== groundTiles) camera.current = { ...home(world), zoom: camera.current.zoom };
+          ground = terrainCache(world, a ?? undefined);
+          peaks = mountainPeaks(world);
+          groundSeed = world.seed;
+          groundTiles = world.tiles;
+          positions.current.clear();
         }
         const w = Math.round(el.clientWidth),
           h = Math.round(el.clientHeight);
         if (w < 1 || h < 1) return;
-        if (el.width !== w || el.height !== h) {
-          el.width = w;
-          el.height = h;
+        const pixelWidth = Math.ceil(w / 2), pixelHeight = Math.ceil(h / 2);
+        if (el.width !== pixelWidth || el.height !== pixelHeight) {
+          el.width = pixelWidth;
+          el.height = pixelHeight;
         }
+        const renderScaleX = pixelWidth / w, renderScaleY = pixelHeight / h;
         size.current = { w, h };
         c.imageSmoothingEnabled = false;
-        const panSpeed = (dt * 9) / camera.current.zoom;
+        const panSpeed = (dt * 14) / camera.current.zoom;
         let sx = 0,
           sy = 0;
         if (keys.current.has("a") || keys.current.has("ArrowLeft")) sx--;
@@ -403,25 +291,56 @@ export const ClanMap = forwardRef<MapHandle, Props>(
         if (keys.current.has("s") || keys.current.has("ArrowDown")) sy++;
         camera.current.x = Math.max(
           2,
-          Math.min(world.width - 2, camera.current.x + (sx + sy) * panSpeed),
+          Math.min(world.width - 2, camera.current.x + sx * panSpeed),
         );
         camera.current.y = Math.max(
           2,
-          Math.min(world.height - 2, camera.current.y + (sy - sx) * panSpeed),
+          Math.min(world.height - 2, camera.current.y + sy * panSpeed),
         );
-        const cam = iso(camera.current.x, camera.current.y),
+        const cam = project(camera.current.x, camera.current.y),
           z = camera.current.zoom;
-        const ox = Math.round(w / 2 - cam.x * z),
-          oy = Math.round(h / 2 - cam.y * z);
-        c.setTransform(1, 0, 0, 1, 0, 0);
-        c.fillStyle = "#344735";
+        const ox = Math.round((w / 2 - cam.x * z) / 2) * 2,
+          oy = Math.round((h / 2 - cam.y * z) / 2) * 2;
+        c.setTransform(renderScaleX, 0, 0, renderScaleY, 0, 0);
+        c.fillStyle = "#384c50";
         c.fillRect(0, 0, w, h);
         c.translate(ox, oy);
         c.scale(z, z);
         c.drawImage(ground.canvas, -ground.origin.x, -ground.origin.y);
+        const visible = (x: number, y: number, width: number, height: number) =>
+          x + width / 2 > -ox / z && x - width / 2 < (w - ox) / z && y > -oy / z && y - height < (h - oy) / z;
+        if (now - lastCameraEvent > 100) {
+          lastCameraEvent = now;
+          const cameraKey = `${camera.current.x.toFixed(2)}:${camera.current.y.toFixed(2)}:${z.toFixed(3)}:${w}:${h}`;
+          if (cameraKey !== lastCameraKey) {
+            lastCameraKey = cameraKey;
+            live.current.onCameraChange?.({
+              ...camera.current, region: z < 0.5 ? "The Clanlands" : regionAt(world, camera.current), bounds: [
+                unproject(-ox / z, -oy / z), unproject((w - ox) / z, -oy / z), unproject((w - ox) / z, (h - oy) / z), unproject(-ox / z, (h - oy) / z),
+              ]
+            });
+          }
+        }
+        const mark = feedback.current;
+        if (mark && now - mark.at < 950) {
+          const p = project(mark.point.x, mark.point.y), age = (now - mark.at) / 950;
+          c.globalAlpha = 1 - age;
+          c.strokeStyle = mark.blocked ? "#e68c69" : "#f0d492";
+          c.lineWidth = 2 / z;
+          c.beginPath(); c.ellipse(p.x, p.y, 12 + age * 10, 6 + age * 5, 0, 0, Math.PI * 2); c.stroke();
+          if (mark.blocked) { c.beginPath(); c.moveTo(p.x - 5, p.y - 5); c.lineTo(p.x + 5, p.y + 5); c.moveTo(p.x + 5, p.y - 5); c.lineTo(p.x - 5, p.y + 5); c.stroke(); }
+          c.globalAlpha = 1;
+        }
         const t = world.elapsed;
+        for (const glint of ground.glints) {
+          if (!visible(glint.x, glint.y, 30, 12)) continue;
+          const wave = Math.sin(now * 0.001 + glint.x * 0.06 + glint.y * 0.05);
+          c.globalAlpha = 0.12 + (wave + 1) * 0.08;
+          rectangle(c, glint.x + wave * 3, glint.y, 6, 1, "#b5c9b3");
+        }
+        c.globalAlpha = 1;
         if (!a) {
-          c.setTransform(1, 0, 0, 1, 0, 0);
+          c.setTransform(renderScaleX, 0, 0, renderScaleY, 0, 0);
           return;
         }
         // Work paths are rendered on the ground before objects and people.
@@ -432,16 +351,16 @@ export const ClanMap = forwardRef<MapHandle, Props>(
             c.lineWidth = 1;
             c.setLineDash([3, 4]);
             c.beginPath();
-            const p = iso(u.x, u.y);
+            const p = project(u.x, u.y);
             c.moveTo(p.x, p.y);
             for (const step of u.path) {
-              const q = iso(step.x, step.y);
+              const q = project(step.x, step.y);
               c.lineTo(q.x, q.y);
             }
             c.stroke();
             c.setLineDash([]);
             const end = u.path.at(-1)!;
-            const q = iso(end.x, end.y);
+            const q = project(end.x, end.y);
             c.strokeStyle = "#e2d49e";
             c.beginPath();
             c.ellipse(q.x, q.y, 8, 4, 0, 0, Math.PI * 2);
@@ -449,9 +368,9 @@ export const ClanMap = forwardRef<MapHandle, Props>(
           }
         const elder = world.units.find((u) => u.role === "elder");
         if (elder && selected.includes(elder.id)) {
-          const p = iso(elder.x, elder.y),
+          const p = project(elder.x, elder.y),
             radius = world.buildings.some(
-              (b) => b.kind === "chapel" && b.progress >= 1,
+              (b) => b.kind === "chapel" && b.progress >= 1 && isPlayerBuilding(world, b),
             )
               ? 10
               : 6;
@@ -459,11 +378,25 @@ export const ClanMap = forwardRef<MapHandle, Props>(
           c.lineWidth = 1;
           c.setLineDash([2, 5]);
           c.beginPath();
-          c.ellipse(p.x, p.y, radius * 24, radius * 12, 0, 0, Math.PI * 2);
+          c.ellipse(p.x, p.y, radius * TILE_SIZE, radius * TILE_SIZE, 0, 0, Math.PI * 2);
           c.stroke();
           c.setLineDash([]);
         }
-        const objects: { depth: number; draw: () => void }[] = [];
+        const objects: { depth: number; draw: () => void; }[] = [];
+        for (const peak of peaks) {
+          const p = project(peak.x, peak.y);
+          if (!visible(p.x, p.y + 30, 340, 300)) continue;
+          objects.push({ depth: peak.depth, draw: () => drawMountain(c, p.x, p.y, peak, a) });
+        }
+        if (world.monument) {
+          const m = world.monument, p = project(m.x + m.w / 2, m.y + m.h);
+          if (visible(p.x, p.y + 60, 250, 220)) objects.push({
+depth: m.y + m.h - 0.1, draw: () => {
+              drawMonument(c, p.x, p.y, t, a);
+              if (z >= 0.8) nameplate(c, m.name, p.x, p.y + 25, "#ebd38d", true);
+            }
+});
+        }
         hitBoxes.current = [];
         const obscuresSelected = (
           x: number,
@@ -473,8 +406,8 @@ export const ClanMap = forwardRef<MapHandle, Props>(
           depth: number,
         ) =>
           world.units.some((u) => {
-            if (!selected.includes(u.id) || u.x + u.y >= depth) return false;
-            const p = iso(u.x, u.y);
+            if (!selected.includes(u.id) || u.y >= depth) return false;
+            const p = project(u.x, u.y);
             return (
               p.x > x - width / 2 &&
               p.x < x + width / 2 &&
@@ -483,18 +416,15 @@ export const ClanMap = forwardRef<MapHandle, Props>(
             );
           });
         for (const b of world.buildings) {
-          const p = iso(b.x + b.w / 2, b.y + b.h / 2);
-          p.y += (b.w + b.h) * 6 - 3;
-          const width =
-            (b.w + b.h) *
-            24 *
-            (b.kind === "well" ? 1.4 : b.kind === "watchtower" ? 1.2 : 1.1);
+          const p = project(b.x + b.w / 2, b.y + b.h);
+          const width = b.w * TILE_SIZE * (b.kind === "well" ? 1.1 : 1.05);
           const f = a.buildings.frames[BUILDING_ART[b.kind]]!;
           const height = (f.sh / f.sw) * width;
+          if (!visible(p.x, p.y + 20, width + 40, height + 20)) continue;
           if (b.progress < 1)
             footprint(c, b.x, b.y, b.w, b.h, "#b8b59277", "#d9d4ab");
           objects.push({
-            depth: b.x + b.y + b.w + b.h - 0.3,
+            depth: b.y + b.h - 0.3,
             draw: () => {
               if (hover.current?.target.id === b.id)
                 footprint(c, b.x, b.y, b.w, b.h, "#cfcc9c22", "#cec895");
@@ -508,21 +438,21 @@ export const ClanMap = forwardRef<MapHandle, Props>(
                 b.progress < 1
                   ? 0.2 + 0.5 * b.progress
                   : obscuresSelected(
-                        p.x,
-                        p.y,
-                        width,
-                        height,
-                        b.x + b.y + b.w + b.h - 0.3,
-                      )
+                    p.x,
+                    p.y,
+                    width,
+                    height,
+                    b.y + b.h - 0.3,
+                  )
                     ? 0.48
                     : 1,
               );
               if (b.progress < 1) {
                 const corners = [
-                  iso(b.x + 0.2, b.y + 0.2),
-                  iso(b.x + b.w - 0.2, b.y + 0.2),
-                  iso(b.x + b.w - 0.2, b.y + b.h - 0.2),
-                  iso(b.x + 0.2, b.y + b.h - 0.2),
+                  project(b.x + 0.2, b.y + 0.2),
+                  project(b.x + b.w - 0.2, b.y + 0.2),
+                  project(b.x + b.w - 0.2, b.y + b.h - 0.2),
+                  project(b.x + 0.2, b.y + b.h - 0.2),
                 ];
                 for (const v of corners) {
                   rectangle(c, v.x, v.y - 36, 2, 38, "#5a4531");
@@ -542,7 +472,7 @@ export const ClanMap = forwardRef<MapHandle, Props>(
                 rectangle(c, p.x - 21, p.y + 4, 42 * b.progress, 2, "#d5be73");
               }
               if (b.kind === "hall" || b.kind === "watchtower")
-                flag(c, p.x + width * 0.22, p.y - height * 0.22, t);
+                flag(c, p.x + width * 0.22, p.y - height * 0.22, t, world.clans?.find((clan) => clan.id === b.clanId)?.color);
               if (
                 b.kind === "hall" ||
                 b.kind === "forge" ||
@@ -562,15 +492,8 @@ export const ClanMap = forwardRef<MapHandle, Props>(
                 }
                 c.globalAlpha = 1;
               }
-              if (showNames || hover.current?.target.id === b.id) {
-                c.font = "9px Georgia";
-                c.textAlign = "center";
-                c.fillStyle = "#26311fde";
-                const title = BUILDING_SPECS[b.kind].name;
-                const tw = c.measureText(title).width;
-                c.fillRect(p.x - tw / 2 - 5, p.y + 6, tw + 10, 13);
-                c.fillStyle = "#ece3b8";
-                c.fillText(title, p.x, p.y + 16);
+              if ((showNames && z > 1) || hover.current?.target.id === b.id) {
+                nameplate(c, BUILDING_SPECS[b.kind].name, p.x, p.y + 16, "#e5dab9");
               }
               hitBoxes.current.push({
                 target: {
@@ -588,7 +511,7 @@ export const ClanMap = forwardRef<MapHandle, Props>(
           });
         }
         for (const obj of world.objects) {
-          const p = iso(obj.x, obj.y);
+          const p = project(obj.x, obj.y);
           const tree = ["tree", "oak", "pine"].includes(obj.kind);
           const width = tree
             ? (obj.kind === "pine" ? 63 : 78) + obj.variant * 5
@@ -601,8 +524,9 @@ export const ClanMap = forwardRef<MapHandle, Props>(
                   : 37;
           const f = a.props.frames[OBJECT_ART[obj.kind]]!;
           const height = (f.sh / f.sw) * width;
+          if (!visible(p.x, p.y + 12, width + 20, height + 20)) continue;
           objects.push({
-            depth: obj.x + obj.y + 0.4,
+            depth: obj.y + 0.4,
             draw: () => {
               drawSprite(
                 c,
@@ -616,7 +540,7 @@ export const ClanMap = forwardRef<MapHandle, Props>(
                   p.y + 3,
                   width,
                   height,
-                  obj.x + obj.y + 0.4,
+                  obj.y + 0.4,
                 )
                   ? 0.4
                   : 1,
@@ -645,12 +569,13 @@ export const ClanMap = forwardRef<MapHandle, Props>(
             y: old.y + (u.y - old.y) * Math.min(1, dt * 18),
           };
           positions.current.set(u.id, position);
-          const p = iso(position.x, position.y);
+          const p = project(position.x, position.y);
+          if (!visible(p.x, p.y + 10, 40, 65)) continue;
           objects.push({
-            depth: position.x + position.y + 0.05,
+            depth: position.y + 0.05,
             draw: () => {
               if (selected.includes(u.id)) {
-                c.strokeStyle = u.role === "elder" ? "#ebd493" : "#d1e49e";
+                c.strokeStyle = u.role === "elder" ? "#ebd493" : "#e1d6ab";
                 c.lineWidth = 1.5;
                 c.beginPath();
                 c.ellipse(p.x, p.y, 11, 5, 0, 0, Math.PI * 2);
@@ -671,24 +596,11 @@ export const ClanMap = forwardRef<MapHandle, Props>(
                 rectangle(c, p.x + 2, p.y - 35, 1, 3, "#e4cb87");
               }
               if (
-                showNames ||
+                (showNames && z > 1) ||
                 selected.includes(u.id) ||
                 hover.current?.target.id === u.id
               ) {
-                c.font = "8px monospace";
-                c.textAlign = "center";
-                const title = u.name.replace("Elder ", "");
-                const tw = c.measureText(title).width;
-                rectangle(
-                  c,
-                  p.x - tw / 2 - 3,
-                  p.y - 44,
-                  tw + 6,
-                  12,
-                  "#263121cf",
-                );
-                c.fillStyle = u.role === "elder" ? "#ecce83" : "#e4e3b9";
-                c.fillText(title, p.x, p.y - 35);
+                nameplate(c, u.name.replace("Elder ", ""), p.x, p.y - 39, u.role === "elder" ? "#ebcf8e" : "#ded6b8");
               }
               if (selected.includes(u.id)) {
                 rectangle(c, p.x - 9, p.y + 6, 18, 2, "#394535");
@@ -698,7 +610,7 @@ export const ClanMap = forwardRef<MapHandle, Props>(
                   p.y + 6,
                   (18 * u.energy) / 100,
                   2,
-                  "#aac984",
+                  "#bfb075",
                 );
                 if (u.carrying) {
                   rectangle(
@@ -728,23 +640,20 @@ export const ClanMap = forwardRef<MapHandle, Props>(
         objects
           .sort((a, b) => a.depth - b.depth)
           .forEach((item) => item.draw());
-        // Shadows and water details belong to the same pixel grid as the sprites.
-        for (let i = 0; i < 10; i++) {
-          const tx = 34.5 + Math.sin(i * 0.36) * 3.3,
-            ty = 3 + i * 1.6;
-          if (
-            world.tiles[Math.floor(ty)]?.[Math.floor(tx)]?.terrain === "water"
-          ) {
-            const p = iso(tx, ty);
-            rectangle(
-              c,
-              p.x + Math.sin(t * 0.6 + i) * 6,
-              p.y,
-              5,
-              1,
-              "#b9c5aa70",
-            );
+        for (const clan of world.clans ?? []) {
+          const p = project(clan.base.x + 2, clan.base.y + 2);
+          if (!visible(p.x, p.y + 100, 200, 250)) continue;
+          if (z >= 0.65 && (showNames || z < 1)) nameplate(c, clan.name, p.x, p.y + 78, clan.color);
+          else {
+            c.fillStyle = clan.color; c.beginPath(); c.arc(p.x, p.y, 7 / z, 0, Math.PI * 2); c.fill();
+            c.strokeStyle = "#171d17"; c.lineWidth = 2 / z; c.stroke();
           }
+        }
+        if (z < 0.65) for (const region of world.regions ?? []) {
+          const p = project(region.x, region.y);
+          c.save(); c.translate(p.x, p.y); c.scale(1 / z, 1 / z);
+          c.font = "600 12px Georgia"; c.textAlign = "center"; c.lineWidth = 4; c.strokeStyle = "#15221e";
+          c.strokeText(region.name.toUpperCase(), 0, 0); c.fillStyle = "#dbd5b2"; c.fillText(region.name.toUpperCase(), 0, 0); c.restore();
         }
         if (buildKind && hover.current) {
           const spec = BUILDING_SPECS[buildKind],
@@ -754,7 +663,7 @@ export const ClanMap = forwardRef<MapHandle, Props>(
           const valid =
             typeof placement === "boolean"
               ? placement
-              : (placement as { ok?: boolean }).ok;
+              : (placement as { ok?: boolean; }).ok;
           footprint(
             c,
             x,
@@ -764,19 +673,18 @@ export const ClanMap = forwardRef<MapHandle, Props>(
             valid ? "#8aaf6755" : "#b6534c66",
             valid ? "#d0e9a0" : "#efaaa0",
           );
-          const p = iso(x + spec.w / 2, y + spec.h / 2);
-          p.y += (spec.w + spec.h) * 6 - 3;
+          const p = project(x + spec.w / 2, y + spec.h);
           drawSprite(
             c,
             a.buildings,
             BUILDING_ART[buildKind],
             p.x,
             p.y,
-            (spec.w + spec.h) * 24 * 1.1,
+            spec.w * TILE_SIZE * (buildKind === "well" ? 1.1 : 1.05),
             0.5,
           );
         }
-        c.setTransform(1, 0, 0, 1, 0, 0);
+        c.setTransform(renderScaleX, 0, 0, renderScaleY, 0, 0);
         const box = selectionBox.current;
         if (box) {
           c.strokeStyle = "#e0d7a3";
@@ -797,12 +705,12 @@ export const ClanMap = forwardRef<MapHandle, Props>(
     function coords(x: number, y: number) {
       const el = canvas.current!,
         r = el.getBoundingClientRect(),
-        cam = iso(camera.current.x, camera.current.y),
+        cam = project(camera.current.x, camera.current.y),
         z = camera.current.zoom;
       const sx = (x - r.left - size.current.w / 2) / z + cam.x,
         sy = (y - r.top - size.current.h / 2) / z + cam.y;
       return {
-        world: uniso(sx, sy),
+        world: unproject(sx, sy),
         screen: { x: sx, y: sy },
         local: { x: x - r.left, y: y - r.top },
       };
@@ -854,20 +762,14 @@ export const ClanMap = forwardRef<MapHandle, Props>(
         pan: e.button === 1 || keys.current.has(" "),
         touch: e.pointerType === "touch",
       };
+      if (pointer.current.pan) e.currentTarget.style.cursor = CURSORS.grabbing;
     }
     function move(e: React.PointerEvent<HTMLCanvasElement>) {
       if (pointers.current.has(e.pointerId))
         pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
       if (pinch.current && pointers.current.size === 2) {
         const [a, b] = [...pointers.current.values()];
-        camera.current.zoom = Math.max(
-          0.65,
-          Math.min(
-            2.4,
-            (pinch.current.zoom * Math.hypot(a!.x - b!.x, a!.y - b!.y)) /
-              pinch.current.distance,
-          ),
-        );
+        camera.current.zoom = clampZoom((pinch.current.zoom * Math.hypot(a!.x - b!.x, a!.y - b!.y)) / pinch.current.distance);
         return;
       }
       const p = pointer.current;
@@ -876,7 +778,7 @@ export const ClanMap = forwardRef<MapHandle, Props>(
           dy = e.clientY - p.lastY,
           moved = Math.hypot(e.clientX - p.x, e.clientY - p.y);
         if (p.pan || (p.touch && moved > 7)) {
-          const delta = uniso(
+          const delta = unproject(
             dx / camera.current.zoom,
             dy / camera.current.zoom,
           );
@@ -897,7 +799,9 @@ export const ClanMap = forwardRef<MapHandle, Props>(
         p.lastY = e.clientY;
       }
       const at = coords(e.clientX, e.clientY);
-      hover.current = { ...at.world, target: targetAt(e.clientX, e.clientY) };
+      const target = targetAt(e.clientX, e.clientY);
+      hover.current = { ...at.world, target };
+      e.currentTarget.style.cursor = p?.pan ? CURSORS.grabbing : keys.current.has(" ") ? CURSORS.grab : target.type === "unit" ? CURSORS.grab : target.type !== "ground" ? CURSORS.pointer : isClanWalkable(live.current.world, at.world.x, at.world.y) ? CURSORS.arrow : CURSORS.blocked;
     }
     function up(e: React.PointerEvent<HTMLCanvasElement>) {
       pointers.current.delete(e.pointerId);
@@ -911,13 +815,13 @@ export const ClanMap = forwardRef<MapHandle, Props>(
       const box = selectionBox.current;
       pointer.current = null;
       selectionBox.current = null;
-      if (p.pan) return;
+      if (p.pan) { e.currentTarget.style.cursor = CURSORS.grab; return; }
       if (box) {
-        const cam = iso(camera.current.x, camera.current.y),
+        const cam = project(camera.current.x, camera.current.y),
           z = camera.current.zoom;
         const ids = live.current.world.units
           .filter((u) => {
-            const q = iso(u.x, u.y);
+            const q = project(u.x, u.y);
             const x = size.current.w / 2 + (q.x - cam.x) * z,
               y = size.current.h / 2 + (q.y - cam.y) * z;
             return (
@@ -931,48 +835,54 @@ export const ClanMap = forwardRef<MapHandle, Props>(
         live.current.onSelect(ids, p.shift);
         return;
       }
-      const target = live.current.buildKind
+      const explicitMove = ["move", "guard", "rally"].includes(live.current.command ?? "context");
+      const target = live.current.buildKind || explicitMove
         ? { type: "ground" as const, ...coords(e.clientX, e.clientY).world }
         : targetAt(e.clientX, e.clientY);
-      if (target.type === "unit" && e.button !== 2 && !live.current.buildKind) {
+      if (target.type === "unit" && e.button !== 2 && !live.current.buildKind && !explicitMove) {
         live.current.onSelect([target.id!], p.shift);
         return;
       }
+      feedback.current = { point: target, at: performance.now(), blocked: target.type === "ground" && !isClanWalkable(live.current.world, target.x, target.y) };
       live.current.onTarget(target, e.button === 2, p.shift);
     }
     return (
       <div className="village-map">
         <canvas
           ref={canvas}
+          style={{ cursor: CURSORS.arrow, imageRendering: "pixelated" }}
           aria-label="Medieval clan map. Select clansmen, then give orders through the command panel or directly on the map."
           onPointerDown={down}
           onPointerMove={move}
           onPointerUp={up}
-          onPointerCancel={() => {
+          onPointerCancel={(e) => {
+            e.currentTarget.style.cursor = CURSORS.arrow;
             pointer.current = null;
             selectionBox.current = null;
             pointers.current.clear();
             pinch.current = null;
           }}
+          onPointerLeave={() => { if (!pointer.current) hover.current = null; }}
           onContextMenu={(e) => e.preventDefault()}
           onWheel={(e) => {
-            camera.current.zoom = Math.max(
-              0.65,
-              Math.min(2.4, camera.current.zoom - e.deltaY * 0.001),
-            );
+            const before = coords(e.clientX, e.clientY).world;
+            camera.current.zoom = clampZoom(camera.current.zoom * Math.exp(-e.deltaY * 0.0012));
+            const after = coords(e.clientX, e.clientY).world;
+            camera.current.x += before.x - after.x;
+            camera.current.y += before.y - after.y;
           }}
         />
         {loading && (
           <div className="map-loading">
-            <span className="loading-hourglass">⌛</span>
+            <span className="loading-hourglass" aria-hidden="true">◆</span>
             <strong>
-              {error ? "Preparing village artwork" : "Entering Elders’ Reach"}
+              {error ? "Artwork unavailable" : "Entering the realm"}
             </strong>
             <span>
-              {error
-                ? "Reload when the sprite files are ready."
-                : "Unfurling the map…"}
+              {error ? "Reload to retry" : "Loading artwork"}
             </span>
+            <div className="map-loading-progress" role="progressbar" aria-label="Loading world artwork" />
+            <small>CLAN WORLD</small>
           </div>
         )}
       </div>
@@ -980,57 +890,72 @@ export const ClanMap = forwardRef<MapHandle, Props>(
   },
 );
 
-export function MiniMap({
-  world,
-  onFocus,
-}: {
-  world: ClanWorld;
-  onFocus: (p: Point) => void;
-}) {
+export function MiniMap({ world, onFocus, camera }: { world: ClanWorld; onFocus: (p: Point) => void; camera?: CameraState ;}) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const [art, setArt] = useState<VillageArt | null>(null);
   useEffect(() => {
-    const c = ref.current!.getContext("2d")!;
+    let disposed = false;
+    loadVillageArt().then(value => { if (!disposed) setArt(value); }).catch(() => {});
+    return () => { disposed = true; };
+  }, []);
+  const ground = useRef<{ seed: number; image: HTMLCanvasElement; tiles: ClanWorld["tiles"] ;} | null>(null);
+  useEffect(() => {
+    const c = ref.current!.getContext("2d")!, w = 216, h = 160;
     c.imageSmoothingEnabled = false;
-    c.fillStyle = "#344535";
-    c.fillRect(0, 0, 192, 128);
-    for (let y = 0; y < world.height; y++)
-      for (let x = 0; x < world.width; x++) {
-        c.fillStyle =
-          world.tiles[y]![x]!.terrain === "water"
-            ? "#6b9490"
-            : world.tiles[y]![x]!.terrain === "dirt"
-              ? "#afa077"
-              : "#6e8250";
-        c.fillRect(x * 4, y * 3.2, 4, 3.2);
+    if (!ground.current || ground.current.seed !== world.seed || ground.current.tiles !== world.tiles) {
+      const image = document.createElement("canvas"); image.width = w; image.height = h;
+      const g = image.getContext("2d")!;
+      for (let y = 0; y < world.height; y++)for (let x = 0; x < world.width; x++) {
+        g.fillStyle = TERRAIN_COLORS[world.tiles[y]![x]!.terrain];
+        g.fillRect(Math.floor(x / world.width * w), Math.floor(y / world.height * h), Math.ceil(w / world.width), Math.ceil(h / world.height));
       }
-    for (const o of world.objects) {
-      c.fillStyle =
-        o.kind === "rock" || o.kind === "iron" ? "#c1c0a7" : "#3f5c33";
-      c.fillRect(o.x * 4, o.y * 3.2, 3, 3);
+      ground.current = { seed: world.seed, image, tiles: world.tiles };
     }
-    for (const b of world.buildings) {
-      c.fillStyle = "#c1a77a";
-      c.fillRect(b.x * 4, b.y * 3.2, b.w * 4, b.h * 3.2);
+    c.drawImage(ground.current.image, 0, 0);
+    if (art) {
+      c.save();
+      c.scale(w / (world.width * TILE_SIZE), h / (world.height * TILE_SIZE));
+      const scenery: { depth: number; draw: () => void; }[] = [];
+      for (const peak of mountainPeaks(world)) {
+        const p = project(peak.x, peak.y);
+        scenery.push({ depth: peak.depth, draw: () => drawMountain(c, p.x, p.y, peak, art) });
+      }
+      for (const o of world.objects) {
+        const p = project(o.x, o.y), tree = ["tree", "oak", "pine"].includes(o.kind);
+        scenery.push({ depth: o.y, draw: () => drawSprite(c, art.props, OBJECT_ART[o.kind], p.x, p.y, tree ? 78 : 34) });
+      }
+      for (const b of world.buildings) {
+        const p = project(b.x + b.w / 2, b.y + b.h);
+        scenery.push({ depth: b.y + b.h, draw: () => drawSprite(c, art.buildings, BUILDING_ART[b.kind], p.x, p.y, b.w * TILE_SIZE * 1.05) });
+      }
+      scenery.sort((a, b) => a.depth - b.depth).forEach(item => item.draw());
+      c.restore();
+    } else {
+      for (const b of world.buildings) { c.fillStyle = "#b8a57b"; c.fillRect(b.x / world.width * w, b.y / world.height * h, Math.max(2, b.w / world.width * w), Math.max(2, b.h / world.height * h)); }
+    }
+    for (const clan of world.clans ?? []) {
+      const x = clan.base.x / world.width * w, y = clan.base.y / world.height * h;
+      c.fillStyle = "#18201b"; c.fillRect(x - 3, y - 3, 7, 7); c.fillStyle = clan.color; c.fillRect(x - 2, y - 2, 5, 5);
+    }
+    if (world.monument) {
+      const m = world.monument, x = (m.x + m.w / 2) / world.width * w, y = (m.y + m.h / 2) / world.height * h;
+      polygon(c, [{ x, y: y - 4 }, { x: x + 4, y }, { x, y: y + 4 }, { x: x - 4, y }], "#f0dc91");
     }
     for (const u of world.units) {
-      c.fillStyle = u.role === "elder" ? "#f5df83" : "#dce8af";
-      c.fillRect(u.x * 4 - 1, u.y * 3.2 - 1, 2, 2);
+      const x = u.x / world.width * w, y = u.y / world.height * h;
+      c.beginPath(); c.arc(x, y, u.role === "elder" ? 2 : 1.5, 0, Math.PI * 2);
+      c.fillStyle = u.role === "elder" ? "#fff0aa" : "#e9e4d2"; c.fill();
+      c.strokeStyle = "#29251e"; c.lineWidth = 0.8; c.stroke();
     }
-  }, [world]);
-  return (
-    <canvas
-      ref={ref}
-      className="mini-map"
-      width={192}
-      height={128}
-      aria-label="Village overview. Click to move the camera."
-      onPointerDown={(e) => {
-        const r = e.currentTarget.getBoundingClientRect();
-        onFocus({
-          x: ((e.clientX - r.left) / r.width) * world.width,
-          y: ((e.clientY - r.top) / r.height) * world.height,
-        });
-      }}
-    />
-  );
+    if (camera) {
+      c.beginPath(); camera.bounds.forEach((p, i) => { const x = p.x / world.width * w, y = p.y / world.height * h; i ? c.lineTo(x, y) : c.moveTo(x, y); }); c.closePath();
+      c.fillStyle = "#f7e3a714"; c.fill(); c.strokeStyle = "#fff0b9"; c.lineWidth = 1.3; c.stroke();
+    }
+    c.strokeStyle = "#dec69344"; c.lineWidth = 1; c.strokeRect(0.5, 0.5, w - 1, h - 1);
+  }, [world, camera, art]);
+  function focus(e: React.PointerEvent<HTMLCanvasElement>) {
+    const r = e.currentTarget.getBoundingClientRect();
+    onFocus({ x: Math.max(0, Math.min(world.width, ((e.clientX - r.left) / r.width) * world.width)), y: Math.max(0, Math.min(world.height, ((e.clientY - r.top) / r.height) * world.height)) });
+  }
+  return <canvas ref={ref} className="mini-map" width={216} height={160} style={{ cursor: CURSORS.pointer }} aria-label="Realm overview. Click or drag to move the camera." onPointerDown={e => { e.currentTarget.setPointerCapture(e.pointerId); focus(e); }} onPointerMove={e => { if (e.buttons === 1) focus(e); }} />;
 }

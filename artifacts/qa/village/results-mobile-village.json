@@ -1,0 +1,37 @@
+{
+  "village-mobile": {
+    "status": "passed",
+    "checks": {
+      "group_movement": {
+        "selected": 12,
+        "received_move": 12,
+        "moved": 12
+      },
+      "pause": {
+        "elapsed": 20.50000000000002,
+        "unchanged_after_browser_ms": 3000
+      },
+      "gather_and_deliver": {
+        "timber_before": 180,
+        "timber_after": 335,
+        "gathered": 155
+      },
+      "recruitment": {
+        "population": 14,
+        "food_cost": 30,
+        "gold_cost": 20
+      },
+      "construction": {
+        "site": [
+          23,
+          22
+        ],
+        "timber_cost": 45,
+        "stone_cost": 15,
+        "completed": true,
+        "housing": 20
+      }
+    },
+    "browser_errors": []
+  }
+}

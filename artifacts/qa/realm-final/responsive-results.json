@@ -1,0 +1,53 @@
+{
+  "1512x982": {
+    "text": "180 110 140 20 85 13 / 16 Day 1 1 \u00d7 THE CLANLANDS The Forest \u26f6 ? Paused 112 \u00d7 96 \u00b7 SEED 7331 13 M 3 \u265c REALM MONUMENT Great Monument 0 % THE CLANLANDS N \u2191 \u2212 125 % + Mossfell Clan 13 CLANSMEN \u00b7 5 IDLE \u00d7 Clansmen Village Chronicle All 13 Working Idle 5 Select all Aldric Bryn Willa Oswin Maera Garrick Edith Rowan Hilda Cedric Elowen Torren Recruit clansman 30 food \u00b7 20 gold Clan spirit 86 % Clan charters 1 /9 M Sealed charters 3 ELDER Elder Aldric Elder \u00b7 Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move M Work G Build B Return R Follow F Stop ASSIGN WORK Timber Stone Harvest Rally Find Elder E Saved CLAN WORLD \u00b7 THE CLANLANDS Sound on Save Menu",
+    "word_count": 136,
+    "sentences": [],
+    "clipped_controls": [],
+    "obscured_controls": [],
+    "horizontal_overflow": false,
+    "vertical_overflow": false,
+    "errors": []
+  },
+  "1024x768": {
+    "text": "180 110 140 20 85 13 / 16 Day 1 1 \u00d7 THE CLANLANDS The Forest \u26f6 ? Paused 112 \u00d7 96 \u00b7 SEED 7331 13 M 3 \u265c REALM MONUMENT Great Monument 0 % THE CLANLANDS N \u2191 \u2212 125 % + Mossfell Clan 13 CLANSMEN \u00b7 5 IDLE \u00d7 Clansmen Village Chronicle All 13 Working Idle 5 Select all Aldric Bryn Willa Oswin Maera Garrick Recruit clansman Clan spirit 86 % Clan charters 1 /9 M Sealed charters 3 ELDER Elder Aldric Elder \u00b7 Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move M Work G Build B Return R Follow F Stop Saved CLAN WORLD \u00b7 THE CLANLANDS Sound on Save Menu",
+    "word_count": 116,
+    "sentences": [],
+    "clipped_controls": [],
+    "obscured_controls": [],
+    "horizontal_overflow": false,
+    "vertical_overflow": false,
+    "errors": []
+  },
+  "844x390": {
+    "text": "180 110 140 20 85 1 \u00d7 The Forest \u26f6 ? Paused 112 \u00d7 96 \u00b7 SEED 7331 13 M 3 \u265c REALM MONUMENT Great Monument 0 % THE CLANLANDS N \u2191 \u2212 125 % + Elder Aldric Elder \u00b7 Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move M Work G Build B Return R Follow F Stop Saved CLAN WORLD \u00b7 THE CLANLANDS Sound on Save Menu",
+    "word_count": 70,
+    "sentences": [],
+    "clipped_controls": [
+      {
+        "name": "Select and center Elder",
+        "x": 20,
+        "y": -0.5,
+        "w": 143,
+        "h": 77,
+        "clipped": true,
+        "obscured": false,
+        "blocking": "wordmark-art"
+      }
+    ],
+    "obscured_controls": [],
+    "horizontal_overflow": false,
+    "vertical_overflow": false,
+    "errors": []
+  },
+  "390x844": {
+    "text": "180 110 140 20 85 1 \u00d7 THE CLANLANDS The Forest \u26f6 ? Paused 112 \u00d7 96 \u00b7 SEED 7331 \u265c REALM MONUMENT Great Monument 0 % Elder Aldric Elder \u00b7 Inspiration +35% Health 100 Vigour 100 Awaiting orders Move Work Build Return Follow Stop Clan Build Map Charters",
+    "word_count": 49,
+    "sentences": [],
+    "clipped_controls": [],
+    "obscured_controls": [],
+    "horizontal_overflow": false,
+    "vertical_overflow": false,
+    "errors": []
+  }
+}

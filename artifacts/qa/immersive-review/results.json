@@ -1,0 +1,6114 @@
+[
+  {
+    "width": 1512,
+    "height": 982,
+    "errors": [],
+    "default": {
+      "controls": [
+        {
+          "name": "Select and center Elder",
+          "r": {
+            "x": 21,
+            "y": 11,
+            "w": 232.609375,
+            "h": 75
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Pause village",
+          "r": {
+            "x": 80.234375,
+            "y": 145.5,
+            "w": 38,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button pause-toggle ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Simulation speed 1x",
+          "r": {
+            "x": 123.234375,
+            "y": 145.5,
+            "w": 33.21875,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:speed-button metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show selected paths",
+          "r": {
+            "x": 280,
+            "y": 97,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show names",
+          "r": {
+            "x": 321,
+            "y": 97,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle fullscreen",
+          "r": {
+            "x": 362,
+            "y": 97,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open field manual",
+          "r": {
+            "x": 403,
+            "y": 97,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle clansmen",
+          "r": {
+            "x": 21,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle build menu",
+          "r": {
+            "x": 71,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open clan charters",
+          "r": {
+            "x": 121,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open sealed charters",
+          "r": {
+            "x": 171,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:tiny-wax-seal",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle chronicle",
+          "r": {
+            "x": 221,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find the realm monument",
+          "r": {
+            "x": 22,
+            "y": 194,
+            "w": 252,
+            "h": 72
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "STRONG:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Zoom out",
+          "r": {
+            "x": 1256,
+            "y": 208,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "View the whole realm",
+          "r": {
+            "x": 1290,
+            "y": 208,
+            "w": 92,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:zoom-readout",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Zoom in",
+          "r": {
+            "x": 1387,
+            "y": 208,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Center selection",
+          "r": {
+            "x": 1421,
+            "y": 208,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Center village",
+          "r": {
+            "x": 1455,
+            "y": 208,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Close clan panel",
+          "r": {
+            "x": 1454,
+            "y": 289.5,
+            "w": 27,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:mobile-close metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clansmen",
+          "r": {
+            "x": 1249,
+            "y": 334,
+            "w": 80.65625,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Village",
+          "r": {
+            "x": 1329.65625,
+            "y": 334,
+            "w": 80.671875,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Chronicle",
+          "r": {
+            "x": 1410.328125,
+            "y": 334,
+            "w": 80.671875,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "All 13",
+          "r": {
+            "x": 1256,
+            "y": 377,
+            "w": 43.09375,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Working",
+          "r": {
+            "x": 1346.265625,
+            "y": 377,
+            "w": 47.609375,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Idle 5",
+          "r": {
+            "x": 1441.046875,
+            "y": 377,
+            "w": 42.953125,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select all",
+          "r": {
+            "x": 1408,
+            "y": 289,
+            "w": 40,
+            "h": 24.375
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:roster-all",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Elder Aldric, idle",
+          "r": {
+            "x": 1256,
+            "y": 406,
+            "w": 72.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Bryn, walking",
+          "r": {
+            "x": 1333.65625,
+            "y": 406,
+            "w": 72.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Willa, walking",
+          "r": {
+            "x": 1411.328125,
+            "y": 406,
+            "w": 72.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Oswin, idle",
+          "r": {
+            "x": 1256,
+            "y": 487,
+            "w": 72.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Maera, walking",
+          "r": {
+            "x": 1333.65625,
+            "y": 487,
+            "w": 72.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Garrick, working",
+          "r": {
+            "x": 1411.328125,
+            "y": 487,
+            "w": 72.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Edith, working",
+          "r": {
+            "x": 1256,
+            "y": 568,
+            "w": 72.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Rowan, idle",
+          "r": {
+            "x": 1333.65625,
+            "y": 568,
+            "w": 72.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Hilda, walking",
+          "r": {
+            "x": 1411.328125,
+            "y": 568,
+            "w": 72.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Cedric, idle",
+          "r": {
+            "x": 1256,
+            "y": 649,
+            "w": 72.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Elowen, idle",
+          "r": {
+            "x": 1333.65625,
+            "y": 649,
+            "w": 72.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Torren, idle",
+          "r": {
+            "x": 1411.328125,
+            "y": 649,
+            "w": 72.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Bran, walking",
+          "r": {
+            "x": 1256,
+            "y": 730,
+            "w": 72.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Recruit clansman30 food · 20 gold",
+          "r": {
+            "x": 1257,
+            "y": 800,
+            "w": 226,
+            "h": 39
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clan charters1/9",
+          "r": {
+            "x": 1256,
+            "y": 873,
+            "w": 228,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MSealed charters3",
+          "r": {
+            "x": 1256,
+            "y": 901,
+            "w": 228,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MoveM",
+          "r": {
+            "x": 536,
+            "y": 864,
+            "w": 75.828125,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "WorkG",
+          "r": {
+            "x": 616.828125,
+            "y": 864,
+            "w": 75.828125,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "BuildB",
+          "r": {
+            "x": 697.65625,
+            "y": 864,
+            "w": 75.84375,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "ReturnR",
+          "r": {
+            "x": 778.5,
+            "y": 864,
+            "w": 75.828125,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "FollowF",
+          "r": {
+            "x": 859.328125,
+            "y": 864,
+            "w": 75.828125,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Stop",
+          "r": {
+            "x": 940.15625,
+            "y": 864,
+            "w": 75.84375,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Assign selected to gather timber",
+          "r": {
+            "x": 1056,
+            "y": 823,
+            "w": 80.9375,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Assign selected to quarry stone",
+          "r": {
+            "x": 1141.9375,
+            "y": 823,
+            "w": 78.0625,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Assign selected to harvest food",
+          "r": {
+            "x": 1056,
+            "y": 863,
+            "w": 80.9375,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Rally the clan",
+          "r": {
+            "x": 1141.9375,
+            "y": 863,
+            "w": 78.0625,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find ElderE",
+          "r": {
+            "x": 1056,
+            "y": 903,
+            "w": 164,
+            "h": 23
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:elder-focus",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Sound on",
+          "r": {
+            "x": 1356.09375,
+            "y": 956.5,
+            "w": 49.1875,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Save",
+          "r": {
+            "x": 1418.28125,
+            "y": 956.5,
+            "w": 26.203125,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Menu",
+          "r": {
+            "x": 1457.484375,
+            "y": 956.5,
+            "w": 32.515625,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        }
+      ],
+      "boxes": [
+        {
+          "class": "resource-bar",
+          "r": {
+            "x": 20,
+            "y": 18,
+            "w": 763.25,
+            "h": 61
+          },
+          "scrollHeight": 67,
+          "clientHeight": 59,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-location",
+          "r": {
+            "x": 685.4765625,
+            "y": 104,
+            "w": 141.046875,
+            "h": 56
+          },
+          "scrollHeight": 56,
+          "clientHeight": 56,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-options",
+          "r": {
+            "x": 280,
+            "y": 97,
+            "w": 159,
+            "h": 35
+          },
+          "scrollHeight": 35,
+          "clientHeight": 35,
+          "overflow": "visible"
+        },
+        {
+          "class": "realm-tools",
+          "r": {
+            "x": 21,
+            "y": 93,
+            "w": 243,
+            "h": 43
+          },
+          "scrollHeight": 46,
+          "clientHeight": 43,
+          "overflow": "visible"
+        },
+        {
+          "class": "monument-objective",
+          "r": {
+            "x": 22,
+            "y": 194,
+            "w": 252,
+            "h": 72
+          },
+          "scrollHeight": 72,
+          "clientHeight": 72,
+          "overflow": "visible"
+        },
+        {
+          "class": "minimap-block realm-minimap ",
+          "r": {
+            "x": 1248,
+            "y": 18,
+            "w": 244,
+            "h": 226
+          },
+          "scrollHeight": 224,
+          "clientHeight": 224,
+          "overflow": "visible"
+        },
+        {
+          "class": "clan-sidebar drawer-open",
+          "r": {
+            "x": 1248,
+            "y": 270,
+            "w": 244,
+            "h": 666
+          },
+          "scrollHeight": 664,
+          "clientHeight": 664,
+          "overflow": "visible"
+        },
+        {
+          "class": "command-console",
+          "r": {
+            "x": 20,
+            "y": 801,
+            "w": 1210,
+            "h": 135
+          },
+          "scrollHeight": 135,
+          "clientHeight": 135,
+          "overflow": "visible"
+        },
+        {
+          "class": "bottom-status",
+          "r": {
+            "x": 0,
+            "y": 953,
+            "w": 1512,
+            "h": 29
+          },
+          "scrollHeight": 29,
+          "clientHeight": 29,
+          "overflow": "visible"
+        }
+      ],
+      "domPaintedText": "Clan World MOSSFELL CLAN 180 110 140 20 85 13 / 16 Day 1 1 × THE CLANLANDS The Forest ⛶ ? 112 × 96 · SEED 7331 13 M 3 ♜ REALM MONUMENT Great Monument 0 % THE CLANLANDS N ↑ − 125 % + Mossfell Clan 13 CLANSMEN · 5 IDLE × Clansmen Village Chronicle All 13 Working Idle 5 Select all Aldric Bryn Willa Oswin Maera Garrick 4 Edith 4 Rowan Hilda Cedric Elowen Torren Bran Recruit clansman 30 food · 20 gold Clan spirit 86 % Clan charters 1 /9 M Sealed charters 3 ELDER Elder Aldric Elder · Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move M Work G Build B Return R Follow F Stop ASSIGN WORK Timber Stone Harvest Rally Find Elder E Saved CLAN WORLD · THE CLANLANDS Sound on Save Menu",
+      "domPaintedWords": 142,
+      "fiveWordSentences": [
+        "Clan World MOSSFELL CLAN 180 110 140 20 85 13 / 16 Day 1 1 × THE CLANLANDS The Forest ⛶ ?"
+      ],
+      "canvases": [
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 982
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        },
+        {
+          "r": {
+            "x": 1256,
+            "y": 49,
+            "w": 228,
+            "h": 151
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1260.828125,
+            "y": 401,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1338.484375,
+            "y": 401,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1416.15625,
+            "y": 401,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1260.828125,
+            "y": 482,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1338.484375,
+            "y": 482,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1416.15625,
+            "y": 482,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1260.828125,
+            "y": 563,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1338.484375,
+            "y": 563,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1416.15625,
+            "y": 563,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1260.828125,
+            "y": 644,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1338.484375,
+            "y": 644,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1416.15625,
+            "y": 644,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1260.828125,
+            "y": 725,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 24,
+            "y": 814,
+            "w": 86,
+            "h": 99
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        }
+      ],
+      "bodyWidth": 1512
+    },
+    "buildError": null,
+    "build": {
+      "controls": [
+        {
+          "name": "Select and center Elder",
+          "r": {
+            "x": 21,
+            "y": 11,
+            "w": 232.609375,
+            "h": 75
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Resume village",
+          "r": {
+            "x": 80.234375,
+            "y": 145.5,
+            "w": 38,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button pause-toggle engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Simulation speed 1x",
+          "r": {
+            "x": 123.234375,
+            "y": 145.5,
+            "w": 33.21875,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:speed-button metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show selected paths",
+          "r": {
+            "x": 280,
+            "y": 97,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show names",
+          "r": {
+            "x": 321,
+            "y": 97,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle fullscreen",
+          "r": {
+            "x": 362,
+            "y": 97,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open field manual",
+          "r": {
+            "x": 403,
+            "y": 97,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle clansmen",
+          "r": {
+            "x": 21,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle build menu",
+          "r": {
+            "x": 71,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open clan charters",
+          "r": {
+            "x": 121,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open sealed charters",
+          "r": {
+            "x": 171,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:tiny-wax-seal",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle chronicle",
+          "r": {
+            "x": 221,
+            "y": 93,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find the realm monument",
+          "r": {
+            "x": 22,
+            "y": 194,
+            "w": 252,
+            "h": 72
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "STRONG:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Zoom out",
+          "r": {
+            "x": 1256,
+            "y": 208,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "View the whole realm",
+          "r": {
+            "x": 1290,
+            "y": 208,
+            "w": 92,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:zoom-readout",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Zoom in",
+          "r": {
+            "x": 1387,
+            "y": 208,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Center selection",
+          "r": {
+            "x": 1421,
+            "y": 208,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Center village",
+          "r": {
+            "x": 1455,
+            "y": 208,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Close clan panel",
+          "r": {
+            "x": 1454,
+            "y": 289.5,
+            "w": 27,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:mobile-close metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clansmen",
+          "r": {
+            "x": 1249,
+            "y": 334,
+            "w": 80.65625,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Village",
+          "r": {
+            "x": 1329.65625,
+            "y": 334,
+            "w": 80.671875,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Chronicle",
+          "r": {
+            "x": 1410.328125,
+            "y": 334,
+            "w": 80.671875,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Clansman's cottage",
+          "r": {
+            "x": 1256,
+            "y": 408,
+            "w": 111,
+            "h": 132
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Woodcutter's lodge",
+          "r": {
+            "x": 1373,
+            "y": 408,
+            "w": 111,
+            "h": 132
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Quarry lodge",
+          "r": {
+            "x": 1256,
+            "y": 546,
+            "w": 111,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Wheat field",
+          "r": {
+            "x": 1373,
+            "y": 546,
+            "w": 111,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Watchtower",
+          "r": {
+            "x": 1256,
+            "y": 683,
+            "w": 111,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Village well",
+          "r": {
+            "x": 1373,
+            "y": 683,
+            "w": 111,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Storehouse",
+          "r": {
+            "x": 1256,
+            "y": 820,
+            "w": 111,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build The Hearth & Stag",
+          "r": {
+            "x": 1373,
+            "y": 820,
+            "w": 111,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Blacksmith",
+          "r": {
+            "x": 1256,
+            "y": 957,
+            "w": 111,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:bottom-status",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Market stall",
+          "r": {
+            "x": 1373,
+            "y": 957,
+            "w": 111,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:bottom-status",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clan charters1/9",
+          "r": {
+            "x": 1256,
+            "y": 873,
+            "w": 228,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MSealed charters3",
+          "r": {
+            "x": 1256,
+            "y": 901,
+            "w": 228,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MoveM",
+          "r": {
+            "x": 536,
+            "y": 864,
+            "w": 75.828125,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "WorkG",
+          "r": {
+            "x": 616.828125,
+            "y": 864,
+            "w": 75.828125,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "BuildB",
+          "r": {
+            "x": 697.65625,
+            "y": 864,
+            "w": 75.84375,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:order-active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "ReturnR",
+          "r": {
+            "x": 778.5,
+            "y": 864,
+            "w": 75.828125,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "FollowF",
+          "r": {
+            "x": 859.328125,
+            "y": 864,
+            "w": 75.828125,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Stop",
+          "r": {
+            "x": 940.15625,
+            "y": 864,
+            "w": 75.84375,
+            "h": 62
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Assign selected to gather timber",
+          "r": {
+            "x": 1056,
+            "y": 823,
+            "w": 80.9375,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Assign selected to quarry stone",
+          "r": {
+            "x": 1141.9375,
+            "y": 823,
+            "w": 78.0625,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Assign selected to harvest food",
+          "r": {
+            "x": 1056,
+            "y": 863,
+            "w": 80.9375,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Rally the clan",
+          "r": {
+            "x": 1141.9375,
+            "y": 863,
+            "w": 78.0625,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find ElderE",
+          "r": {
+            "x": 1056,
+            "y": 903,
+            "w": 164,
+            "h": 23
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:elder-focus",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Sound on",
+          "r": {
+            "x": 1356.09375,
+            "y": 956.5,
+            "w": 49.1875,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Save",
+          "r": {
+            "x": 1418.28125,
+            "y": 956.5,
+            "w": 26.203125,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Menu",
+          "r": {
+            "x": 1457.484375,
+            "y": 956.5,
+            "w": 32.515625,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        }
+      ],
+      "boxes": [
+        {
+          "class": "resource-bar",
+          "r": {
+            "x": 20,
+            "y": 18,
+            "w": 763.25,
+            "h": 61
+          },
+          "scrollHeight": 67,
+          "clientHeight": 59,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-location",
+          "r": {
+            "x": 685.4765625,
+            "y": 104,
+            "w": 141.046875,
+            "h": 56
+          },
+          "scrollHeight": 56,
+          "clientHeight": 56,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-options",
+          "r": {
+            "x": 280,
+            "y": 97,
+            "w": 159,
+            "h": 35
+          },
+          "scrollHeight": 35,
+          "clientHeight": 35,
+          "overflow": "visible"
+        },
+        {
+          "class": "realm-tools",
+          "r": {
+            "x": 21,
+            "y": 93,
+            "w": 243,
+            "h": 43
+          },
+          "scrollHeight": 46,
+          "clientHeight": 43,
+          "overflow": "visible"
+        },
+        {
+          "class": "monument-objective",
+          "r": {
+            "x": 22,
+            "y": 194,
+            "w": 252,
+            "h": 72
+          },
+          "scrollHeight": 72,
+          "clientHeight": 72,
+          "overflow": "visible"
+        },
+        {
+          "class": "minimap-block realm-minimap ",
+          "r": {
+            "x": 1248,
+            "y": 18,
+            "w": 244,
+            "h": 226
+          },
+          "scrollHeight": 224,
+          "clientHeight": 224,
+          "overflow": "visible"
+        },
+        {
+          "class": "clan-sidebar drawer-open",
+          "r": {
+            "x": 1248,
+            "y": 270,
+            "w": 244,
+            "h": 666
+          },
+          "scrollHeight": 664,
+          "clientHeight": 664,
+          "overflow": "visible"
+        },
+        {
+          "class": "command-console",
+          "r": {
+            "x": 20,
+            "y": 801,
+            "w": 1210,
+            "h": 135
+          },
+          "scrollHeight": 135,
+          "clientHeight": 135,
+          "overflow": "visible"
+        },
+        {
+          "class": "bottom-status",
+          "r": {
+            "x": 0,
+            "y": 953,
+            "w": 1512,
+            "h": 29
+          },
+          "scrollHeight": 29,
+          "clientHeight": 29,
+          "overflow": "visible"
+        }
+      ],
+      "domPaintedText": "Clan World MOSSFELL CLAN 180 110 140 20 85 13 / 16 Day 1 1 × THE CLANLANDS The Forest ⛶ ? Paused 112 × 96 · SEED 7331 13 M 3 ♜ REALM MONUMENT Great Monument 0 % THE CLANLANDS N ↑ − 125 % + Mossfell Clan 13 CLANSMEN · 5 IDLE × Clansmen Village Chronicle Raise a village 9 buildings Clansman's cottage 45 15 Woodcutter's lodge 65 20 Quarry lodge 65 40 Wheat field 35 Watchtower 55 60 Village well 15 40 Clan charters 1 /9 M Sealed charters 3 ELDER Elder Aldric Elder · Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move M Work G Build B Return R Follow F Stop ASSIGN WORK Timber Stone Harvest Rally Find Elder E Saved CLAN WORLD · THE CLANLANDS Sound on Save Menu",
+      "domPaintedWords": 137,
+      "fiveWordSentences": [
+        "Clan World MOSSFELL CLAN 180 110 140 20 85 13 / 16 Day 1 1 × THE CLANLANDS The Forest ⛶ ?"
+      ],
+      "canvases": [
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 982
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        },
+        {
+          "r": {
+            "x": 1256,
+            "y": 49,
+            "w": 228,
+            "h": 151
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1267,
+            "y": 412,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1384,
+            "y": 412,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1267,
+            "y": 550,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1384,
+            "y": 550,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1267,
+            "y": 687,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1384,
+            "y": 687,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1267,
+            "y": 824,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1384,
+            "y": 824,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1267,
+            "y": 961,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1384,
+            "y": 961,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 1267,
+            "y": 1098,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 24,
+            "y": 814,
+            "w": 86,
+            "h": 99
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        }
+      ],
+      "bodyWidth": 1512
+    },
+    "scroll": [
+      {
+        "class": "build-roster",
+        "scrollTop": 367,
+        "scrollHeight": 863,
+        "clientHeight": 496
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "errors": [],
+    "default": {
+      "controls": [
+        {
+          "name": "Select and center Elder",
+          "r": {
+            "x": 15,
+            "y": 3.5,
+            "w": 175.5625,
+            "h": 75
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Pause village",
+          "r": {
+            "x": 73.234375,
+            "y": 138.5,
+            "w": 38,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button pause-toggle ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Simulation speed 1x",
+          "r": {
+            "x": 116.234375,
+            "y": 138.5,
+            "w": 33.21875,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:speed-button metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show selected paths",
+          "r": {
+            "x": 269,
+            "y": 88,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show names",
+          "r": {
+            "x": 310,
+            "y": 88,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle fullscreen",
+          "r": {
+            "x": 351,
+            "y": 88,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open field manual",
+          "r": {
+            "x": 392,
+            "y": 88,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle clansmen",
+          "r": {
+            "x": 14,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle build menu",
+          "r": {
+            "x": 64,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open clan charters",
+          "r": {
+            "x": 114,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open sealed charters",
+          "r": {
+            "x": 164,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:tiny-wax-seal",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle chronicle",
+          "r": {
+            "x": 214,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find the realm monument",
+          "r": {
+            "x": 14,
+            "y": 182,
+            "w": 224,
+            "h": 65
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "STRONG:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Zoom out",
+          "r": {
+            "x": 804,
+            "y": 185,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "View the whole realm",
+          "r": {
+            "x": 838,
+            "y": 185,
+            "w": 62,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:zoom-readout",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Zoom in",
+          "r": {
+            "x": 905,
+            "y": 185,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Center selection",
+          "r": {
+            "x": 939,
+            "y": 185,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Center village",
+          "r": {
+            "x": 973,
+            "y": 185,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Close clan panel",
+          "r": {
+            "x": 972,
+            "y": 263.5,
+            "w": 27,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:mobile-close metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clansmen",
+          "r": {
+            "x": 797,
+            "y": 306,
+            "w": 70.65625,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Village",
+          "r": {
+            "x": 867.65625,
+            "y": 306,
+            "w": 70.671875,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Chronicle",
+          "r": {
+            "x": 938.328125,
+            "y": 306,
+            "w": 70.671875,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "All 13",
+          "r": {
+            "x": 804,
+            "y": 349,
+            "w": 43.09375,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Working",
+          "r": {
+            "x": 879.265625,
+            "y": 349,
+            "w": 47.609375,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Idle 5",
+          "r": {
+            "x": 959.046875,
+            "y": 349,
+            "w": 42.953125,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select all",
+          "r": {
+            "x": 926,
+            "y": 265,
+            "w": 40,
+            "h": 24.375
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:roster-all",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Elder Aldric, idle",
+          "r": {
+            "x": 804,
+            "y": 378,
+            "w": 62.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Bryn, walking",
+          "r": {
+            "x": 871.65625,
+            "y": 378,
+            "w": 62.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Willa, walking",
+          "r": {
+            "x": 939.328125,
+            "y": 378,
+            "w": 62.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Oswin, idle",
+          "r": {
+            "x": 804,
+            "y": 459,
+            "w": 62.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Maera, walking",
+          "r": {
+            "x": 871.65625,
+            "y": 459,
+            "w": 62.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Garrick, working",
+          "r": {
+            "x": 939.328125,
+            "y": 459,
+            "w": 62.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Edith, working",
+          "r": {
+            "x": 804,
+            "y": 540,
+            "w": 62.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Rowan, idle",
+          "r": {
+            "x": 871.65625,
+            "y": 540,
+            "w": 62.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Hilda, walking",
+          "r": {
+            "x": 939.328125,
+            "y": 540,
+            "w": 62.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Cedric, idle",
+          "r": {
+            "x": 804,
+            "y": 621,
+            "w": 62.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:sidebar-bottom",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Elowen, idle",
+          "r": {
+            "x": 871.65625,
+            "y": 621,
+            "w": 62.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:sidebar-bottom",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Torren, idle",
+          "r": {
+            "x": 939.328125,
+            "y": 621,
+            "w": 62.671875,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:sidebar-bottom",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Bran, walking",
+          "r": {
+            "x": 804,
+            "y": 702,
+            "w": 62.65625,
+            "h": 76
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:bottom-status",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Recruit clansman30 food · 20 gold",
+          "r": {
+            "x": 805,
+            "y": 588,
+            "w": 196,
+            "h": 39
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clan charters1/9",
+          "r": {
+            "x": 804,
+            "y": 661,
+            "w": 198,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MSealed charters3",
+          "r": {
+            "x": 804,
+            "y": 689,
+            "w": 198,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MoveM",
+          "r": {
+            "x": 372,
+            "y": 659,
+            "w": 64.15625,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "WorkG",
+          "r": {
+            "x": 439.15625,
+            "y": 659,
+            "w": 64.171875,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "BuildB",
+          "r": {
+            "x": 506.328125,
+            "y": 659,
+            "w": 64.15625,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "ReturnR",
+          "r": {
+            "x": 573.484375,
+            "y": 659,
+            "w": 64.171875,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "FollowF",
+          "r": {
+            "x": 640.65625,
+            "y": 659,
+            "w": 64.171875,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Stop",
+          "r": {
+            "x": 707.828125,
+            "y": 659,
+            "w": 64.15625,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Sound on",
+          "r": {
+            "x": 868.09375,
+            "y": 742.5,
+            "w": 49.1875,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Save",
+          "r": {
+            "x": 930.28125,
+            "y": 742.5,
+            "w": 26.203125,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Menu",
+          "r": {
+            "x": 969.484375,
+            "y": 742.5,
+            "w": 32.515625,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        }
+      ],
+      "boxes": [
+        {
+          "class": "resource-bar",
+          "r": {
+            "x": 14,
+            "y": 13,
+            "w": 596.796875,
+            "h": 56
+          },
+          "scrollHeight": 65,
+          "clientHeight": 54,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-location",
+          "r": {
+            "x": 545.8984375,
+            "y": 98,
+            "w": 116.515625,
+            "h": 50
+          },
+          "scrollHeight": 50,
+          "clientHeight": 50,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-options",
+          "r": {
+            "x": 269,
+            "y": 88,
+            "w": 159,
+            "h": 35
+          },
+          "scrollHeight": 35,
+          "clientHeight": 35,
+          "overflow": "visible"
+        },
+        {
+          "class": "realm-tools",
+          "r": {
+            "x": 14,
+            "y": 84,
+            "w": 243,
+            "h": 43
+          },
+          "scrollHeight": 46,
+          "clientHeight": 43,
+          "overflow": "visible"
+        },
+        {
+          "class": "monument-objective",
+          "r": {
+            "x": 14,
+            "y": 182,
+            "w": 224,
+            "h": 65
+          },
+          "scrollHeight": 65,
+          "clientHeight": 65,
+          "overflow": "visible"
+        },
+        {
+          "class": "minimap-block realm-minimap ",
+          "r": {
+            "x": 796,
+            "y": 13,
+            "w": 214,
+            "h": 208
+          },
+          "scrollHeight": 206,
+          "clientHeight": 206,
+          "overflow": "visible"
+        },
+        {
+          "class": "clan-sidebar drawer-open",
+          "r": {
+            "x": 796,
+            "y": 246,
+            "w": 214,
+            "h": 478
+          },
+          "scrollHeight": 476,
+          "clientHeight": 476,
+          "overflow": "visible"
+        },
+        {
+          "class": "command-console",
+          "r": {
+            "x": 14,
+            "y": 597,
+            "w": 766,
+            "h": 127
+          },
+          "scrollHeight": 127,
+          "clientHeight": 127,
+          "overflow": "visible"
+        },
+        {
+          "class": "bottom-status",
+          "r": {
+            "x": 0,
+            "y": 739,
+            "w": 1024,
+            "h": 29
+          },
+          "scrollHeight": 29,
+          "clientHeight": 29,
+          "overflow": "visible"
+        }
+      ],
+      "domPaintedText": "Clan World MOSSFELL CLAN 180 110 140 20 85 13 / 16 Day 1 1 × THE CLANLANDS The Forest ⛶ ? 112 × 96 · SEED 7331 13 M 3 ♜ REALM MONUMENT Great Monument 0 % THE CLANLANDS N ↑ − 125 % + Mossfell Clan 13 CLANSMEN · 5 IDLE × Clansmen Village Chronicle All 13 Working Idle 5 Select all Aldric Bryn Willa Oswin Maera Garrick 4 4 Recruit clansman 30 food · 20 gold Clan spirit 86 % Clan charters 1 /9 M Sealed charters 3 ELDER Elder Aldric Elder · Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move M Work G Build B Return R Follow F Stop Saved CLAN WORLD · THE CLANLANDS Sound on Save Menu",
+      "domPaintedWords": 126,
+      "fiveWordSentences": [
+        "Clan World MOSSFELL CLAN 180 110 140 20 85 13 / 16 Day 1 1 × THE CLANLANDS The Forest ⛶ ?"
+      ],
+      "canvases": [
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 1024,
+            "h": 768
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        },
+        {
+          "r": {
+            "x": 804,
+            "y": 44,
+            "w": 198,
+            "h": 133
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 803.828125,
+            "y": 373,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 871.484375,
+            "y": 373,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 939.15625,
+            "y": 373,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 803.828125,
+            "y": 454,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 871.484375,
+            "y": 454,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 939.15625,
+            "y": 454,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 803.828125,
+            "y": 535,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 871.484375,
+            "y": 535,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 939.15625,
+            "y": 535,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 803.828125,
+            "y": 616,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 871.484375,
+            "y": 616,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 939.15625,
+            "y": 616,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 803.828125,
+            "y": 697,
+            "w": 64,
+            "h": 64
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 12,
+            "y": 608,
+            "w": 82,
+            "h": 99
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        }
+      ],
+      "bodyWidth": 1024
+    },
+    "buildError": null,
+    "build": {
+      "controls": [
+        {
+          "name": "Select and center Elder",
+          "r": {
+            "x": 15,
+            "y": 3.5,
+            "w": 175.5625,
+            "h": 75
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Resume village",
+          "r": {
+            "x": 73.234375,
+            "y": 138.5,
+            "w": 38,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button pause-toggle engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Simulation speed 1x",
+          "r": {
+            "x": 116.234375,
+            "y": 138.5,
+            "w": 33.21875,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:speed-button metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show selected paths",
+          "r": {
+            "x": 269,
+            "y": 88,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show names",
+          "r": {
+            "x": 310,
+            "y": 88,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle fullscreen",
+          "r": {
+            "x": 351,
+            "y": 88,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open field manual",
+          "r": {
+            "x": 392,
+            "y": 88,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle clansmen",
+          "r": {
+            "x": 14,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle build menu",
+          "r": {
+            "x": 64,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open clan charters",
+          "r": {
+            "x": 114,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open sealed charters",
+          "r": {
+            "x": 164,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:tiny-wax-seal",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle chronicle",
+          "r": {
+            "x": 214,
+            "y": 84,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find the realm monument",
+          "r": {
+            "x": 14,
+            "y": 182,
+            "w": 224,
+            "h": 65
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "STRONG:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Zoom out",
+          "r": {
+            "x": 804,
+            "y": 185,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "View the whole realm",
+          "r": {
+            "x": 838,
+            "y": 185,
+            "w": 62,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:zoom-readout",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Zoom in",
+          "r": {
+            "x": 905,
+            "y": 185,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Center selection",
+          "r": {
+            "x": 939,
+            "y": 185,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Center village",
+          "r": {
+            "x": 973,
+            "y": 185,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Close clan panel",
+          "r": {
+            "x": 972,
+            "y": 263.5,
+            "w": 27,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:mobile-close metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clansmen",
+          "r": {
+            "x": 797,
+            "y": 306,
+            "w": 70.65625,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Village",
+          "r": {
+            "x": 867.65625,
+            "y": 306,
+            "w": 70.671875,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Chronicle",
+          "r": {
+            "x": 938.328125,
+            "y": 306,
+            "w": 70.671875,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Clansman's cottage",
+          "r": {
+            "x": 804,
+            "y": 380,
+            "w": 96,
+            "h": 132
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Woodcutter's lodge",
+          "r": {
+            "x": 906,
+            "y": 380,
+            "w": 96,
+            "h": 132
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Quarry lodge",
+          "r": {
+            "x": 804,
+            "y": 518,
+            "w": 96,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Wheat field",
+          "r": {
+            "x": 906,
+            "y": 518,
+            "w": 96,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Watchtower",
+          "r": {
+            "x": 804,
+            "y": 655,
+            "w": 96,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:sidebar-bottom",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Village well",
+          "r": {
+            "x": 906,
+            "y": 655,
+            "w": 96,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:sidebar-bottom",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clan charters1/9",
+          "r": {
+            "x": 804,
+            "y": 661,
+            "w": 198,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MSealed charters3",
+          "r": {
+            "x": 804,
+            "y": 689,
+            "w": 198,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MoveM",
+          "r": {
+            "x": 372,
+            "y": 659,
+            "w": 64.15625,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "WorkG",
+          "r": {
+            "x": 439.15625,
+            "y": 659,
+            "w": 64.171875,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "BuildB",
+          "r": {
+            "x": 506.328125,
+            "y": 659,
+            "w": 64.15625,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:order-active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "ReturnR",
+          "r": {
+            "x": 573.484375,
+            "y": 659,
+            "w": 64.171875,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "FollowF",
+          "r": {
+            "x": 640.65625,
+            "y": 659,
+            "w": 64.171875,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Stop",
+          "r": {
+            "x": 707.828125,
+            "y": 659,
+            "w": 64.15625,
+            "h": 57
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Sound on",
+          "r": {
+            "x": 868.09375,
+            "y": 742.5,
+            "w": 49.1875,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Save",
+          "r": {
+            "x": 930.28125,
+            "y": 742.5,
+            "w": 26.203125,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Menu",
+          "r": {
+            "x": 969.484375,
+            "y": 742.5,
+            "w": 32.515625,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        }
+      ],
+      "boxes": [
+        {
+          "class": "resource-bar",
+          "r": {
+            "x": 14,
+            "y": 13,
+            "w": 596.796875,
+            "h": 56
+          },
+          "scrollHeight": 65,
+          "clientHeight": 54,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-location",
+          "r": {
+            "x": 545.8984375,
+            "y": 98,
+            "w": 116.515625,
+            "h": 50
+          },
+          "scrollHeight": 50,
+          "clientHeight": 50,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-options",
+          "r": {
+            "x": 269,
+            "y": 88,
+            "w": 159,
+            "h": 35
+          },
+          "scrollHeight": 35,
+          "clientHeight": 35,
+          "overflow": "visible"
+        },
+        {
+          "class": "realm-tools",
+          "r": {
+            "x": 14,
+            "y": 84,
+            "w": 243,
+            "h": 43
+          },
+          "scrollHeight": 46,
+          "clientHeight": 43,
+          "overflow": "visible"
+        },
+        {
+          "class": "monument-objective",
+          "r": {
+            "x": 14,
+            "y": 182,
+            "w": 224,
+            "h": 65
+          },
+          "scrollHeight": 65,
+          "clientHeight": 65,
+          "overflow": "visible"
+        },
+        {
+          "class": "minimap-block realm-minimap ",
+          "r": {
+            "x": 796,
+            "y": 13,
+            "w": 214,
+            "h": 208
+          },
+          "scrollHeight": 206,
+          "clientHeight": 206,
+          "overflow": "visible"
+        },
+        {
+          "class": "clan-sidebar drawer-open",
+          "r": {
+            "x": 796,
+            "y": 246,
+            "w": 214,
+            "h": 478
+          },
+          "scrollHeight": 476,
+          "clientHeight": 476,
+          "overflow": "visible"
+        },
+        {
+          "class": "command-console",
+          "r": {
+            "x": 14,
+            "y": 597,
+            "w": 766,
+            "h": 127
+          },
+          "scrollHeight": 127,
+          "clientHeight": 127,
+          "overflow": "visible"
+        },
+        {
+          "class": "bottom-status",
+          "r": {
+            "x": 0,
+            "y": 739,
+            "w": 1024,
+            "h": 29
+          },
+          "scrollHeight": 29,
+          "clientHeight": 29,
+          "overflow": "visible"
+        }
+      ],
+      "domPaintedText": "Clan World MOSSFELL CLAN 180 110 140 20 85 13 / 16 Day 1 1 × THE CLANLANDS The Forest ⛶ ? Paused 112 × 96 · SEED 7331 13 M 3 ♜ REALM MONUMENT Great Monument 0 % THE CLANLANDS N ↑ − 125 % + Mossfell Clan 13 CLANSMEN · 5 IDLE × Clansmen Village Chronicle Raise a village 9 buildings Clansman's cottage 45 15 Woodcutter's lodge 65 20 Quarry lodge 65 40 Wheat field 35 Clan charters 1 /9 M Sealed charters 3 ELDER Elder Aldric Elder · Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move M Work G Build B Return R Follow F Stop Saved CLAN WORLD · THE CLANLANDS Sound on Save Menu",
+      "domPaintedWords": 121,
+      "fiveWordSentences": [
+        "Clan World MOSSFELL CLAN 180 110 140 20 85 13 / 16 Day 1 1 × THE CLANLANDS The Forest ⛶ ?"
+      ],
+      "canvases": [
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 1024,
+            "h": 768
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        },
+        {
+          "r": {
+            "x": 804,
+            "y": 44,
+            "w": 198,
+            "h": 133
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 807.5,
+            "y": 384,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 909.5,
+            "y": 384,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 807.5,
+            "y": 522,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 909.5,
+            "y": 522,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 807.5,
+            "y": 659,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 909.5,
+            "y": 659,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 807.5,
+            "y": 796,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 909.5,
+            "y": 796,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 807.5,
+            "y": 934,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 909.5,
+            "y": 934,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 807.5,
+            "y": 1071,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 12,
+            "y": 608,
+            "w": 82,
+            "h": 99
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        }
+      ],
+      "bodyWidth": 1024
+    },
+    "scroll": [
+      {
+        "class": "build-roster",
+        "scrollTop": 552,
+        "scrollHeight": 864,
+        "clientHeight": 312
+      }
+    ]
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "errors": [],
+    "default": {
+      "controls": [
+        {
+          "name": "Select and center Elder",
+          "r": {
+            "x": 15,
+            "y": 0.5,
+            "w": 170.5625,
+            "h": 75
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Pause village",
+          "r": {
+            "x": 14,
+            "y": 134.5,
+            "w": 38,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button pause-toggle ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Simulation speed 1x",
+          "r": {
+            "x": 57,
+            "y": 134.5,
+            "w": 33.21875,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:speed-button metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show selected paths",
+          "r": {
+            "x": 177,
+            "y": 143,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show names",
+          "r": {
+            "x": 218,
+            "y": 143,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle fullscreen",
+          "r": {
+            "x": 259,
+            "y": 143,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open field manual",
+          "r": {
+            "x": 300,
+            "y": 143,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle clansmen",
+          "r": {
+            "x": 14,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle build menu",
+          "r": {
+            "x": 64,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open clan charters",
+          "r": {
+            "x": 114,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open sealed charters",
+          "r": {
+            "x": 164,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:tiny-wax-seal",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle chronicle",
+          "r": {
+            "x": 214,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find the realm monument",
+          "r": {
+            "x": 14,
+            "y": 172,
+            "w": 224,
+            "h": 52
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "STRONG:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Close clan panel",
+          "r": {
+            "x": 793,
+            "y": 85,
+            "w": 27,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:mobile-close metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clansmen",
+          "r": {
+            "x": 605,
+            "y": 123,
+            "w": 74.65625,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Village",
+          "r": {
+            "x": 679.65625,
+            "y": 123,
+            "w": 74.671875,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Chronicle",
+          "r": {
+            "x": 754.328125,
+            "y": 123,
+            "w": 74.671875,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "All 13",
+          "r": {
+            "x": 611,
+            "y": 156,
+            "w": 37.46875,
+            "h": 19
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Working",
+          "r": {
+            "x": 696.359375,
+            "y": 156,
+            "w": 41.40625,
+            "h": 19
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Idle 5",
+          "r": {
+            "x": 785.65625,
+            "y": 156,
+            "w": 37.34375,
+            "h": 19
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Elder Aldric, idle",
+          "r": {
+            "x": 612,
+            "y": 179,
+            "w": 66.65625,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Bryn, walking",
+          "r": {
+            "x": 683.65625,
+            "y": 179,
+            "w": 66.671875,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Willa, walking",
+          "r": {
+            "x": 755.328125,
+            "y": 179,
+            "w": 66.65625,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Oswin, idle",
+          "r": {
+            "x": 612,
+            "y": 245,
+            "w": 66.65625,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Maera, walking",
+          "r": {
+            "x": 683.65625,
+            "y": 245,
+            "w": 66.671875,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Garrick, working",
+          "r": {
+            "x": 755.328125,
+            "y": 245,
+            "w": 66.65625,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Edith, working",
+          "r": {
+            "x": 612,
+            "y": 311,
+            "w": 66.65625,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "BUTTON:wood-button recruit-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Rowan, idle",
+          "r": {
+            "x": 683.65625,
+            "y": 311,
+            "w": 66.671875,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "SMALL:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Hilda, walking",
+          "r": {
+            "x": 755.328125,
+            "y": 311,
+            "w": 66.65625,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "BUTTON:wood-button recruit-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Cedric, idle",
+          "r": {
+            "x": 612,
+            "y": 377,
+            "w": 66.65625,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:bottom-status",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Elowen, idle",
+          "r": {
+            "x": 683.65625,
+            "y": 377,
+            "w": 66.671875,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:bottom-status",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Select Torren, idle",
+          "r": {
+            "x": 755.328125,
+            "y": 377,
+            "w": 66.65625,
+            "h": 61
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:bottom-status",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Recruit clansman30 food · 20 gold",
+          "r": {
+            "x": 610,
+            "y": 316,
+            "w": 214,
+            "h": 34
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MoveM",
+          "r": {
+            "x": 292.90625,
+            "y": 255,
+            "w": 94.359375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "WorkG",
+          "r": {
+            "x": 390.265625,
+            "y": 255,
+            "w": 94.359375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "BuildB",
+          "r": {
+            "x": 487.625,
+            "y": 255,
+            "w": 94.375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "ReturnR",
+          "r": {
+            "x": 292.90625,
+            "y": 303,
+            "w": 94.359375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "FollowF",
+          "r": {
+            "x": 390.265625,
+            "y": 303,
+            "w": 94.359375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Stop",
+          "r": {
+            "x": 487.625,
+            "y": 303,
+            "w": 94.375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Sound on",
+          "r": {
+            "x": 688.09375,
+            "y": 366.5,
+            "w": 49.1875,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Save",
+          "r": {
+            "x": 750.28125,
+            "y": 366.5,
+            "w": 26.203125,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Menu",
+          "r": {
+            "x": 789.484375,
+            "y": 366.5,
+            "w": 32.515625,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        }
+      ],
+      "boxes": [
+        {
+          "class": "resource-bar",
+          "r": {
+            "x": 14,
+            "y": 10,
+            "w": 491.5625,
+            "h": 56
+          },
+          "scrollHeight": 65,
+          "clientHeight": 54,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-location",
+          "r": {
+            "x": 398.2578125,
+            "y": 91,
+            "w": 98.109375,
+            "h": 29
+          },
+          "scrollHeight": 29,
+          "clientHeight": 29,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-options",
+          "r": {
+            "x": 177,
+            "y": 143,
+            "w": 159,
+            "h": 35
+          },
+          "scrollHeight": 35,
+          "clientHeight": 35,
+          "overflow": "visible"
+        },
+        {
+          "class": "realm-tools",
+          "r": {
+            "x": 14,
+            "y": 83,
+            "w": 243,
+            "h": 43
+          },
+          "scrollHeight": 46,
+          "clientHeight": 43,
+          "overflow": "visible"
+        },
+        {
+          "class": "monument-objective",
+          "r": {
+            "x": 14,
+            "y": 172,
+            "w": 224,
+            "h": 52
+          },
+          "scrollHeight": 52,
+          "clientHeight": 52,
+          "overflow": "visible"
+        },
+        {
+          "class": "clan-sidebar drawer-open",
+          "r": {
+            "x": 604,
+            "y": 75,
+            "w": 226,
+            "h": 281
+          },
+          "scrollHeight": 279,
+          "clientHeight": 279,
+          "overflow": "visible"
+        },
+        {
+          "class": "command-console",
+          "r": {
+            "x": 14,
+            "y": 238,
+            "w": 576,
+            "h": 118
+          },
+          "scrollHeight": 118,
+          "clientHeight": 118,
+          "overflow": "visible"
+        },
+        {
+          "class": "bottom-status",
+          "r": {
+            "x": 0,
+            "y": 365,
+            "w": 844,
+            "h": 25
+          },
+          "scrollHeight": 25,
+          "clientHeight": 25,
+          "overflow": "visible"
+        }
+      ],
+      "domPaintedText": "Clan World MOSSFELL CLAN 180 110 140 20 85 1 × The Forest ⛶ ? 112 × 96 · SEED 7331 13 M 3 ♜ REALM MONUMENT Great Monument 0 % Mossfell Clan × Clansmen Village Chronicle All 13 Working Idle 5 Aldric Bryn Willa Oswin Maera Garrick 3 Recruit clansman 30 food · 20 gold Elder Aldric Elder · Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move M Work G Build B Return R Follow F Stop Saved CLAN WORLD · THE CLANLANDS Sound on Save Menu",
+      "domPaintedWords": 90,
+      "fiveWordSentences": [
+        "Clan World MOSSFELL CLAN 180 110 140 20 85 1 × The Forest ⛶ ?"
+      ],
+      "canvases": [
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 844,
+            "h": 390
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.328125,
+            "y": 171,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 689.984375,
+            "y": 171,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 761.65625,
+            "y": 171,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.328125,
+            "y": 237,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 689.984375,
+            "y": 237,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 761.65625,
+            "y": 237,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.328125,
+            "y": 303,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 689.984375,
+            "y": 303,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 761.65625,
+            "y": 303,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.328125,
+            "y": 369,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 689.984375,
+            "y": 369,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 761.65625,
+            "y": 369,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.328125,
+            "y": 435,
+            "w": 56,
+            "h": 56
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        }
+      ],
+      "bodyWidth": 844
+    },
+    "buildError": null,
+    "build": {
+      "controls": [
+        {
+          "name": "Select and center Elder",
+          "r": {
+            "x": 15,
+            "y": 0.5,
+            "w": 170.5625,
+            "h": 75
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Resume village",
+          "r": {
+            "x": 14,
+            "y": 134.5,
+            "w": 38,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button pause-toggle engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Simulation speed 1x",
+          "r": {
+            "x": 57,
+            "y": 134.5,
+            "w": 33.21875,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:speed-button metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show selected paths",
+          "r": {
+            "x": 177,
+            "y": 143,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show names",
+          "r": {
+            "x": 218,
+            "y": 143,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle fullscreen",
+          "r": {
+            "x": 259,
+            "y": 143,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open field manual",
+          "r": {
+            "x": 300,
+            "y": 143,
+            "w": 36,
+            "h": 35
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle clansmen",
+          "r": {
+            "x": 14,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle build menu",
+          "r": {
+            "x": 64,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open clan charters",
+          "r": {
+            "x": 114,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open sealed charters",
+          "r": {
+            "x": 164,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:tiny-wax-seal",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle chronicle",
+          "r": {
+            "x": 214,
+            "y": 83,
+            "w": 43,
+            "h": 43
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find the realm monument",
+          "r": {
+            "x": 14,
+            "y": 172,
+            "w": 224,
+            "h": 52
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "STRONG:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Close clan panel",
+          "r": {
+            "x": 793,
+            "y": 85,
+            "w": 27,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:mobile-close metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clansmen",
+          "r": {
+            "x": 605,
+            "y": 123,
+            "w": 74.65625,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Village",
+          "r": {
+            "x": 679.65625,
+            "y": 123,
+            "w": 74.671875,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Chronicle",
+          "r": {
+            "x": 754.328125,
+            "y": 123,
+            "w": 74.671875,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Clansman's cottage",
+          "r": {
+            "x": 612,
+            "y": 190,
+            "w": 102,
+            "h": 132
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Woodcutter's lodge",
+          "r": {
+            "x": 720,
+            "y": 190,
+            "w": 102,
+            "h": 132
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Quarry lodge",
+          "r": {
+            "x": 612,
+            "y": 328,
+            "w": 102,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:bottom-status",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Wheat field",
+          "r": {
+            "x": 720,
+            "y": 328,
+            "w": 102,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "DIV:bottom-status",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MoveM",
+          "r": {
+            "x": 292.90625,
+            "y": 255,
+            "w": 94.359375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "WorkG",
+          "r": {
+            "x": 390.265625,
+            "y": 255,
+            "w": 94.359375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "BuildB",
+          "r": {
+            "x": 487.625,
+            "y": 255,
+            "w": 94.375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:order-active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "ReturnR",
+          "r": {
+            "x": 292.90625,
+            "y": 303,
+            "w": 94.359375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "FollowF",
+          "r": {
+            "x": 390.265625,
+            "y": 303,
+            "w": 94.359375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Stop",
+          "r": {
+            "x": 487.625,
+            "y": 303,
+            "w": 94.375,
+            "h": 45
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Sound on",
+          "r": {
+            "x": 688.09375,
+            "y": 366.5,
+            "w": 49.1875,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Save",
+          "r": {
+            "x": 750.28125,
+            "y": 366.5,
+            "w": 26.203125,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Menu",
+          "r": {
+            "x": 789.484375,
+            "y": 366.5,
+            "w": 32.515625,
+            "h": 22
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        }
+      ],
+      "boxes": [
+        {
+          "class": "resource-bar",
+          "r": {
+            "x": 14,
+            "y": 10,
+            "w": 491.5625,
+            "h": 56
+          },
+          "scrollHeight": 65,
+          "clientHeight": 54,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-location",
+          "r": {
+            "x": 398.2578125,
+            "y": 91,
+            "w": 98.109375,
+            "h": 29
+          },
+          "scrollHeight": 29,
+          "clientHeight": 29,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-options",
+          "r": {
+            "x": 177,
+            "y": 143,
+            "w": 159,
+            "h": 35
+          },
+          "scrollHeight": 35,
+          "clientHeight": 35,
+          "overflow": "visible"
+        },
+        {
+          "class": "realm-tools",
+          "r": {
+            "x": 14,
+            "y": 83,
+            "w": 243,
+            "h": 43
+          },
+          "scrollHeight": 46,
+          "clientHeight": 43,
+          "overflow": "visible"
+        },
+        {
+          "class": "monument-objective",
+          "r": {
+            "x": 14,
+            "y": 172,
+            "w": 224,
+            "h": 52
+          },
+          "scrollHeight": 52,
+          "clientHeight": 52,
+          "overflow": "visible"
+        },
+        {
+          "class": "clan-sidebar drawer-open",
+          "r": {
+            "x": 604,
+            "y": 75,
+            "w": 226,
+            "h": 281
+          },
+          "scrollHeight": 279,
+          "clientHeight": 279,
+          "overflow": "visible"
+        },
+        {
+          "class": "command-console",
+          "r": {
+            "x": 14,
+            "y": 238,
+            "w": 576,
+            "h": 118
+          },
+          "scrollHeight": 118,
+          "clientHeight": 118,
+          "overflow": "visible"
+        },
+        {
+          "class": "bottom-status",
+          "r": {
+            "x": 0,
+            "y": 365,
+            "w": 844,
+            "h": 25
+          },
+          "scrollHeight": 25,
+          "clientHeight": 25,
+          "overflow": "visible"
+        }
+      ],
+      "domPaintedText": "Clan World MOSSFELL CLAN 180 110 140 20 85 1 × The Forest ⛶ ? Paused 112 × 96 · SEED 7331 13 M 3 ♜ REALM MONUMENT Great Monument 0 % Mossfell Clan × Clansmen Village Chronicle Raise a village 9 buildings Clansman's cottage 45 15 Woodcutter's lodge 65 20 Elder Aldric Elder · Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move M Work G Build B Return R Follow F Stop Saved CLAN WORLD · THE CLANLANDS Sound on Save Menu",
+      "domPaintedWords": 85,
+      "fiveWordSentences": [
+        "Clan World MOSSFELL CLAN 180 110 140 20 85 1 × The Forest ⛶ ?"
+      ],
+      "canvases": [
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 844,
+            "h": 390
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.5,
+            "y": 194,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 726.5,
+            "y": 194,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.5,
+            "y": 332,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 726.5,
+            "y": 332,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.5,
+            "y": 469,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 726.5,
+            "y": 469,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.5,
+            "y": 606,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 726.5,
+            "y": 606,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.5,
+            "y": 744,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 726.5,
+            "y": 744,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 618.5,
+            "y": 881,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        }
+      ],
+      "bodyWidth": 844
+    },
+    "scroll": [
+      {
+        "class": "build-roster",
+        "scrollTop": 661,
+        "scrollHeight": 864,
+        "clientHeight": 203
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "errors": [],
+    "default": {
+      "controls": [
+        {
+          "name": "Pause village",
+          "r": {
+            "x": 8,
+            "y": 70.5,
+            "w": 29,
+            "h": 27
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button pause-toggle ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Simulation speed 1x",
+          "r": {
+            "x": 40,
+            "y": 70.5,
+            "w": 28,
+            "h": 27
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:speed-button metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show selected paths",
+          "r": {
+            "x": 254,
+            "y": 70,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show names",
+          "r": {
+            "x": 287,
+            "y": 70,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle fullscreen",
+          "r": {
+            "x": 320,
+            "y": 70,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open field manual",
+          "r": {
+            "x": 353,
+            "y": 70,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find the realm monument",
+          "r": {
+            "x": 9,
+            "y": 180,
+            "w": 188,
+            "h": 49
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "STRONG:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MoveM",
+          "r": {
+            "x": 218,
+            "y": 681,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "WorkG",
+          "r": {
+            "x": 271.328125,
+            "y": 681,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "BuildB",
+          "r": {
+            "x": 324.65625,
+            "y": 681,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "ReturnR",
+          "r": {
+            "x": 218,
+            "y": 733,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "FollowF",
+          "r": {
+            "x": 271.328125,
+            "y": 733,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Stop",
+          "r": {
+            "x": 324.65625,
+            "y": 733,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clan",
+          "r": {
+            "x": 9,
+            "y": 798,
+            "w": 93,
+            "h": 38
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build",
+          "r": {
+            "x": 102,
+            "y": 798,
+            "w": 93,
+            "h": 38
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Map",
+          "r": {
+            "x": 195,
+            "y": 798,
+            "w": 93,
+            "h": 38
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Charters",
+          "r": {
+            "x": 288,
+            "y": 798,
+            "w": 93,
+            "h": 38
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        }
+      ],
+      "boxes": [
+        {
+          "class": "resource-bar",
+          "r": {
+            "x": 8,
+            "y": 9,
+            "w": 374,
+            "h": 51
+          },
+          "scrollHeight": 49,
+          "clientHeight": 49,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-location",
+          "r": {
+            "x": 136.7421875,
+            "y": 121,
+            "w": 116.515625,
+            "h": 44
+          },
+          "scrollHeight": 44,
+          "clientHeight": 44,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-options",
+          "r": {
+            "x": 254,
+            "y": 70,
+            "w": 128,
+            "h": 28
+          },
+          "scrollHeight": 28,
+          "clientHeight": 28,
+          "overflow": "visible"
+        },
+        {
+          "class": "monument-objective",
+          "r": {
+            "x": 9,
+            "y": 180,
+            "w": 188,
+            "h": 49
+          },
+          "scrollHeight": 49,
+          "clientHeight": 49,
+          "overflow": "visible"
+        },
+        {
+          "class": "command-console",
+          "r": {
+            "x": 8,
+            "y": 659,
+            "w": 374,
+            "h": 130
+          },
+          "scrollHeight": 130,
+          "clientHeight": 130,
+          "overflow": "visible"
+        }
+      ],
+      "domPaintedText": "180 110 140 20 85 1 × THE CLANLANDS The Forest ⛶ ? 112 × 96 · SEED 7331 ♜ REALM MONUMENT Great Monument 0 % Elder Aldric Elder · Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move Work Build Return Follow Stop Clan Build Map Charters",
+      "domPaintedWords": 49,
+      "fiveWordSentences": [
+        "180 110 140 20 85 1 × THE CLANLANDS The Forest ⛶ ?"
+      ],
+      "canvases": [
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        }
+      ],
+      "bodyWidth": 390
+    },
+    "buildError": null,
+    "build": {
+      "controls": [
+        {
+          "name": "Resume village",
+          "r": {
+            "x": 8,
+            "y": 70.5,
+            "w": 29,
+            "h": 27
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button pause-toggle engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Simulation speed 1x",
+          "r": {
+            "x": 40,
+            "y": 70.5,
+            "w": 28,
+            "h": 27
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:speed-button metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show selected paths",
+          "r": {
+            "x": 254,
+            "y": 70,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button engaged",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Show names",
+          "r": {
+            "x": 287,
+            "y": 70,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button ",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Toggle fullscreen",
+          "r": {
+            "x": 320,
+            "y": 70,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Open field manual",
+          "r": {
+            "x": 353,
+            "y": 70,
+            "w": 29,
+            "h": 28
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Find the realm monument",
+          "r": {
+            "x": 9,
+            "y": 180,
+            "w": 188,
+            "h": 49
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "STRONG:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Close clan panel",
+          "r": {
+            "x": 344,
+            "y": 128,
+            "w": 27,
+            "h": 29
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:mobile-close metal-button",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clansmen",
+          "r": {
+            "x": 123,
+            "y": 173,
+            "w": 86,
+            "h": 33
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Village",
+          "r": {
+            "x": 209,
+            "y": 173,
+            "w": 86,
+            "h": 33
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:selected",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Chronicle",
+          "r": {
+            "x": 295,
+            "y": 173,
+            "w": 86,
+            "h": 33
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Clansman's cottage",
+          "r": {
+            "x": 130,
+            "y": 245,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Woodcutter's lodge",
+          "r": {
+            "x": 255,
+            "y": 245,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Quarry lodge",
+          "r": {
+            "x": 130,
+            "y": 382,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Wheat field",
+          "r": {
+            "x": 255,
+            "y": 382,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "CANVAS:sprite-portrait",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Watchtower",
+          "r": {
+            "x": 130,
+            "y": 519,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Village well",
+          "r": {
+            "x": 255,
+            "y": 519,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Storehouse",
+          "r": {
+            "x": 130,
+            "y": 656,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "SMALL:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build The Hearth & Stag",
+          "r": {
+            "x": 255,
+            "y": 656,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Blacksmith",
+          "r": {
+            "x": 130,
+            "y": 793,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "CANVAS:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build Market stall",
+          "r": {
+            "x": 255,
+            "y": 793,
+            "w": 119,
+            "h": 131
+          },
+          "disabled": false,
+          "covered": true,
+          "top": "CANVAS:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clan charters1/9",
+          "r": {
+            "x": 130,
+            "y": 582,
+            "w": 244,
+            "h": 25
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MSealed charters3",
+          "r": {
+            "x": 130,
+            "y": 607,
+            "w": 244,
+            "h": 26
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "SPAN:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "MoveM",
+          "r": {
+            "x": 218,
+            "y": 681,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "WorkG",
+          "r": {
+            "x": 271.328125,
+            "y": 681,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "BuildB",
+          "r": {
+            "x": 324.65625,
+            "y": 681,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:order-active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "ReturnR",
+          "r": {
+            "x": 218,
+            "y": 733,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "FollowF",
+          "r": {
+            "x": 271.328125,
+            "y": 733,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Stop",
+          "r": {
+            "x": 324.65625,
+            "y": 733,
+            "w": 49.328125,
+            "h": 48
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Clan",
+          "r": {
+            "x": 9,
+            "y": 798,
+            "w": 93,
+            "h": 38
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Build",
+          "r": {
+            "x": 102,
+            "y": 798,
+            "w": 93,
+            "h": 38
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:active",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Map",
+          "r": {
+            "x": 195,
+            "y": 798,
+            "w": 93,
+            "h": 38
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "name": "Charters",
+          "r": {
+            "x": 288,
+            "y": 798,
+            "w": 93,
+            "h": 38
+          },
+          "disabled": false,
+          "covered": false,
+          "top": "BUTTON:",
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        }
+      ],
+      "boxes": [
+        {
+          "class": "resource-bar",
+          "r": {
+            "x": 8,
+            "y": 9,
+            "w": 374,
+            "h": 51
+          },
+          "scrollHeight": 49,
+          "clientHeight": 49,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-location",
+          "r": {
+            "x": 136.7421875,
+            "y": 121,
+            "w": 116.515625,
+            "h": 44
+          },
+          "scrollHeight": 44,
+          "clientHeight": 44,
+          "overflow": "visible"
+        },
+        {
+          "class": "map-options",
+          "r": {
+            "x": 254,
+            "y": 70,
+            "w": 128,
+            "h": 28
+          },
+          "scrollHeight": 28,
+          "clientHeight": 28,
+          "overflow": "visible"
+        },
+        {
+          "class": "monument-objective",
+          "r": {
+            "x": 9,
+            "y": 180,
+            "w": 188,
+            "h": 49
+          },
+          "scrollHeight": 49,
+          "clientHeight": 49,
+          "overflow": "visible"
+        },
+        {
+          "class": "clan-sidebar drawer-open",
+          "r": {
+            "x": 122,
+            "y": 110,
+            "w": 260,
+            "h": 528
+          },
+          "scrollHeight": 526,
+          "clientHeight": 526,
+          "overflow": "visible"
+        },
+        {
+          "class": "command-console",
+          "r": {
+            "x": 8,
+            "y": 659,
+            "w": 374,
+            "h": 130
+          },
+          "scrollHeight": 130,
+          "clientHeight": 130,
+          "overflow": "visible"
+        }
+      ],
+      "domPaintedText": "180 110 140 20 85 1 × THE CLANLANDS The Forest ⛶ ? Paused 112 × 96 · SEED 7331 ♜ REALM MONUMENT Great Monument 0 % Mossfell Clan 13 CLANSMEN · 5 IDLE × Clansmen Village Chronicle Raise a village 9 buildings Clansman's cottage 45 15 Woodcutter's lodge 65 20 Quarry lodge 65 40 Wheat field 35 Clan charters 1 /9 M Sealed charters 3 Elder Aldric Elder · Inspiration +35% Health 100 Vigour 100 Awaiting orders COMMANDS Move Work Build Return Follow Stop Clan Build Map Charters",
+      "domPaintedWords": 89,
+      "fiveWordSentences": [
+        "180 110 140 20 85 1 × THE CLANLANDS The Forest ⛶ ?"
+      ],
+      "canvases": [
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 145,
+            "y": 249,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 270,
+            "y": 249,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 145,
+            "y": 386,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 270,
+            "y": 386,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 145,
+            "y": 523,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 270,
+            "y": 523,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 145,
+            "y": 660,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 270,
+            "y": 660,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 145,
+            "y": 797,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 270,
+            "y": 797,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 145,
+            "y": 934,
+            "w": 89,
+            "h": 76
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/pointer.svg\") 6 3, pointer"
+        },
+        {
+          "r": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "cursor": "url(\"http://127.0.0.1:3012/medieval/cursors/arrow.svg\") 4 3, default"
+        }
+      ],
+      "bodyWidth": 390
+    },
+    "scroll": [
+      {
+        "class": "build-roster",
+        "scrollTop": 492,
+        "scrollHeight": 862,
+        "clientHeight": 370
+      }
+    ]
+  }
+]

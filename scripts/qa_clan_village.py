@@ -26,7 +26,7 @@ class Journey:
         self.mobile = mobile
         self.name = f"{name}-{'mobile' if mobile else 'desktop'}"
         self.context = browser.new_context(
-            viewport={"width": 390, "height": 844} if mobile else {"width": 1440, "height": 960},
+            viewport={"width": 390, "height": 844} if mobile else {"width": 1512, "height": 982},
             is_mobile=mobile, has_touch=mobile, device_scale_factor=1,
         )
         self.context.tracing.start(screenshots=True, snapshots=True, sources=True)
@@ -78,8 +78,11 @@ class Journey:
         print(json.dumps({"journey": self.name, "step": step, "result": result}), flush=True)
 
     def open_clan(self):
-        if self.mobile and not self.page.locator(".clan-sidebar.drawer-open").count():
-            self.press(self.page.locator(".mobile-game-tabs").get_by_role("button", name="Clan", exact=True))
+        if not self.page.locator(".clan-sidebar.drawer-open").count():
+            if self.mobile:
+                self.press(self.page.locator(".mobile-game-tabs").get_by_role("button", name="Clan", exact=True))
+            else:
+                self.press(self.page.get_by_role("button", name="Toggle clansmen", exact=True))
         self.press(self.page.get_by_role("tab", name="Clansmen", exact=True))
 
     def close_clan(self):
@@ -92,7 +95,7 @@ class Journey:
         count = len([u for u in self.read()["units"] if u["role"] != "elder"])
         expect(self.page.locator(".unit-row[aria-pressed='true']")).to_have_count(count)
         self.close_clan()
-        expect(self.page.locator(".selected-title h2")).to_have_text(f"{count} clansmen selected")
+        expect(self.page.locator(".selected-title h2")).to_have_text(f"{count} clansmen")
         return count
 
     def order(self, name):
@@ -115,12 +118,15 @@ class Journey:
                 self.press(button)
         expect(self.page.get_by_role("button", name="Simulation speed 4x")).to_be_visible()
 
-    def map_point(self, x, y, camera=(24, 22), zoom=None):
+    def map_point(self, x, y):
+        self.page.clock.run_for(150)
         box = self.page.locator(".village-map canvas").bounding_box()
-        zoom = zoom or (1.25 if self.mobile else 1.35)
+        viewport = self.page.locator(".world-viewport")
+        camera = (float(viewport.get_attribute("data-camera-x")), float(viewport.get_attribute("data-camera-y")))
+        zoom = float(viewport.get_attribute("data-camera-zoom"))
         return (
-            box["x"] + box["width"] / 2 + ((x-y)-(camera[0]-camera[1])) * 24 * zoom,
-            box["y"] + box["height"] / 2 + ((x+y)-(camera[0]+camera[1])) * 12 * zoom,
+            box["x"] + box["width"] / 2 + (x-camera[0]) * 32 * zoom,
+            box["y"] + box["height"] / 2 + (y-camera[1]) * 32 * zoom,
         )
 
     def touch_or_click(self, x, y, right=False):
@@ -153,7 +159,7 @@ def clear_site(world):
     for y in range(10, 32):
         for x in range(12, 31):
             cells = [(xx, yy) for yy in range(y, y+2) for xx in range(x, x+3)]
-            if any(world["tiles"][yy][xx]["terrain"] in ("water", "bridge") for xx, yy in cells):
+            if any(world["tiles"][yy][xx]["terrain"] in ("water", "bridge", "mountain", "snow") for xx, yy in cells):
                 continue
             if any(b["x"] < x+3 and b["x"]+b["w"] > x and b["y"] < y+2 and b["y"]+b["h"] > y for b in world["buildings"]):
                 continue
@@ -196,13 +202,13 @@ def village(j):
         tree = min(trees, key=lambda o: math.hypot(o["x"]-worker["x"], o["y"]-worker["y"]))
         j.center(tree["x"], tree["y"])
         j.order("Work")
-        x, y = j.map_point(tree["x"], tree["y"], (tree["x"], tree["y"]))
-        j.touch_or_click(x, y-12)
+        x, y = j.map_point(tree["x"], tree["y"])
+        j.touch_or_click(x, y - 35 * float(j.page.locator(".world-viewport").get_attribute("data-camera-zoom")))
     else:
         j.press(j.page.get_by_role("button", name="Assign selected to gather timber"))
     gather_order = j.save()
     gatherers = [u for u in gather_order["units"] if (u.get("order") or {}).get("type") == "gather"]
-    assert len(gatherers) >= count-1
+    assert len(gatherers) >= count-1, f"Only {len(gatherers)}/{count} gatherers: {gather_order['logs'][-2:]}"
     j.resume()
     delivered = None
     for _ in range(12):
@@ -235,7 +241,7 @@ def village(j):
     j.order("Build")
     j.press(j.page.get_by_role("button", name="Build Clansman's cottage", exact=True))
     j.close_clan()
-    x, y = j.map_point(center_x+.1, center_y+.1, (center_x, center_y))
+    x, y = j.map_point(center_x+.1, center_y+.1)
     j.touch_or_click(x, y)
     foundation = j.save()
     new_buildings = [b for b in foundation["buildings"] if b["id"] not in {old["id"] for old in before_build["buildings"]}]
@@ -270,7 +276,7 @@ def charters(j):
         j.press(j.page.locator(".mobile-game-tabs").get_by_role("button", name="Charters", exact=True))
         j.press(j.page.get_by_role("button", name=re.compile(r"^Open sealed charters")))
     else:
-        j.press(j.page.get_by_role("button", name=re.compile(r"Sealed charters")))
+        j.press(j.page.get_by_role("button", name="Open sealed charters", exact=True))
     dialog = j.page.get_by_role("dialog", name="A message for the Elder")
     gold_before = int(j.page.locator('[data-resource="gold"]').inner_text())
     for _ in range(2):
@@ -296,17 +302,20 @@ def charters(j):
     j.press(dialog.get_by_role("button", name="Reveal all", exact=True))
     expect(dialog.locator(".charter-reveal-slot.face-up")).to_have_count(3)
     assert dialog.locator(".charter-rare,.charter-legendary").count() >= 1
+    chosen_name = dialog.locator(".charter-card").last.locator("h3").inner_text()
+    expected_ratified = sum(name == chosen_name for name in dialog.locator(".charter-card h3").all_inner_texts())
     j.press(dialog.locator(".charter-card").last)
     ratified = j.read(ARCHIVE_KEY)
     assert ratified["active"] != before["active"], "Ratifying the guaranteed rare charter did not change the active charter."
-    expect(dialog.locator(".charter-card.ratified")).to_have_count(1)
+    expect(dialog.locator(".charter-card.ratified")).to_have_count(expected_ratified)
+    assert all(name == chosen_name for name in dialog.locator(".charter-card.ratified h3").all_inner_texts())
     j.screenshot("revealed")
     j.press(dialog.get_by_role("button", name="Keep the charters", exact=True))
     assert j.read(ARCHIVE_KEY) == ratified, "Collecting revealed charters duplicated rewards."
     if j.mobile:
         j.press(j.page.locator(".mobile-game-tabs").get_by_role("button", name="Charters", exact=True))
     else:
-        j.press(j.page.get_by_role("button", name=re.compile(r"^Clan charters")))
+        j.press(j.page.get_by_role("button", name="Open clan charters", exact=True))
     book = j.page.get_by_role("dialog", name="The clan’s charter book")
     expect(book.locator(".charter-card:not(:disabled)")).to_have_count(len(ratified["owned"]))
     expect(book.locator(".charter-card.ratified")).to_have_count(1)

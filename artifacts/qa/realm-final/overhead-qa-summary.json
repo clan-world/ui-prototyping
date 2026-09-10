@@ -1,0 +1,80 @@
+{
+  "target": "http://127.0.0.1:3012",
+  "browser": "Google Chrome, headless, temporary isolated contexts",
+  "status": "passed",
+  "scope": "Orthogonal renderer interactions and textured HUD. Final landmark art and production smoke are checked separately by the root agent.",
+  "journeys": {
+    "village-desktop": "passed",
+    "village-mobile": "passed",
+    "charters-desktop": "passed",
+    "charters-mobile": "passed",
+    "realm-navigation-desktop": "passed",
+    "realm-navigation-mobile": "passed"
+  },
+  "verified_behavior": [
+    "All 12 selected clansmen receive movement orders and change position.",
+    "Pause preserves the saved simulation state.",
+    "Gatherers deliver timber from 180 to 227 in both desktop and mobile journeys.",
+    "Recruitment spends 30 food and 20 gold and adds one clansman.",
+    "A cottage foundation spends 45 timber and 15 stone, completes, and raises housing to 20.",
+    "Charter purchases reject insufficient funds, reveal three cards with a rare guarantee, persist ratification, and avoid duplicated rewards on collection.",
+    "Minimap navigation, zoom controls, whole-realm view, home focus, and monument focus work.",
+    "Desktop keyboard movement and Space-drag work.",
+    "Mobile pinch zoom and touch pan work."
+  ],
+  "responsive": {
+    "1512x982": {
+      "painted_words": 136,
+      "painted_sentences_at_least_five_words": 0,
+      "overflow": false,
+      "obscured_controls": 0,
+      "page_errors": 0
+    },
+    "1024x768": {
+      "painted_words": 116,
+      "painted_sentences_at_least_five_words": 0,
+      "overflow": false,
+      "obscured_controls": 0,
+      "page_errors": 0
+    },
+    "844x390": {
+      "painted_words": 70,
+      "painted_sentences_at_least_five_words": 0,
+      "overflow": false,
+      "obscured_controls": 0,
+      "page_errors": 0
+    },
+    "390x844": {
+      "painted_words": 49,
+      "painted_sentences_at_least_five_words": 0,
+      "overflow": false,
+      "obscured_controls": 0,
+      "page_errors": 0
+    }
+  },
+  "visual_fixes_confirmed": [
+    "Mobile command buttons fit within their frame.",
+    "Tablet recruitment label fits on one line; costs remain available through its title.",
+    "Short-landscape minimap controls fit within their frame.",
+    "Short-landscape clan drawer starts closed and preserves the map view."
+  ],
+  "minor_observation": "Resolved in production: the short-landscape logo hit area begins at y=7px.",
+  "harness_changes": [
+    "Map click coordinates use orthogonal 32px tiles and live camera attributes.",
+    "Mobile tree targeting uses its revised sprite hit region.",
+    "Charter assertions allow duplicate cards in a pack to share the active ratification state.",
+    "Responsive review counts rendered text and checks viewport overflow and obscured controls."
+  ],
+  "reports": [
+    "artifacts/qa/village/results-all-all.json",
+    "artifacts/qa/realm-final/navigation-results.json",
+    "artifacts/qa/realm-final/responsive-results.json"
+  ],
+  "screenshots": [
+    "artifacts/qa/realm-final/review-1512x982.png",
+    "artifacts/qa/realm-final/review-1024x768.png",
+    "artifacts/qa/realm-final/review-844x390.png",
+    "artifacts/qa/realm-final/review-390x844.png"
+  ],
+  "production_smoke": "artifacts/qa/realm-final/production-smoke.json"
+}

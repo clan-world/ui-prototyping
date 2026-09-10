@@ -1,0 +1,558 @@
+@font-face {
+  font-family: "Uncial Antiqua";
+  src: url("/fonts/uncial-antiqua.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cinzel";
+  src: url("/fonts/cinzel.woff2") format("woff2");
+  font-weight: 400 900;
+  font-display: swap;
+}
+:root {
+  --realm-black: #141312;
+  --realm-panel: #1b1a18;
+  --realm-edge: #665a3f;
+  --realm-gold: #e5b85e;
+  --realm-cream: #eee1bc;
+  --realm-muted: #a69e85;
+  --realm-frame: inset 0 0 0 1px #0c0c0b, inset 0 0 0 2px #75654a45, 0 3px 0 #0b0a09, 0 7px 22px #0a090770;
+  --game-arrow: url("/medieval/cursors/arrow.svg") 4 3, default;
+  --game-pointer: url("/medieval/cursors/pointer.svg") 6 3, pointer;
+  --game-grab: url("/medieval/cursors/grab.svg") 19 20, grab;
+  --game-grabbing: url("/medieval/cursors/grabbing.svg") 19 20, grabbing;
+  --game-blocked: url("/medieval/cursors/blocked.svg") 20 20, not-allowed;
+}
+body { font-family: "Uncial Antiqua", Georgia, serif; background: #161411; color: var(--realm-cream); }
+.clan-game { min-height: 320px; cursor: var(--game-arrow); }
+.clan-game button, .clan-game summary { cursor: var(--game-pointer); }
+.clan-game button:disabled { cursor: var(--game-blocked); }
+.clan-game button { transition: background-color 120ms, border-color 120ms, color 120ms, box-shadow 120ms; }
+.clan-game button:active:not(:disabled) { filter: brightness(.9); }
+.clan-game button:focus-visible { outline: 2px solid #f7d882; outline-offset: 2px; }
+.clan-game b, .clan-game strong { font-weight: inherit; }
+.clan-game kbd { border: 0; background: none; color: #a99b76; font: 9px "Fragment Mono", monospace; padding: 0; }
+.clan-game small { color: var(--realm-muted); }
+.world-viewport { inset: 0; border: 0; background: #423c35; }
+.world-viewport:after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 100px 20px #100d0a50; pointer-events: none; }
+.village-map > canvas { cursor: var(--game-arrow); }
+.resource-bar {
+  position: absolute; top: 18px; left: 20px; right: auto; height: 61px;
+  width: auto; gap: 14px; padding: 0 12px 0 0; z-index: 15;
+  background: linear-gradient(180deg, #262421eF, #161411f5); border: 1px solid #716142;
+  box-shadow: var(--realm-frame); border-radius: 3px;
+}
+.clan-wordmark { min-width: 211px; height: 75px; padding: 0 13px 0 0; gap: 10px; border: 0; }
+.clan-wordmark > span:last-child { font: 22px "Uncial Antiqua", Georgia, serif; color: #f3db9d; text-shadow: 0 2px #0b0a08; white-space: nowrap; }
+.clan-wordmark small { font: 8px "Fragment Mono", monospace; letter-spacing: 2px; margin-top: 6px; color: #b4a37b; }
+.clan-crest { background: linear-gradient(120deg,#685535,#2d2924); border: 1px solid #b39c5e; box-shadow: inset 0 0 0 3px #1b1815, inset 0 0 0 4px #6b613f, 0 3px 8px #0008; clip-path: polygon(0 0,100% 0,100% 77%,50% 100%,0 77%); }
+.clan-wordmark .clan-crest { width: 59px; height: 73px; display: grid; place-items: center; margin: 0 0 0 -1px; padding-bottom: 10px; }
+.clan-wordmark .pixel-crown { width: 36px; height: 36px; filter: drop-shadow(0 2px #0b0907); }
+.resource-counters { margin: 0; flex: none; gap: 6px; }
+.resource-counter { height: 42px; min-width: 78px; padding: 0 9px; gap: 6px; background: #12110f; border: 1px solid #645738; box-shadow: inset 0 1px 4px #0008, 0 1px #a48b4530; border-radius: 3px; }
+.resource-counter > span { min-width: 25px; font: 15px "Fragment Mono", monospace; font-variant-numeric: tabular-nums; color: #f2e2af; }
+.resource-counter .pixel-icon { width: 22px; height: 22px; filter: drop-shadow(1px 2px #0008); }
+.population-counter { gap: 5px; font: 13px "Fragment Mono", monospace; border-left: 1px solid #71613e55; padding-left: 13px; }
+.population-counter small { font: 10px "Fragment Mono", monospace; }
+.time-controls { position: fixed; left: 21px; top: 144px; height: 32px; gap: 5px; padding: 0; }
+.world-day { padding: 0 9px; font: 12px "Fragment Mono", monospace; text-shadow: 0 2px 3px #000; margin: 0; }
+.metal-button, .speed-button {
+  min-height: 36px; min-width: 36px; padding: 0 9px; background: linear-gradient(#2e2b28,#1c1916);
+  border: 1px solid #75664a; box-shadow: inset 0 1px #b8a47525, inset 0 -2px #0c0a08, 0 2px 2px #0005;
+  color: #e8d8aa; font: 13px "Uncial Antiqua", Georgia, serif; border-radius: 3px; text-shadow: 0 1px #0d0b09;
+}
+.metal-button:hover { background: #3e3730; border-color: #c3a45a; }
+.metal-button.engaged { background: linear-gradient(#4a4036,#373028); border-color: #b29652; box-shadow: inset 0 0 8px #d4bb3720; color: #ffe4a0; }
+.time-controls .metal-button { min-height: 29px; min-width: 31px; height: 29px; width: 31px; padding: 0; }
+.speed-button { font: 11px "Fragment Mono", monospace; }
+.wood-button {
+  background: linear-gradient(#dfb666,#c79743 51%,#b17e2f); border: 1px solid #e9c77e;
+  color: #281f10; text-shadow: 0 1px #efcf8644; border-radius: 3px;
+  box-shadow: inset 0 1px #fae3a9, inset 0 -3px #755024, 0 2px #0d0b09;
+  font-family: "Uncial Antiqua", Georgia, serif;
+}
+.wood-button:hover { background: linear-gradient(#f0ca7c,#d8a54b); border-color: #f3d595; filter: none; }
+.wood-button b { background: #574321; color: #f3d99b; border-color: #edc573; }
+.realm-tools { position: absolute; top: 93px; left: 21px; display: flex; gap: 7px; z-index: 15; }
+.realm-tools > button { position: relative; width: 43px; height: 43px; display: grid; place-items: center; background: linear-gradient(#2b2824,#1a1815); border: 1px solid #685c3f; box-shadow: var(--realm-frame); border-radius: 3px; }
+.realm-tools > button:hover, .realm-tools > button.active { border-color: #d7b460; background: linear-gradient(#433c35,#2d2721); }
+.realm-tools > button > b { position: absolute; bottom: -4px; right: -3px; font: 9px "Fragment Mono", monospace; background: #171411; border: 1px solid #8d7648; padding: 2px 3px; color: #f2ce80; }
+.realm-tools .tiny-wax-seal { width: 28px; height: 29px; font-size: 16px; background: #854734; color: #efbe8b; }
+.map-options { top: 97px; left: 280px; right: auto; gap: 5px; z-index: 5; }
+.map-options .metal-button { min-width: 36px; height: 35px; min-height: 35px; padding: 0; font-size: 19px; }
+.map-options .pixel-icon { width: 20px; height: 20px; }
+.map-location { left: 50%; top: 104px; transform: translateX(-50%); align-items: center; gap: 7px; text-shadow: 0 2px 3px #0d0a07, 0 0 15px #000; }
+.map-location > small { font: 8px "Fragment Mono", monospace; letter-spacing: 3px; font-style: normal; color: #e2d6b6; }
+.map-location > span { font: 23px "Uncial Antiqua", Georgia, serif; letter-spacing: 0; color: #f5e6bc; }
+.map-location:after { content: ""; width: 95px; height: 1px; background: linear-gradient(90deg,transparent,#dcc288,transparent); }
+.monument-objective { position: absolute; top: 194px; left: 22px; display: flex; align-items: center; gap: 11px; width: 252px; padding: 11px 12px 12px 8px; z-index: 6; text-align: left; background: linear-gradient(90deg,#161411ed,#221e19c9 85%,#1e1a1600); border-left: 2px solid #c1a35b; }
+.monument-sigil { font: 42px Georgia,serif; color: #c9b473; text-shadow: 0 2px #0c0a07; }
+.monument-objective > span:nth-child(2) { display: flex; flex-direction: column; flex: 1; gap: 6px; }
+.monument-objective small { font: 7px "Fragment Mono",monospace; letter-spacing: 1px; color: #bca97a; }
+.monument-objective strong { font: 14px "Uncial Antiqua",Georgia,serif; color: #ecdfb5; }
+.monument-objective i { height: 4px; background: #0d0b08; border: 1px solid #766542; display: block; }
+.monument-objective i > b { display: block; height: 100%; background: #ccab53; }
+.monument-objective em { font: 19px "Fragment Mono",monospace; color: #d7bf7a; font-style: normal; }
+.monument-objective em small { font-size: 9px; }
+.realm-minimap { position: absolute; top: 18px; right: 20px; left: auto; bottom: auto; width: 244px; padding: 7px; z-index: 15; border: 1px solid #776748; background: linear-gradient(#282521f5,#171411F5); box-shadow: var(--realm-frame); border-radius: 3px; }
+.realm-minimap .minimap-heading { height: 23px; padding: 0 3px 6px; font: 8px "Fragment Mono",monospace; letter-spacing: 1px; color: #e1d2a6; gap: 7px; justify-content: flex-start; }
+.compass-north { margin-left: auto; color: #bfaa76; }
+.realm-minimap .mini-map { width: 100%; height: 151px; margin: 0; border: 2px solid #100e0b; box-shadow: 0 0 0 1px #6c6140; cursor: var(--game-pointer); }
+.realm-minimap .minimap-controls { height: auto; padding: 8px 0 0; gap: 5px; }
+.realm-minimap .minimap-controls button { height: 28px; min-height: 28px; min-width: 29px; width: 29px; padding: 0; font: 16px "Fragment Mono",monospace; }
+.realm-minimap .minimap-controls .zoom-readout { flex: 1; font: 10px "Fragment Mono",monospace; color: #d8c287; }
+.clan-sidebar { top: 270px; right: 20px; bottom: 46px; width: 244px; border: 1px solid #6a5d41; border-radius: 3px; background: #161411eb; box-shadow: var(--realm-frame); z-index: 14; display: none; }
+.clan-sidebar.drawer-open { display: flex; }
+.clan-sidebar-heading { padding: 13px 10px 10px; gap: 9px; background: linear-gradient(#312d28,#221f1c); border-bottom: 1px solid #85714666; }
+.clan-sidebar-heading .clan-crest { display: none; }
+.clan-sidebar-heading h1 { font: 17px "Uncial Antiqua",Georgia,serif; }
+.clan-sidebar-heading > div > span { font: 7px "Fragment Mono",monospace; letter-spacing: 1px; margin-top: 7px; color: #ad9e7b; }
+.mobile-close { display: inline-flex; margin-left: auto; min-height: 28px; min-width: 27px; width: 27px; padding: 0; color: #c4b38a; }
+.sidebar-tabs { padding: 0; gap: 0; border-bottom: 1px solid #76633d; }
+.sidebar-tabs button { border: 0; background: #181613; padding: 10px 2px; font: 11px "Uncial Antiqua",serif; color: #a89e82; }
+.sidebar-tabs button.selected { top: 0; color: #f5d080; background: #3a322a; box-shadow: inset 0 -2px #d0a950; }
+.roster-toolbar { padding: 7px; background: none; gap: 0; }
+.roster-toolbar > div > button { font: 8px "Fragment Mono",monospace; padding: 6px 7px; color: #b8ad8b; }
+.roster-toolbar > div > button.selected { background: #3b342c; box-shadow: none; color: #efcf8a; }
+.roster-all { position: absolute; top: 18px; right: 43px; font: 8px "Fragment Mono",monospace; text-decoration: none; max-width: 40px; line-height: 1.4; }
+.clan-roster { display: grid; grid-template-columns: repeat(3,1fr); grid-auto-rows: 76px; align-content: start; padding: 0 7px 7px; gap: 5px; background: none; scrollbar-color: #9b7b3f #14120f; min-height: 70px; }
+.unit-row, .unit-row.elder-row { display: flex; flex-direction: column; justify-content: flex-start; gap: 0; min-height: 76px; padding: 0; border: 1px solid #4a423a; border-radius: 3px; background: radial-gradient(ellipse at 50% 20%,#443d34,#1c1814 76%); overflow: hidden; }
+.unit-row:hover { background: #453c33; border-color: #ac975d; }
+.unit-row.unit-selected { background: radial-gradient(ellipse at 50% 20%,#625a31,#2f2821 76%); border: 1px solid #dcbb66; box-shadow: inset 0 0 0 1px #e8ba5733; }
+.roster-portrait { width: 55px; height: 55px; border: 0; background: none; overflow: hidden; }
+.roster-portrait > .sprite-portrait { width: 64px; height: 64px; margin: -6px 0 0 -4px; }
+.unit-row-text { flex: 0; width: 100%; text-align: center; padding: 2px 2px 4px; background: #14110ecc; }
+.unit-row-text strong { font: 10px "Uncial Antiqua",Georgia,serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #d9d2af; }
+.unit-row-text small { display: none; }
+.unit-row-status { position: absolute; right: 3px; top: 3px; width: 13px; filter: drop-shadow(0 1px #000); }
+.unit-row-status .pixel-icon { width: 12px; height: 12px; }
+.unit-row-status small { font: 8px "Fragment Mono",monospace; color: #f4d483; }
+.roster-footer { padding: 8px; border-top: 1px solid #70604070; background: #221f1b; }
+.recruit-button { min-height: 38px; font-size: 11px; gap: 8px; padding: 5px 8px; }
+.recruit-button small { font: 8px "Fragment Mono",monospace; color: #493719; }
+.village-sentiment { padding: 8px 2px 1px; font: 8px "Fragment Mono",monospace; color: #b0a191; }
+.village-sentiment b { color: #ccbdad; }
+.sidebar-bottom { background: #151310; padding: 6px 7px; border-top: 1px solid #685d3d66; }
+.sidebar-bottom > button { min-height: 28px; font: 10px "Uncial Antiqua",Georgia,serif; padding: 3px; }
+.sidebar-bottom > button > b { font: 9px "Fragment Mono",monospace; }
+.charter-milestone { display: none; }
+.build-roster { background: #1a1713; scrollbar-color: #9b7b3f #14120f; }
+.build-roster-heading { display: flex; align-items: center; justify-content: space-between; padding: 11px 8px; font-size: 12px; }
+.build-roster-heading span { font: 8px "Fragment Mono",monospace; }
+.building-palette { padding: 0 7px 8px; gap: 6px; }
+.building-choice { background: radial-gradient(ellipse at 50% 30%,#3f372f,#1a1713); border: 1px solid #626042; border-radius: 3px; padding: 3px 2px 7px; }
+.building-choice:hover,.building-choice.building-selected { border-color: #dcbb66; background: #423930; }
+.building-choice .sprite-portrait { width: 89px; height: 76px; }
+.building-choice strong { font: 10px "Uncial Antiqua",Georgia,serif; min-height: 26px; line-height: 1.35; }
+.building-choice > span { font: 8px "Fragment Mono",monospace; color: #c4bb94; margin-top: 5px; }
+.chronicle-panel { background: #191612; scrollbar-color: #9b7b3f #14120f; }
+.chronicle-entry p { font: 12px Georgia,serif; line-height: 1.5; }
+.command-console { left: 20px; right: 282px; bottom: 46px; height: 135px; border: 0; background: none; box-shadow: none; display: flex; gap: 16px; align-items: flex-end; pointer-events: none; }
+.command-console > section { pointer-events: auto; }
+.selection-panel { width: 305px; min-width: 260px; max-width: 340px; flex: 1; height: 135px; padding: 11px; gap: 12px; background: linear-gradient(120deg,#2a2622f5,#171411F5); border: 1px solid #796747; border-radius: 3px; box-shadow: var(--realm-frame); }
+.selection-portrait { margin: 0; width: 71px; height: 109px; border: 1px solid #a88d4d; background: radial-gradient(ellipse at 50% 22%,#6c5f51,#2e2821 78%); box-shadow: inset 0 0 0 2px #1c1814; border-radius: 2px; }
+.selection-portrait > .sprite-portrait { width: 86px; height: 99px; margin: 0 0 0 -9px; }
+.selection-portrait > span { font: 7px "Fragment Mono",monospace; padding: 5px 1px; background: #1d1914f2; color: #decf9c; }
+.selected-title h2 { font: 18px "Uncial Antiqua",Georgia,serif; color: #eed9a6; }
+.selected-title > span { font: 8px "Fragment Mono",monospace; line-height: 1.5; margin-top: 5px; color: #a99f7b; }
+.selection-bars { margin-top: 12px; max-width: 180px; }
+.selection-bars > span { font: 8px "Fragment Mono",monospace; gap: 7px; }
+.selection-bars > span > i { max-width: none; height: 6px; background: #0e0c09; box-shadow: 0 0 0 1px #74734555; }
+.selection-bars b { background: linear-gradient(#b69e86,#7c6854); }
+.selection-bars > span:last-child b { background: linear-gradient(#e2c273,#b18e45); }
+.selection-bars small { font: 8px "Fragment Mono",monospace; }
+.unit-order-state { margin-top: 9px; font: 8px "Fragment Mono",monospace; color: #c2b3a4; }
+.unit-order-state > span { font: inherit; }
+.inspection-detail { font: 10px Georgia,serif; margin-top: 10px; gap: 5px; color: #bdb595; }
+.inspection-detail > b { font: 8px "Fragment Mono",monospace; }
+.order-controls { flex: 1.2; min-width: 310px; max-width: 500px; width: auto; padding: 9px; border: 1px solid #766444; border-radius: 3px; background: linear-gradient(#2c2823f2,#171411F5); box-shadow: var(--realm-frame); }
+.command-caption { font: 8px "Fragment Mono",monospace; color: #c3b58a; letter-spacing: 1px; padding: 0 2px; margin-bottom: 8px; min-height: auto; }
+.command-caption > span:last-child:not(:first-child) { display: none; }
+.order-button-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 5px; }
+.order-button-grid > button { height: 62px; padding: 4px 1px; gap: 4px; border: 1px solid #6b6040; background: linear-gradient(#36312c,#24201b); box-shadow: inset 0 1px #b4a97725, inset 0 -2px #0e0b08; border-radius: 3px; }
+.order-button-grid > button:hover { background: #4c443c; border-color: #c6a75c; }
+.order-button-grid > button.order-active { border-color: #e8bd5f; background: linear-gradient(#5f5932,#3b3228); box-shadow: inset 0 0 0 1px #e7bc5433; }
+.order-button-grid > button > .pixel-icon { width: 24px; height: 24px; filter: drop-shadow(0 2px #0d0b08); }
+.order-button-grid > button > span { font: 10px "Uncial Antiqua",Georgia,serif; color: #e1d7b4; }
+.order-button-grid > button > kbd { top: 3px; right: 3px; font-size: 7px; }
+.task-controls { display: none; }
+.bottom-status { position: absolute; bottom: 0; height: 29px; left: 0; right: 0; background: linear-gradient(transparent,#0e0c09b3); border: 0; box-shadow: none; font: 8px "Fragment Mono",monospace; padding: 0 22px; color: #ada399; }
+.bottom-status > span:nth-child(2) { letter-spacing: 2px; font-size: 7px; color: #d6d2b580; }
+.bottom-status > div { gap: 13px; }
+.bottom-status button { font: 9px "Uncial Antiqua",Georgia,serif; color: #d3c8a4; padding: 5px 1px; }
+.save-dot { background: #b19c87; box-shadow: 0 0 5px #b9a59055; }
+.map-coordinates { bottom: 199px; left: 22px; font: 7px "Fragment Mono",monospace; color: #d1d1b688; letter-spacing: 1px; }
+.order-message { bottom: 204px; left: 50%; max-width: min(580px,70%); border: 1px solid #8c794c; background: #171411f0; box-shadow: 0 3px 12px #0005; font: 12px "Uncial Antiqua",Georgia,serif; padding: 11px 17px; color: #e9dab0; z-index: 6; }
+.paused-ribbon,.placement-label { top: 176px; font: 13px "Uncial Antiqua",Georgia,serif; border: 1px solid #ab8d4e; background: #1b1713eF; box-shadow: var(--realm-frame); z-index: 6; }
+.paused-ribbon { letter-spacing: 3px; padding: 9px 28px; }
+.placement-label { top: 220px; }
+.map-loading { background: #161411; color: #f1d598; gap: 23px; z-index: 50; }
+.map-loading strong { font: 32px "Uncial Antiqua",Georgia,serif; }
+.map-loading > span:last-child { font: 10px "Fragment Mono",monospace; color: #b7a477; }
+.game-dialog-backdrop { background: #080705b5; backdrop-filter: none; padding: 30px; z-index: 100; }
+.game-dialog { background: linear-gradient(130deg,#211f1c,#12100e 75%); border: 1px solid #978052; border-radius: 5px; box-shadow: inset 0 0 0 4px #100e0c, inset 0 0 0 5px #67583b66, 0 15px 90px #000b; color: #d9ccb0; }
+.dialog-titlebar { background: linear-gradient(#35312c,#25211d); border-bottom: 1px solid #756341; font: 23px "Uncial Antiqua",Georgia,serif; padding: 20px 24px; color: #ecd49b; }
+.close-button { background: linear-gradient(#ad6542,#7f3c26); border-color: #d08e62; color: #ffe5b4; min-width: 34px; min-height: 34px; }
+.close-button:hover { background: #b76b41; }
+.manual-body { font-family: Georgia,serif; color: #c3bba1; }
+.manual-body h2,.manual-body h3 { font-family: "Uncial Antiqua",Georgia,serif; color: #e4cc99; }
+.manual-controls { background: #171410; border-color: #675638; }
+.manual-controls kbd { font: 10px "Fragment Mono",monospace; color: #d7b772; }
+.manual-body p,.manual-controls span { color: #bdb89f; }
+.manual-actions .metal-button { font-size: 12px; }
+.new-village-confirm { border-color: #b96342; background: #362019; }
+.wood-button.destructive { background: linear-gradient(#a65436,#783c2b); border-color: #d09060; color: #ffe0b4; }
+.charter-book-heading h2,.seal-opening h2 { font-family: "Uncial Antiqua",Georgia,serif; color: #ead39f; }
+.charter-book-heading p { color: #a99d7d; }
+.charter-card { font-family: Georgia,serif; }
+.charter-card h3 { font-family: "Uncial Antiqua",Georgia,serif; }
+.charter-grid,.seal-opening { background: none; }
+.mobile-game-tabs { display: none; }
+
+/* The frame uses nine slices so its carved corners keep their proportions. */
+:root {
+  --realm-black: #17130f;
+  --realm-panel: #241c16;
+  --realm-muted: #b8a68c;
+  --realm-stone: url("/medieval/hud/stone-frame.png");
+  --realm-paper: url("/medieval/hud/parchment.png");
+  --realm-frame: 0 4px 0 #120d09, 0 7px 12px #130e0860;
+}
+body { background: #211d17; }
+.world-viewport { background: #7b7359; }
+.world-viewport:after { box-shadow: inset 0 0 90px 15px #22180d30; }
+.resource-bar, .realm-minimap, .clan-sidebar, .selection-panel, .order-controls, .task-controls, .game-dialog {
+  border: 10px solid transparent;
+  border-image: var(--realm-stone) 25% / 16px / 4px round;
+  background: linear-gradient(#241d16e8,#19130ff5), var(--realm-paper) 0 0 / 300px;
+  background-clip: padding-box;
+  border-radius: 0;
+  box-shadow: 0 6px 16px #1d130c80;
+  image-rendering: pixelated;
+}
+.resource-bar { height: 65px; padding: 0 10px 0 0; gap: 9px; border-image-width: 9px; border-width: 6px; }
+.clan-wordmark { width: 206px; min-width: 206px; padding: 0; height: 77px; background: none; overflow: visible; }
+.clan-wordmark > .wordmark-art { display: block; width: 212px; height: 75px; background: url("/medieval/hud/wordmark.png") center / contain no-repeat; image-rendering: pixelated; filter: drop-shadow(0 3px 1px #120b06); }
+.clan-wordmark .mobile-crest { display: none; }
+.resource-counter { background: #16110de8; border: 2px solid #615040; border-radius: 5px; box-shadow: inset 0 2px 0 #0b0806, 0 1px 0 #ae947149; }
+.resource-counter > span { color: #f2dfb7; text-shadow: 2px 2px #060503; }
+.resource-bar .population-counter { color: #e3cda1; }
+.realm-tools > button, .map-options .metal-button, .time-controls .metal-button, .minimap-controls .metal-button {
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 32%,#4a3c2c,#1b1510 70%);
+  border: 3px solid #19130f;
+  box-shadow: inset 0 2px 0 #bd9b5f, inset 0 -2px 0 #674323, 0 2px 0 #0b0806, 0 0 0 1px #9c845b;
+  color: #f1dbac;
+}
+.realm-tools > button.active, .map-options .metal-button.engaged, .time-controls .metal-button.engaged { background: radial-gradient(circle at 35% 25%,#ad874b,#4a321d); border-color: #24180d; }
+.realm-tools > button:hover, .map-options .metal-button:hover, .time-controls .metal-button:hover, .minimap-controls .metal-button:hover { filter: brightness(1.2); }
+.realm-tools > button > b { border-radius: 50%; background: #251a11; border-color: #b28c49; min-width: 15px; text-align: center; }
+.world-day { color: #f2dfb7; text-shadow: 2px 2px #271c10, -1px -1px #271c10; }
+.map-location { padding: 7px 18px 10px; }
+.map-location > span { color: #fff0cc; text-shadow: 2px 2px #33261b, -1px -1px #33261b; }
+.map-location:after { height: 3px; background: linear-gradient(90deg,transparent,#dac494 40%,#dac494 60%,transparent); }
+.monument-objective {
+  border: 0;
+  background: linear-gradient(90deg,#ac884625,#4a281512), var(--realm-paper) center / 270px;
+  color: #382716;
+  clip-path: polygon(2% 0,98% 3%,100% 16%,98% 86%,100% 98%,3% 100%,0 89%,2% 65%,0 14%);
+  box-shadow: inset 0 0 16px #58381e70;
+  padding: 13px 15px 13px 10px;
+  image-rendering: pixelated;
+}
+.monument-objective small { color: #61472a; }
+.monument-objective strong { color: #322515; text-shadow: 0 1px #e7c783; }
+.monument-sigil { color: #684e2e; text-shadow: 1px 1px #f0d28d; }
+.monument-objective em { color: #50381c; }
+.monument-objective i { background: #684b26; border-color: #a38243; }
+.realm-minimap { padding: 4px; border-image-slice: 22%; border-image-width: 30px; border-width: 15px; }
+.realm-minimap .minimap-heading { padding: 0 1px 7px; color: #dfc99c; }
+.realm-minimap .mini-map { border: 2px solid #22170e; box-shadow: 0 0 0 1px #b69e6e; }
+.realm-minimap .minimap-controls { gap: 6px; padding-top: 11px; margin-bottom: -9px; }
+.realm-minimap .minimap-controls button { min-width: 30px; width: 30px; height: 30px; min-height: 30px; }
+.realm-minimap .zoom-readout { color: #f2d79d; border: 0; text-shadow: 1px 2px #080603; }
+.clan-sidebar { padding: 0 2px 2px; border-image-slice: 22%; border-image-width: 24px; border-width: 12px; }
+.clan-sidebar-heading { background: var(--realm-paper) center / 300px; color: #382718; border-bottom: 3px solid #6b4825; padding: 12px 8px 10px; }
+.clan-sidebar-heading h1 { color: #3b2817; text-shadow: 0 1px #f3d593; }
+.clan-sidebar-heading > div > span { color: #72512b; }
+.roster-all { position: static; color: #dec9a2; font-size: 8px; max-width: none; white-space: nowrap; margin-left: auto; }
+.roster-toolbar { flex-wrap: wrap; }
+.mobile-close { background: #5b3523; border-color: #a77843; color: #f4d7a0; }
+.sidebar-tabs { border-bottom: 2px solid #796039; }
+.sidebar-tabs button { background: #251b13; color: #bca689; }
+.sidebar-tabs button.selected { background: #70502c; color: #ffe7b4; box-shadow: inset 0 -2px #d3ae61; }
+.roster-toolbar > div > button { color: #cbb897; }
+.roster-toolbar > div > button.selected { background: #59432b; color: #f6d9a0; }
+.unit-row, .unit-row.elder-row { border: 2px solid #5b4934; background: radial-gradient(ellipse at 50% 30%,#544533,#221910 80%); border-radius: 4px; box-shadow: inset 0 1px #927b5355, inset 0 -2px #0d0905; }
+.unit-row.unit-selected { background: radial-gradient(ellipse at 50% 25%,#8c6a35,#3c2917 80%); border: 2px solid #c8a565; box-shadow: inset 0 0 0 1px #4a3018; }
+.unit-row:hover { background: #5d492d; border-color: #baa171; }
+.unit-row-text { background: #1a120bbd; }
+.unit-row-text strong { color: #ebd6b0; }
+.roster-footer { background: #241a12; border-top: 2px solid #5e472d; }
+.wood-button, .wood-button:hover {
+  border: 0;
+  border-radius: 0;
+  background: url("/medieval/hud/button.png") center / 100% 135% no-repeat;
+  box-shadow: none;
+  color: #fff0c6;
+  text-shadow: 1px 2px #251407;
+  image-rendering: pixelated;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.wood-button:hover { filter: brightness(1.17); }
+.recruit-button { min-height: 52px; gap: 4px; background-size: 100% 160%; padding-left: 19px; padding-right: 19px; white-space: nowrap; }
+.recruit-button small { color: #e3bd76; }
+.village-sentiment, .village-sentiment b { color: #c3b18b; }
+.sidebar-bottom { background: #1c140e; border-color: #61462c; }
+.build-roster, .chronicle-panel { background: linear-gradient(#21170fea,#21170fea), var(--realm-paper) center / 300px; }
+.building-choice { border: 2px solid #725639; background: radial-gradient(ellipse at 50% 30%,#685337,#24180f); }
+.building-choice:hover, .building-choice.building-selected { border-color: #e1ba73; background: #674a2b; }
+.selection-panel { background: linear-gradient(#dec18470,#dec18470), var(--realm-paper) center / 340px; color: #463019; padding: 4px; border-image-slice: 22%; border-image-width: 23px; }
+.selection-portrait { border: 2px solid #66503a; background: radial-gradient(ellipse at 50% 30%,#726144,#32261a); box-shadow: inset 0 0 0 2px #22170e; }
+.selection-portrait > span { color: #e5cb98; background: #312014ed; }
+.selected-title h2 { color: #392616; text-shadow: 0 1px #f4d894; }
+.selected-title > span, .unit-order-state, .inspection-detail { color: #644823; }
+.selection-bars { color: #624423; }
+.selection-bars > span > i { background: #6a4d2c; box-shadow: 0 0 0 1px #a68a52; }
+.selection-bars small { color: #52391d; }
+.selection-bars b { background: #758541; }
+.selection-bars > span:last-child b { background: #b57631; }
+.order-controls { padding: 5px; border-image-slice: 22%; border-image-width: 23px; }
+.command-console .order-controls { background: linear-gradient(#322519ed,#1e150ef0), var(--realm-paper) center / 300px; }
+.command-caption { color: #ddc499; }
+.order-button-grid > button { border: 2px solid #6c5335; background: linear-gradient(#54402cee,#2e2016e8), var(--realm-paper) center / 180px; border-radius: 4px; box-shadow: inset 0 2px #b4965944, inset 0 -3px #1a100a; }
+.order-button-grid > button.order-active { border-color: #dfb567; background: linear-gradient(#8e693ee0,#533716ef), var(--realm-paper) center / 180px; box-shadow: inset 0 2px #fae1a277, inset 0 -3px #3c2411; }
+.order-button-grid > button:hover { background-color: #80623a; border-color: #cca76d; }
+.order-button-grid > button > span { color: #eddbb5; }
+.order-button-grid > button > kbd { color: #b7a07a; }
+.bottom-status { background: linear-gradient(transparent,#21150bc7); color: #d4c09a; }
+.bottom-status button { color: #ecd4a5; }
+.order-message, .paused-ribbon, .placement-label { background: #2a1e12ee; color: #f2ddb0; border: 2px solid #987648; box-shadow: inset 0 0 0 2px #49321b, 0 3px 12px #1d130b55; }
+.game-dialog { border-width: 18px; border-image-width: 26px; }
+.dialog-titlebar { background: var(--realm-paper) center / 380px; border-bottom: 3px solid #694526; color: #412914; }
+.manual-body { background: linear-gradient(#24190deF,#24190deF), var(--realm-paper) center / 400px; }
+.manual-controls { background: #21170e; border-color: #78532f; }
+.charter-book-heading h2, .seal-opening h2 { color: #edd3a0; }
+.map-loading { background: linear-gradient(#21170ef0,#17110cf5), var(--realm-paper) center / 500px; }
+.map-loading strong { display: block; width: min(430px,75vw); height: 160px; color: transparent; background: url("/medieval/hud/wordmark.png") center / contain no-repeat; image-rendering: pixelated; }
+
+@media (min-width: 1500px) {
+  .command-console { gap: 20px; }
+  .order-controls { margin-left: auto; }
+  .task-controls { display: block; width: 184px; flex: none; padding: 5px; border: 10px solid transparent; border-image: var(--realm-stone) 22% / 23px / 4px round; background: #2a2018; box-shadow: var(--realm-frame); border-radius: 0; }
+  .quick-task-grid { gap: 5px; }
+  .quick-task-grid > button { min-height: 35px; font: 10px "Uncial Antiqua",serif; border: 1px solid #6b6040; background: #2b2620; color: #d6c8a0; }
+  .quick-task-grid > button:hover { background: #4c4238; border-color: #c3a55b; }
+  .quick-task-grid .pixel-icon { width: 18px; height: 18px; }
+  .elder-focus { min-height: 23px; margin-top: 5px; font-size: 9px; color: #d6c290; }
+}
+@media (max-width: 1200px) {
+  .recruit-button > .pixel-icon, .recruit-button small { display: none; }
+  .recruit-button { font-size: 10px; }
+  .clan-wordmark > .wordmark-art { width: 159px; height: 62px; }
+  .clan-wordmark { width: 159px; height: 62px; }
+  .resource-bar { top: 13px; left: 14px; gap: 9px; height: 56px; padding-right: 9px; }
+  .clan-wordmark { min-width: 159px; padding-right: 1px; }
+  .clan-wordmark > span:last-child { font-size: 17px; }
+  .clan-wordmark small { font-size: 6px; letter-spacing: 1px; }
+  .clan-wordmark .clan-crest { width: 45px; height: 64px; }
+  .clan-wordmark .pixel-crown { width: 29px; height: 29px; }
+  .resource-counter { min-width: 61px; padding: 0 5px; height: 37px; gap: 4px; }
+  .resource-counter > span { font-size: 12px; min-width: 23px; }
+  .resource-counter .pixel-icon { width: 18px; height: 18px; }
+  .population-counter { padding-left: 8px; font-size: 11px; }
+  .population-counter .pixel-icon { width: 18px; }
+  .realm-minimap { width: 214px; right: 14px; top: 13px; }
+  .realm-minimap .mini-map { height: 133px; }
+  .clan-sidebar { top: 246px; right: 14px; width: 214px; bottom: 44px; }
+  .clan-sidebar-heading h1 { font-size: 15px; }
+  .clan-sidebar-heading > div > span { font-size: 6px; }
+  .command-console { left: 14px; right: 244px; height: 127px; gap: 10px; bottom: 44px; }
+  .selection-panel { min-width: 226px; width: 240px; height: 127px; padding: 9px; gap: 9px; }
+  .selection-portrait { width: 58px; height: 105px; }
+  .selection-portrait > .sprite-portrait { width: 82px; margin-left: -13px; }
+  .selected-title h2 { font-size: 15px; }
+  .selected-title > span { font-size: 7px; }
+  .selection-bars > span,.selection-bars small { font-size: 7px; }
+  .order-controls { min-width: 270px; padding: 7px; }
+  .order-button-grid { gap: 3px; }
+  .order-button-grid > button { height: 57px; }
+  .order-button-grid > button > span { font-size: 9px; }
+  .realm-tools { left: 14px; top: 84px; }
+  .map-options { left: 269px; top: 88px; }
+  .time-controls { left: 14px; top: 137px; }
+  .map-location { top: 98px; left: 59%; }
+  .map-location > span { font-size: 19px; }
+  .monument-objective { top: 182px; left: 14px; width: 224px; }
+  .monument-objective strong { font-size: 12px; }
+  .monument-sigil { font-size: 35px; }
+}
+@media (max-width: 1000px) and (min-width: 701px) {
+  .clan-wordmark > .wordmark-art { width: 143px; }
+  .clan-wordmark { width: 143px; }
+  .population-counter { display: none; }
+  .resource-counter { min-width: 53px; }
+  .resource-counter > span { font-size: 11px; }
+  .resource-counters { gap: 4px; }
+  .clan-wordmark { min-width: 143px; }
+  .map-location { top: 100px; left: 58%; }
+  .map-location > small { display: none; }
+  .map-location > span { font-size: 16px; }
+  .map-options { top: 143px; left: 177px; }
+  .selection-panel { min-width: 200px; }
+  .selection-portrait { display: none; }
+  .order-controls { min-width: 220px; }
+  .order-button-grid { grid-template-columns: repeat(3,1fr); }
+  .order-button-grid > button { height: 45px; gap: 1px; }
+  .order-button-grid > button > .pixel-icon { width: 20px; height: 20px; }
+}
+@media (max-width: 700px) {
+  .clan-wordmark > .wordmark-art { display: none; }
+  .clan-wordmark > .mobile-crest { display: grid; place-items: center; width: 32px; height: 40px; background: #40301e; border: 2px solid #997746; clip-path: polygon(0 0,100% 0,100% 80%,50% 100%,0 80%); }
+  .resource-bar { left: 8px; top: 9px; right: 8px; height: 51px; padding: 0 8px 0 0; gap: 6px; justify-content: space-between; }
+  .clan-wordmark { min-width: 35px; width: 35px; height: 56px; padding: 0; }
+  .clan-wordmark .clan-crest { width: 34px; height: 54px; }
+  .clan-wordmark .pixel-crown { width: 24px; height: 24px; }
+  .resource-counters { gap: 3px; flex: 1; justify-content: space-around; }
+  .resource-counter { min-width: 0; padding: 0 4px; height: 33px; gap: 3px; border-color: #64573888; }
+  .resource-counter > span { font-size: 10px; min-width: 19px; }
+  .resource-counter .pixel-icon { width: 16px; height: 16px; }
+  .population-counter { display: none; }
+  .time-controls { left: 8px; top: 68px; gap: 3px; }
+  .world-day { font-size: 9px; padding: 0 5px; }
+  .time-controls .metal-button { min-height: 27px; height: 27px; min-width: 28px; }
+  .realm-tools { display: none; }
+  .map-options { left: auto; right: 8px; top: 70px; gap: 4px; }
+  .map-options .metal-button { width: 29px; min-width: 29px; height: 28px; min-height: 28px; font-size: 16px; }
+  .map-options .pixel-icon { width: 17px; height: 17px; }
+  .map-location { top: 121px; left: 50%; gap: 5px; white-space: nowrap; }
+  .map-location > small { font-size: 6px; letter-spacing: 2px; }
+  .map-location > span { font-size: 19px; }
+  .monument-objective { top: 180px; left: 9px; width: 188px; padding: 7px; gap: 7px; }
+  .monument-objective small { font-size: 5px; }
+  .monument-objective strong { font-size: 10px; }
+  .monument-sigil { font-size: 27px; }
+  .monument-objective em { font-size: 15px; }
+  .realm-minimap { display: none; width: 240px; top: 111px; right: 9px; padding: 7px; bottom: auto; }
+  .realm-minimap.mobile-minimap-open { display: flex; }
+  .realm-minimap .mini-map { height: 155px; }
+  .realm-minimap .minimap-heading { font-size: 8px; }
+  .clan-sidebar { display: none; top: 110px; bottom: 206px; right: 8px; left: auto; width: 260px; max-width: calc(100% - 16px); border: 1px solid #7a6844; transform: none; }
+  .clan-sidebar.drawer-open { display: flex; }
+  .clan-sidebar-heading { padding: 12px 10px 10px; }
+  .clan-sidebar-heading h1 { font-size: 17px; }
+  .clan-sidebar-heading > div > span { font-size: 7px; }
+  .clan-roster { grid-auto-rows: 72px; min-height: 65px; }
+  .unit-row,.unit-row.elder-row { min-height: 72px; }
+  .roster-portrait { width: 55px; height: 51px; }
+  .unit-row-text strong { font-size: 10px; }
+  .sidebar-tabs button { padding: 9px 3px; font-size: 11px; }
+  .roster-toolbar { padding: 5px 7px; }
+  .roster-toolbar > div > button { font-size: 8px; }
+  .roster-footer { padding: 6px; }
+  .recruit-button { min-height: 36px; }
+  .village-sentiment { display: none; }
+  .sidebar-bottom { padding: 4px 7px; }
+  .sidebar-bottom > button { min-height: 25px; font-size: 10px; }
+  .command-console { left: 8px; right: 8px; bottom: 55px; height: 130px; display: grid; grid-template-columns: minmax(0,1fr) 172px; gap: 7px; }
+  .selection-panel { width: auto; max-width: none; min-width: 0; height: 130px; padding: 10px 8px; gap: 7px; }
+  .selection-portrait { display: none; }
+  .selected-title h2 { font-size: 15px; }
+  .selected-title > span { font-size: 7px; }
+  .selection-bars { margin-top: 12px; }
+  .selection-bars > span { font-size: 7px; gap: 5px; }
+  .selection-bars > span > i { height: 5px; }
+  .selection-bars small { font-size: 7px; width: 18px; }
+  .unit-order-state { font-size: 7px; margin-top: 10px; }
+  .unit-order-state > span { max-width: none; }
+  .unit-order-state .pixel-icon { width: 14px; height: 14px; }
+  .order-controls { width: auto; min-width: 0; padding: 7px; height: 130px; }
+  .command-caption { display: none; }
+  .order-button-grid { grid-template-columns: repeat(3,1fr); gap: 4px; }
+  .order-button-grid > button { height: 45px; gap: 2px; padding: 2px 1px; }
+  .order-button-grid > button > .pixel-icon { width: 20px; height: 20px; }
+  .order-button-grid > button > span { font-size: 9px; }
+  .order-button-grid > button > kbd { font-size: 6px; }
+  .task-controls { display: none; }
+  .bottom-status { display: none; }
+  .mobile-game-tabs { position: absolute; display: grid; grid-template-columns: repeat(4,1fr); bottom: 7px; left: 8px; right: 8px; height: 40px; padding: 0; border: 1px solid #756342; background: #191612f5; box-shadow: var(--realm-frame); gap: 0; z-index: 16; }
+  .mobile-game-tabs button { display: flex; align-items: center; justify-content: center; gap: 7px; font: 11px "Uncial Antiqua",Georgia,serif; color: #c9bf9a; padding: 0; border-right: 1px solid #5f57354d; }
+  .mobile-game-tabs button.active { background: #40382f; color: #eac77a; }
+  .mobile-game-tabs .pixel-icon { width: 19px; height: 19px; }
+  .map-coordinates { bottom: 192px; left: 9px; font-size: 5px; }
+  .order-message { bottom: 214px; max-width: calc(100% - 24px); padding: 9px 11px; font-size: 10px; }
+  .paused-ribbon { top: 243px; padding: 7px 19px; font-size: 10px; }
+  .placement-label { top: 239px; font-size: 11px; max-width: 94%; }
+  .game-dialog-backdrop { padding: 9px; }
+  .game-dialog { max-height: calc(100dvh - 18px); }
+  .dialog-titlebar { padding: 15px 13px; font-size: 17px; }
+  .manual-body { padding: 20px 17px; }
+  .manual-body h2 { font-size: 21px; }
+}
+@media (max-height: 650px) and (min-width: 701px) {
+  .resource-bar { top: 10px; }
+  .realm-minimap { top: 10px; width: 190px; }
+  .realm-minimap .mini-map { height: 108px; }
+  .realm-minimap .minimap-heading { font-size: 7px; }
+  .clan-sidebar { top: 201px; width: 190px; bottom: 34px; }
+  .clan-sidebar-heading { padding: 9px; }
+  .clan-sidebar-heading h1 { font-size: 13px; }
+  .clan-sidebar-heading > div > span { display: none; }
+  .roster-all { top: 12px; right: 40px; font-size: 7px; }
+  .sidebar-tabs button { font-size: 9px; padding: 8px 0; }
+  .clan-roster { grid-template-columns: repeat(3,1fr); grid-auto-rows: 61px; }
+  .unit-row,.unit-row.elder-row { min-height: 61px; }
+  .roster-portrait { width: 46px; height: 41px; }
+  .roster-portrait > .sprite-portrait { width: 56px; height: 56px; margin-top: -9px; }
+  .unit-row-text strong { font-size: 8px; }
+  .roster-footer { padding: 5px; }
+  .recruit-button { min-height: 31px; font-size: 9px; }
+  .recruit-button small { font-size: 6px; }
+  .sidebar-bottom { padding: 3px 7px; }
+  .sidebar-bottom > button { font-size: 9px; min-height: 22px; }
+  .command-console { right: 220px; bottom: 34px; height: 118px; }
+  .selection-panel { height: 118px; }
+  .selection-portrait { height: 96px; }
+  .realm-tools { top: 83px; }
+  .time-controls { top: 133px; }
+  .map-location { top: 85px; }
+  .monument-objective { top: 175px; }
+  .map-coordinates { bottom: 161px; }
+  .order-message { bottom: 163px; }
+  .bottom-status { height: 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clan-game *, .clan-game *:before, .clan-game *:after { transition: none; }
+}
+
+.order-button-grid > button > span { font-size: 11px; }
+.monument-objective strong { font-size: 13px; white-space: nowrap; }
+.monument-objective > span:nth-child(2) { min-width: 0; }
+.map-loading-progress { width: min(360px,65vw); height: 9px; background: #27231e; border: 1px solid #77653d; box-shadow: 0 0 0 4px #0f0d0b; overflow: hidden; }
+.map-loading-progress:after { content: ""; display: block; height: 100%; width: 35%; background: linear-gradient(90deg,#967030,#e7c472,#fff1b6); animation: load-artwork 1.4s ease-in-out infinite alternate; }
+.map-loading > small { position: absolute; bottom: 38px; font: 10px "Uncial Antiqua",serif; letter-spacing: 4px; color: #a28e60; }
+@keyframes load-artwork { from { transform: translateX(-100%); } to { transform: translateX(290%); } }
+@media (max-width: 700px) { .monument-objective strong { font-size: 10px; } .order-button-grid > button > span { font-size: 9px; } }
+@media (prefers-reduced-motion: reduce) { .map-loading-progress:after { animation: none; width: 100%; opacity: .6; } }
+@media (max-height: 500px) and (min-width: 701px) {
+  .clan-sidebar { top: 75px; bottom: 34px; width: 226px; right: 14px; z-index: 16; }
+  .clan-game:has(.clan-sidebar.drawer-open) .realm-minimap { display: none; }
+  .clan-sidebar:has(.build-roster) .sidebar-bottom { display: none; }
+  .clan-sidebar-heading { padding: 9px; }
+  .clan-sidebar .build-roster { min-height: 100px; }
+  .clan-roster { min-height: 45px; }
+  .roster-toolbar { padding: 4px 6px; }
+  .roster-toolbar > div > button { font-size: 7px; padding: 5px 6px; }
+  .sidebar-bottom { display: none; }
+  .command-console { right: 254px; }
+  .selection-panel { min-width: 188px; }
+  .map-location { left: 53%; top: 91px; }
+  .monument-objective { top: 172px; padding-top: 5px; padding-bottom: 5px; }
+  .realm-minimap { width: 188px; }
+  .realm-minimap .mini-map { height: 91px; }
+  .realm-minimap .minimap-controls { gap: 4px; }
+  .realm-minimap .minimap-controls button { width: 26px; min-width: 26px; height: 26px; min-height: 26px; font-size: 14px; }
+  .realm-minimap .minimap-controls .zoom-readout { width: auto; min-width: 22px; font-size: 8px; }
+  .clan-game:not(:has(.clan-sidebar.drawer-open)) .command-console { right: 14px; max-width: 640px; }
+}

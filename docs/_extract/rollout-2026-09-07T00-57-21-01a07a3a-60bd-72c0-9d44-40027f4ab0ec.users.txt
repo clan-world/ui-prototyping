@@ -1,0 +1,212 @@
+FILE: /Users/mikail/.codex/sessions/2026/09/07/rollout-2026-09-07T00-57-21-01a07a3a-60bd-72c0-9d44-40027f4ab0ec.jsonl
+USER_MSG_COUNT: 2
+
+===== USER MSG #1 line=4 type=response_item =====
+# AGENTS.md instructions
+
+<INSTRUCTIONS>
+# Global instructions
+
+These rules govern how you write and present work in every project.
+They do not govern what you build.
+
+## Writing
+
+Read `~/.agents/styles/active.md`. It names one style file in
+`~/.agents/styles/`. Read that file and follow its rules for voice, tense,
+sentence structure, and word choice. If `active.md` says `none`, no style in
+this section is enforced.
+
+- To use a style for one reply or one session without changing the default,
+  read the named style file directly and follow it for that occasion only.
+- To change the default, run `~/.agents/bin/agent-style set <name>`. To turn
+  enforcement off, run `~/.agents/bin/agent-style off`. To list the available
+  styles, run `~/.agents/bin/agent-style list`.
+
+Scope:
+
+- The active style applies to explanation, findings, plans, reports, documents,
+  and artifacts.
+- The active style does not apply to code, identifiers, code comments, commit
+  messages, quoted text, or wording that the user dictates.
+- The active style does not apply to casual conversation. Do not force it onto
+  small talk.
+
+### Punctuation
+
+These rules apply always, regardless of the active style.
+
+- Never use an em-dash. This has no exceptions: it covers replies, documents,
+  artifacts, UI copy, code comments, and commit messages. Use a colon, a full
+  stop, a comma, or parentheses. Rewrite the sentence when none of those fit.
+  Check before you deliver: a grep for the character returns zero or the work
+  is not done.
+- Use the serial comma always.
+- No periods in an acronym or an initialism (API, not A.P.I.).
+- Never substitute "i.e." or "e.g." Write "that is" or "for example."
+
+## Formatting
+
+Applies to session output, generated artifacts, and .md files.
+
+- Prefer bullets to paragraphs. Use bullets for any answer with several facts:
+  architecture summaries, findings, options, status updates, specs, and reports.
+- If a bullet has a **bold term:** lead-in, stop the sentence at the colon. Put the
+  rest in sub-bullets below it.
+
+## Explanations
+
+Applies to concepts, systems, flows, and processes.
+
+- Always give the technical explanation. Never replace it. Never omit it.
+- Always add a plain-language companion:
+    - A short "In plain words" section or box beside the technical version.
+    - Everyday analogies. Keep the analogy vocabulary the same inside one project.
+- Add compact visuals when the subject has structure, flow, or sequence:
+    - Mermaid flowcharts and sequence diagrams. Keep each one small and focused.
+    - One concern per diagram.
+- This applies to artifacts, documents, and any long explanation.
+
+## Front ends and interfaces
+
+Applies to every UI you build or generate: web front ends, artifacts, dashboards,
+components, and any interface a person looks at.
+
+**The test: the F1 driver.**
+
+- Imagine the reader is a Formula 1 driver glancing at the dashboard at speed.
+- They get a few seconds to read the state and decide whether to act.
+- If they must read a sentence to learn the state, the design has failed.
+
+**Cut all explanatory copy.**
+
+- No subtitle defining a metric.
+- No helper text restating the number above it.
+- No sentence explaining what a chart shows.
+- Assume the reader knows what the metrics are.
+
+**Never present data or definitions inline.**
+
+- Put any explanation that survives behind a hover or a disclosure.
+- It paints nothing in the default view.
+
+**Let numbers and layout carry the meaning.**
+
+- Type scale, weight, and colour do the work that sentences were doing.
+- Colour carries meaning only. It is never decoration.
+- Use tabular numerals wherever a value updates in place.
+
+**Aesthetic: an instrument cluster, not an admin panel.**
+
+- High contrast, sharp edges, precise numerals, engineered texture.
+- Sleek and instrument-like. Not soft, not web-like, not a SaaS dashboard.
+
+**Make destructive actions safe from unintended consequences.**
+
+- Never pre-select anything destructive.
+- The control names the count and the action. Never a generic "Confirm".
+- A destructive action needs a deliberate second step that no one hits by accident.
+- Show the risk before the click. Do not explain it in a paragraph.
+
+**Measure the result, not the source.**
+
+- Count the words the page paints in its default state.
+- Count painted sentences of five or more words. Drive that number toward zero.
+- Source counts mislead. A page composes text from fragments, and one renders at
+  a time.
+
+## Operational work
+
+Applies to incident response, rebuilds, migrations, and runbook-driven tasks.
+
+- End every reply with the running runbook.
+- Keep one canonical list. Remove the completed items. Do not collect status noise.
+- Show the current step and the next step.
+- Mark each remaining step as blocked-on-user or blocked-on-me.
+</INSTRUCTIONS>
+# AGENTS.md instructions
+
+<INSTRUCTIONS>
+# Global instructions
+
+These rules govern how you write and present work in every project.
+They do not govern what you build.
+
+## Writing
+
+Read `~/.agents/styles/active.md`. It names one style file in
+`~/.agents/styles/`. Read that file and follow its rules for voice, tense,
+sentence structure, and word choice. If `active.md` says `none`, no style in
+this section is enforced.
+
+- To use a style for one reply or one session without changing the default,
+  read the named style file directly and follow it for that occasion only.
+- To change the default, run `~/.agents/bin/agent-style set <name>`. To turn
+  enforcement off, run `~/.agents/bin/agent-style off`. To list the available
+  styles, run `~/.agents/bin/agent-style list`.
+
+Scope:
+
+- The active style applies to explanation, findings, plans, reports, documents,
+  and artifacts.
+- The active style does not apply to code, identifiers, code comments, commit
+  messages, quoted text, or wording that the user dictates.
+- The active style does not apply to casual conversation. Do not force it onto
+  small talk.
+
+### Punctuation
+
+These rules apply always, regardless of the active style.
+
+- Never use an em-dash. This has no exceptions: it covers replies, documents,
+  artifacts, UI copy, code comments, and commit messages. Use a colon, a full
+  stop, a comma, or parentheses. Rewrite the sentence when none of those fit.
+  Check before you deliver: a grep for the character returns zero or the work
+  is not done.
+- Use the serial comma always.
+- No periods in an acronym or an initialism (API, not A.P.I.).
+- Never substitute "i.e." or "e.g." Write "that is" or "for example."
+
+## Formatting
+
+Applies to session output, generated artifacts, and .md files.
+
+- Prefer bullets to paragraphs. Use bullets for any answer with several facts:
+  architecture summaries, findings, options, status updates, specs, and reports.
+- If a bullet has a **bold term:** lead-in, stop the sentence at the colon. Put the
+  rest in sub-bullets below it.
+
+## Explanations
+
+Applies to concepts, systems, flows, and processes.
+
+- Always give the technical explanation. Never replace it. Never omit it.
+- Always add a plain-language companion:
+    - A short "In plain words" section or box beside the technical version.
+    - Everyday analogies. Keep the analogy vocabulary the same inside one project.
+- Add compact visuals when the subject has structure, flow, or sequence:
+    - Mermaid flowcharts and sequence diagrams. Keep each one small and focused.
+    - One concern per diagram.
+- This applies to artifacts, documents, and any long explanation.
+
+## Front ends and interfaces
+
+Applies to every UI you build or generate: web front ends, artifacts, dashboards,
+components, and any interface a person looks at.
+
+**The test: the F1 driver.**
+
+- Imagine the reader is a Formula 1 driver glancing at the dashboard at speed.
+- They get a few seconds to read the state and decide whether to act.
+- If they must read a sentence to learn the state, the design has failed.
+
+**Cut all explanatory copy.**
+
+- No subtitle defining a metric.
+- No helper text restating the number above it.
+- No sentence explaining what a chart s
+
+===== USER MSG #2 line=7 type=response_item =====
+I want to make a new game called “Clan World”. It is a pixel art resource gathering game. You can find an array of some super rough references in ‘~/Desktop/Clan\ World’. They are all inconsistent and don’t really have any clear direction, but I want it to be a runes like pixel art resource gathering game, powered by TCG mechanics. Strip it of anything related to crypto. The project is yours. Be creative and generate everything from scratch. It should have pack ripping, card collection, and gameplay on a map. Take ownership over it and make a game like this that would go viral online. Visuals and UI for gameplay and controls is very important. It should be optimized for mobile and desktop web, but should feel like a game for a native gaming device. Meaning that the Home Screen, card screens, gameplay etc, should feel immersive like a game (it should not feel like you are on a website). Use image generation where you need to, aim for detailed sprite coverage (meaning high quality movements), and overall make a fun and competitive game where the user can play a contribute to gameplay in a meaningful way that will keep them engaged. So all in all, take inspiration from what has been built already and build something 10X better.
+I want to make a new game called “Clan World”. It is a pixel art resource gathering game. You can find an array of some super rough references in ‘~/Desktop/Clan\ World’. They are all inconsistent and don’t really have any clear direction, but I want it to be a runes like pixel art resource gathering game, powered by TCG mechanics. Strip it of anything related to crypto. The project is yours. Be creative and generate everything from scratch. It should have pack ripping, card collection, and gameplay on a map. Take ownership over it and make a game like this that would go viral online. Visuals and UI for gameplay and controls is very important. It should be optimized for mobile and desktop web, but should feel like a game for a native gaming device. Meaning that the Home Screen, card screens, gameplay etc, should feel immersive like a game (it should not feel like you are on a website). Use image generation where you need to, aim for detailed sprite coverage (meaning high quality movements), and overall make a fun and competitive game where the user can play a contribute to gameplay in a meaningful way that will keep them engaged. So all in all, take inspiration from what has been built already and build something 10X better.
+

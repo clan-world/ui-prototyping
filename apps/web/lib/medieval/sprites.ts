@@ -22,7 +22,7 @@ export interface VillageArt {
   walk: Atlas;
   elder: Atlas;
   work: Atlas;
-  ground: HTMLImageElement;
+  landmarks?: Atlas;
 }
 
 export const BUILDING_ART: Record<BuildingKind, number> = {
@@ -119,20 +119,20 @@ export function loadVillageArt(): Promise<VillageArt> {
         if (!r.ok) throw new Error("Unit atlas unavailable");
         return r.json() as Promise<Record<string, UnitMeta>>;
       }),
-      fetch("/medieval/atlas.json").then((r) => {
+      fetch("/medieval/overhead/atlas.json").then((r) => {
         if (!r.ok) throw new Error("World atlas unavailable");
         return r.json() as Promise<Record<string, WorldMeta>>;
       }),
     ]);
-    const [buildings, props, walk, elder, work, ground] = await Promise.all([
+    const [buildings, props, walk, elder, work, landmarks] = await Promise.all([
       worldAtlas(world.buildings!),
       worldAtlas(world.props!),
       unitAtlas(units.walk!),
       unitAtlas(units.elder!),
       unitAtlas(units.work!),
-      loadImage("/medieval/ground-tiles.png"),
+      world.landmarks ? worldAtlas(world.landmarks) : Promise.resolve(undefined),
     ]);
-    return { buildings, props, walk, elder, work, ground };
+    return { buildings, props, walk, elder, work, landmarks };
   })().catch((error) => {
     artPromise = undefined;
     throw error;
@@ -186,7 +186,7 @@ export function drawClansman(
     unit.status === "following";
   const working = unit.status === "working" || unit.status === "building";
   const direction =
-    { e: 0, se: 0, s: 1, sw: 1, w: 2, nw: 2, n: 3, ne: 3 }[unit.facing] ?? 0;
+    { e: 0, se: 0, s: 0, sw: 1, w: 1, nw: 2, n: 2, ne: 3 }[unit.facing] ?? 0;
   const walkingFrame = moving ? Math.floor(time * 9 + unit.variant) % 8 : 0;
   let atlas = unit.role === "elder" ? art.elder : art.walk,
     index = direction * 8 + walkingFrame,
@@ -217,7 +217,7 @@ export function drawClansman(
   const w = (h * f.sw) / atlas.medianHeight;
   ctx.save();
   ctx.globalAlpha = 0.17;
-  ctx.fillStyle = "#182214";
+  ctx.fillStyle = "#241e19";
   ctx.beginPath();
   ctx.ellipse(x, y - 1, 9 * scale, 3.7 * scale, 0, 0, Math.PI * 2);
   ctx.fill();

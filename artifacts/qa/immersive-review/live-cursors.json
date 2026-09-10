@@ -1,0 +1,28 @@
+{
+  "seen": {
+    "pointer": {
+      "x": 350,
+      "y": 300,
+      "cursor": "url(\"/medieval/cursors/pointer.svg\") 6 3, pointer"
+    },
+    "arrow": {
+      "x": 525,
+      "y": 300,
+      "cursor": "url(\"/medieval/cursors/arrow.svg\") 4 3, default"
+    },
+    "grab": {
+      "x": 595,
+      "y": 300,
+      "cursor": "url(\"/medieval/cursors/grab.svg\") 19 20, grab"
+    },
+    "blocked": {
+      "x": 350,
+      "y": 405,
+      "cursor": "url(\"/medieval/cursors/blocked.svg\") 20 20, not-allowed"
+    }
+  },
+  "space": "url(\"/medieval/cursors/grab.svg\") 19 20, grab",
+  "down": "url(\"/medieval/cursors/grabbing.svg\") 19 20, grabbing",
+  "up": "url(\"/medieval/cursors/grab.svg\") 19 20, grab",
+  "released": "url(\"/medieval/cursors/arrow.svg\") 4 3, default"
+}

@@ -1,12 +1,13 @@
 # Clan World
 
-Clan World is a continuous medieval village game in pixel art. You command Elder Aldric and the Mossfell clan: assign workers, carry resources home, raise buildings, recruit clansmen, and collect charters that change village production.
+Clan World is a continuous medieval game in pixel art. You command Elder Aldric and the Mossfell clan: explore the realm, assign workers, carry resources home, raise buildings, recruit clansmen, and collect charters that change village production.
 
-- A 48 x 40 isometric map starts with the Elder and twelve clan members, including a guard. Six workers already gather timber, stone, and food.
+- A 112 x 96 overhead realm contains eight jurisdictions and eight clan settlements. The Elder and twelve clan members start at Mossfell; six workers already gather timber, stone, and food.
+- The map fills the viewport beneath a compact resource HUD, an upper-right minimap, collapsible clan panels, and contextual commands. Five custom cursors cover movement, interaction, panning, dragging, and blocked terrain.
 - Supplies enter your stockpile when workers deliver their cargo. The economy uses timber, stone, food, iron, and gold.
 - Eleven structures are available in the build menu, alongside the existing Elder's hall.
 - Nine collectible charters share three production doctrines. One charter can be active at a time.
-- Generated buildings, environmental props, ground textures, and 96 unit animation frames form the current art set.
+- Original overhead buildings, autumn props, landmark sprites, and 96 unit animation frames form the current art set. Illustrated stone frames, parchment, a gold wordmark, and carved buttons supply the HUD materials.
 - The game runs locally in your browser. Gold and packs are in-game resources; no payments or crypto services are connected.
 
 ## Start the game
@@ -39,6 +40,14 @@ Open [Clan World locally](http://localhost:3010). On this Mac, [Play Clan World.
 
 The clan works like a crew with a shared supply store. An axe swing fills a worker's load, but the village cannot spend that timber until the worker brings it home. Your decisions determine who works, where supplies travel, and which jobs finish first.
 
+## Explore the realm
+
+- The jurisdictions are The Forest, Iron Mountains, Unicorn Town, West Farms, East Farms, West Docks, East Docks, and The Deep Sea.
+- Mossfell shares the realm with Iron Guard, Ember Hand, Dawn Watch, Storm Riders, Lantern Guild, Stoneroot, and Doomweb Scribes. Each clan has a separate base. A world seed determines placement within eligible jurisdictions; a new settlement uses a new seed.
+- Roads connect settlements, mountain passes, and Unicorn Town. Bridges cross rivers, and quays extend from both docks. Water, mountain and snow tiles, trees, resource deposits, buildings, and the monument block movement. Farms remain walkable.
+- The Great Monument stands in Unicorn Town. Its HUD objective focuses the camera on the site. Progress starts at zero; resource contributions and monument completion are not implemented.
+- Neighboring clans are visual settlements. Their buildings do not supply Mossfell housing, storage, income, or production bonuses. They have no autonomous workers or multiplayer connection.
+
 ## Use the controls
 
 | Action | Mouse or touch | Keyboard |
@@ -56,14 +65,17 @@ The clan works like a crew with a shared supply store. An axe swing fills a work
 | Find the Elder | Find Elder or the Clan World crest | E |
 | Pan | Middle-button drag, Space-drag, or touch drag | WASD or arrows |
 | Zoom | Mouse wheel, pinch, or map buttons | Use map buttons |
+| View the whole realm | Select the minimap's zoom percentage | Use the zoom percentage button |
+| Enter or exit fullscreen | Fullscreen icon, where supported | Tab to Toggle fullscreen |
 | Pause | Pause button | P |
 | Cancel placement or command mode | Placement cancel button | Escape |
 
-- The minimap moves the camera. The center-selection button focuses the selected person.
+- The upper-right minimap moves the camera and shows the camera footprint. Its controls zoom from a realm overview to close inspection, center the selection, or return to Mossfell. The zoom range is 10% to 240%.
+- Gold arrow, pointing-hand, open-hand, closed-hand, and blocked cursors change with the target and gesture.
 - On mobile, Clan opens the roster, Build opens construction, Map opens the minimap, and Charters opens the archive. Tap a person before their target; drag the land to pan.
 - Each person supports up to 16 queued orders. A queued order after gathering starts after a cargo delivery.
 - Simulation speed cycles through 1x, 2x, and 4x. The manual, archive, and pack dialogs pause simulation. Hidden tabs do not advance the village.
-- Paths and Names toggle map overlays. Sound and Save are in the bottom status bar.
+- The path and name icons toggle map overlays. Sound and Save are in the bottom status bar. Clan, Build, and Chronicle panels open from the tool rail.
 
 ## Build and collect
 
@@ -116,9 +128,10 @@ The controller takes your orders, the simulation updates the crew and shared sto
 | `packages/db` | PostgreSQL schema and Drizzle integration through `@effect/sql-drizzle` |
 
 - The simulation receives a 0.1-second tick every 100 milliseconds, multiplied by the selected speed. A separate rendering loop interpolates unit positions.
-- A* pathfinding uses eight neighboring cells, avoids buildings, resources, and water, and rejects diagonal steps through blocked corners. New foundations cause routes to be recalculated.
+- Seeded generation creates terrain, jurisdictions, clan bases, roads, and the monument. The expanded map has 5.6 times the tile area of the original village map.
+- A* pathfinding uses eight neighboring cells and the full collision footprint of buildings and the monument. Water, mountains, snow, and resource objects also block paths. Walking and unit separation reject diagonal steps through blocked corners. New foundations cause routes to be recalculated.
 - Unit art contains 32 walking frames, 32 Elder frames, and 32 work frames for chopping, mining, carrying, and construction. Direction mappings and measured foot pivots keep sprites registered.
-- Buildings and props use measured clipping rectangles because generated atlas rows vary. Generated ground textures feed cached material patterns.
+- Buildings and props use measured clipping rectangles because generated atlas rows vary. The orthogonal projection uses 32-pixel square tiles. Terrain and sprites render together on a canvas at half the CSS viewport resolution, then scale with nearest-neighbor sampling. Cached terrain adds worn cobblestone, earth, shore edges, and woodland litter.
 - Earlier expedition components and their engine remain in the repository but are not mounted by the root page. Their tests and save format are separate.
 
 ## Save and resume
@@ -129,13 +142,15 @@ The controller takes your orders, the simulation updates the crew and shared sto
 | Charters | `clan-world:charters:v2` | When the archive changes |
 
 - The full village save includes resources, people, cargo, orders, queues, buildings, construction progress, elapsed time, and economy statistics. Loading validates data and recalculates transient routes.
+- Original 48 x 40 village saves expand into the larger realm automatically. Existing terrain, workers, cargo, resources, buildings, construction progress, and elapsed time remain intact.
 - The archive stores copies, packs, the ratified charter, and delivery milestones. Its active doctrine is reapplied to the loaded village.
 - New settlement requires a second action, Replace 1 village. It replaces the village while preserving the charter archive.
 - Saves belong to one browser origin and device. Use Save before closing if you need an explicit save result.
 
 ## Know the limits
 
-- This is a single-player simulation. There are no enemies, combat, raids, multiplayer, shared clan contributions, matchmaking, or verified leaderboards. Watchtowers and the initial guard do not provide a combat system.
+- This is a single-player simulation. Neighboring clans have no AI. There are no enemies, combat, raids, multiplayer, shared clan contributions, matchmaking, or verified leaderboards. Watchtowers and the initial guard do not provide a combat system.
+- The monument is a physical landmark and a visual objective. Contribution rules, completion, and victory conditions remain for the balancing pass. The realm adapts the original jurisdiction names; it is not an exact map replica.
 - There is no timed match, victory screen, or finished campaign. Hidden or closed pages do not accumulate offline progress.
 - The API and database are unused by gameplay. There are no accounts, cloud saves, server authority, or anti-cheat. Local resources and saves can be modified by the player.
 - Village and charter records are separate local saves, not a transactional online economy.
@@ -148,17 +163,20 @@ pnpm typecheck
 pnpm test
 pnpm build
 python3 scripts/qa_clan_village.py
+python3 scripts/qa_clan_realm.py
 ```
 
 - Run the current browser script with the game server running. It requires Python Playwright and Chrome; inspect its `--help` output for browser and URL options.
-- `clan-sim.test.ts` covers pathfinding, orders, cargo, construction, production modifiers, recruitment, and saves. `pnpm test` also runs retained expedition tests and the API HTTP contract test.
-- Workspace typechecking and the production build pass. The test suite passes 36 tests: 13 village tests, 22 retained expedition tests, and one API contract test. Four current browser journeys pass at desktop and mobile sizes with no recorded browser errors. [The playtest notes](docs/PLAYTEST.md) link the evidence and remaining manual checks.
+- `clan-sim.test.ts` covers seeded placement, reachable bases and docks, collision during walking and separation, foundation routing, the economy, and legacy save migration. `pnpm test` also runs retained expedition tests and the API HTTP contract test.
+- Workspace typechecking and the production build pass. The test suite passes 45 tests: 22 village tests, 22 retained expedition tests, and one API contract test. Four gameplay journeys and two realm-navigation journeys pass at desktop and mobile sizes with no recorded browser errors. [The playtest notes](docs/PLAYTEST.md) link the evidence and remaining manual checks.
 - `pnpm test:e2e` points to a separate TypeScript Playwright configuration. No current village specs are stored in `apps/web/e2e`; use the Python journey suite.
 - `scripts/qa_user_journeys.py` and the older `artifacts/qa/REPORT.md` target the retired expedition UI. See [the current playtest notes](docs/PLAYTEST.md) for village checks and recorded results.
 
 ## Review artwork provenance
 
-- [World asset provenance](apps/web/public/medieval/PROVENANCE-WORLD.md) records building, prop, and ground texture generation.
+- [Overhead world provenance](apps/web/public/medieval/overhead/PROVENANCE.md) records the current building and prop generation.
+- [HUD artwork provenance](apps/web/public/medieval/hud/PROVENANCE.md) records the wordmark, stone frame, parchment, and button prompts.
+- [Earlier world asset provenance](apps/web/public/medieval/PROVENANCE-WORLD.md) records the retained first-generation world art.
 - [Unit asset provenance](apps/web/public/medieval/PROVENANCE-UNITS.md) records the 96 frames and atlas registration.
 - Current game sprites are original generated assets. Source rectangles and pivots are recorded separately from the PNGs.
-- Cinzel and Fragment Mono license notices are included in [the fonts directory](apps/web/public/fonts/).
+- Cinzel, Uncial Antiqua, and Fragment Mono license notices are included in [the fonts directory](apps/web/public/fonts/).

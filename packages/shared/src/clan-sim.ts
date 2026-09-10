@@ -4,7 +4,7 @@ export type ClanResource = "timber" | "stone" | "food" | "iron" | "gold";
 export type ClanResources = Record<ClanResource, number>;
 export type ClanDoctrine = "industry" | "harvest" | "stewardship";
 export type Point = { x: number; y: number };
-export type Terrain = "grass" | "dirt" | "water" | "sand" | "farm" | "bridge";
+export type Terrain = "grass" | "dirt" | "water" | "sand" | "farm" | "bridge" | "mountain" | "snow";
 export interface Tile {
   terrain: Terrain;
   variant: number;
@@ -40,6 +40,29 @@ export interface Building extends Point {
   progress: number;
   hp: number;
   stock: number;
+  clanId?: string;
+}
+export interface WorldRegion extends Point {
+  id: string;
+  name: string;
+  theme: "forest" | "highland" | "town" | "farmland" | "harbor" | "sea";
+  bounds: { x: number; y: number; w: number; h: number };
+}
+export interface WorldClan {
+  id: string;
+  name: string;
+  color: string;
+  regionId: string;
+  base: Point;
+  player: boolean;
+}
+export interface WorldMonument extends Point {
+  id: string;
+  name: string;
+  w: number;
+  h: number;
+  progress: number;
+  target: Partial<ClanResources>;
 }
 export interface BuildingSpec {
   name: string;
@@ -208,6 +231,9 @@ export interface ClanWorld {
   tiles: Tile[][];
   objects: WorldObject[];
   buildings: Building[];
+  regions: WorldRegion[];
+  clans: WorldClan[];
+  monument: WorldMonument;
   units: ClanUnit[];
   resources: ClanResources;
   elapsed: number;
@@ -227,8 +253,8 @@ export interface ClanWorld {
     foodProgress: number;
   };
 }
-export const CLAN_WORLD_WIDTH = 48;
-export const CLAN_WORLD_HEIGHT = 40;
+export const CLAN_WORLD_WIDTH = 112;
+export const CLAN_WORLD_HEIGHT = 96;
 export const CLAN_SAVE_KEY = "clan-world:elder-village:v2";
 export const CLAN_CARGO_CAPACITY = 10;
 export const CLAN_WALK_SPEED = 1.65;
@@ -264,7 +290,7 @@ const NAMES = [
   "Rose",
 ];
 const distance = (a: Point, b: Point) => Math.hypot(a.x - b.x, a.y - b.y);
-const key = (x: number, y: number) => y * CLAN_WORLD_WIDTH + x;
+const key = (state: ClanWorld, x: number, y: number) => y * state.width + x;
 const center = (p: Point): Point => ({
   x: Math.floor(p.x) + 0.5,
   y: Math.floor(p.y) + 0.5,
@@ -339,7 +365,7 @@ function createUnit(
     wait: 0,
     variant: index % 8,
     homeId:
-      state.buildings.find((building) => building.kind === "house")?.id ??
+      state.buildings.find((building) => building.kind === "house" && isPlayerBuilding(state, building))?.id ??
       "hall",
   };
 }
@@ -347,242 +373,170 @@ function createUnit(
 export function createClanWorld(seed = 7331): ClanWorld {
   seed = finite(seed) ? Math.floor(seed) >>> 0 : 7331;
   const rng = randomGenerator(seed);
+  const regions: WorldRegion[] = [
+    { id: "forest", name: "The Forest", theme: "forest", x: 26, y: 14, bounds: { x: 0, y: 0, w: 73, h: 37 } },
+    { id: "mountains", name: "Iron Mountains", theme: "highland", x: 91, y: 12, bounds: { x: 73, y: 0, w: 39, h: 37 } },
+    { id: "unicorn-town", name: "Unicorn Town", theme: "town", x: 57, y: 35, bounds: { x: 43, y: 33, w: 29, h: 26 } },
+    { id: "west-farms", name: "West Farms", theme: "farmland", x: 22, y: 46, bounds: { x: 0, y: 37, w: 43, h: 29 } },
+    { id: "east-farms", name: "East Farms", theme: "farmland", x: 91, y: 45, bounds: { x: 72, y: 37, w: 40, h: 29 } },
+    { id: "west-docks", name: "West Docks", theme: "harbor", x: 29, y: 69, bounds: { x: 0, y: 66, w: 57, h: 18 } },
+    { id: "east-docks", name: "East Docks", theme: "harbor", x: 86, y: 69, bounds: { x: 57, y: 66, w: 55, h: 18 } },
+    { id: "deep-sea", name: "The Deep Sea", theme: "sea", x: 57, y: 91, bounds: { x: 0, y: 84, w: 112, h: 12 } },
+  ];
+  const jitter = () => Math.floor(rng() * 7) - 3;
+  const clans: WorldClan[] = [
+    { id: "mossfell", name: "Mossfell", color: "#9cad72", regionId: "forest", base: { x: 23.5 + jitter(), y: 23.5 + jitter() }, player: true },
+    { id: "ember-hand", name: "Ember Hand", color: "#d87755", regionId: "mountains", base: { x: 86.5 + jitter(), y: 26.5 + jitter() }, player: false },
+    { id: "dawn-watch", name: "Dawn Watch", color: "#dec16d", regionId: "west-farms", base: { x: 22.5 + jitter(), y: 54.5 + jitter() }, player: false },
+    { id: "storm-riders", name: "Storm Riders", color: "#70c0b2", regionId: "east-farms", base: { x: 88.5 + jitter(), y: 53.5 + jitter() }, player: false },
+    { id: "lantern-guild", name: "Lantern Guild", color: "#e8d2a0", regionId: "west-docks", base: { x: 29.5 + jitter(), y: 75.5 + jitter() }, player: false },
+    { id: "stoneroot", name: "Stoneroot", color: "#c79967", regionId: "east-docks", base: { x: 84.5 + jitter(), y: 75.5 + jitter() }, player: false },
+    { id: "doomweb-scribes", name: "Doomweb Scribes", color: "#ae8abf", regionId: "forest", base: { x: 65.5 + jitter(), y: 16.5 + jitter() }, player: false },
+    { id: "iron-guard", name: "Iron Guard", color: "#78aac5", regionId: "west-docks", base: { x: 10.5 + Math.floor(rng() * 3), y: 74.5 + Math.floor(rng() * 3) }, player: false },
+  ];
   const tiles: Tile[][] = Array.from({ length: CLAN_WORLD_HEIGHT }, (_, y) =>
     Array.from({ length: CLAN_WORLD_WIDTH }, (_, x) => {
-      const riverX = 34.5 + Math.sin(y * 0.18) * 3.3;
-      const river = y < 23 && Math.abs(x - riverX) < 1.7;
-      const bank = y < 24 && Math.abs(x - riverX) < 2.8;
-      return {
-        terrain: river ? "water" : bank ? "sand" : "grass",
-        variant: Math.floor(rng() * 8),
-        height: 0,
-      };
+      const coast = 85 + Math.sin(x * 0.1) * 2 + Math.sin(x * 0.27) * 1.5;
+      const riverX = 56 + Math.sin(y * 0.095) * 4 + Math.sin(y * 0.24);
+      const river = y > 8 && Math.abs(x - riverX) < (y > 70 ? 3.5 : 1.8);
+      const bank = y > 7 && Math.abs(x - riverX) < (y > 70 ? 5 : 3.3);
+      const ridge = Math.pow((x - 94) / 19, 2) + Math.pow((y - 13) / 15, 2);
+      const foothill = ridge + Math.sin(x * 0.48) * 0.13 + Math.cos(y * 0.7) * 0.1;
+      const terrain: Terrain = y > coast || river ? "water"
+        : y > coast - 2 || bank ? "sand"
+        : foothill < 0.37 ? "snow"
+        : foothill < 1 ? "mountain" : "grass";
+      return { terrain, variant: Math.floor(rng() * 8), height: terrain === "snow" ? 3 : terrain === "mountain" ? 1 + Math.floor(rng() * 2) : 0 };
     }),
   );
-  const paint = (
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    terrain: Terrain,
-  ) => {
-    for (let yy = y; yy < y + h; yy++)
-      for (let xx = x; xx < x + w; xx++)
-        if (tiles[yy]?.[xx])
-          tiles[yy][xx].terrain =
-            terrain === "dirt" && tiles[yy][xx].terrain === "water"
-              ? "bridge"
-              : terrain;
+  const paint = (x: number, y: number, w: number, h: number, terrain: Terrain) => {
+    for (let yy = Math.floor(y); yy < Math.floor(y) + h; yy++)
+      for (let xx = Math.floor(x); xx < Math.floor(x) + w; xx++) {
+        const tile = tiles[yy]?.[xx];
+        if (!tile) continue;
+        tile.terrain = terrain === "dirt" && tile.terrain === "water" ? "bridge" : terrain;
+        tile.height = 0;
+      }
   };
-  paint(14, 21, 22, 2, "dirt");
-  paint(25, 12, 2, 21, "dirt");
-  paint(18, 16, 2, 15, "dirt");
-  paint(18, 15, 12, 2, "dirt");
-  paint(18, 26, 14, 2, "dirt");
-  paint(20, 21, 7, 5, "dirt");
-  paint(33, 12, 6, 2, "bridge");
+  const road = (points: Point[], width = 2) => {
+    for (let i = 1; i < points.length; i++) {
+      const from = points[i - 1], to = points[i];
+      const steps = Math.ceil(Math.max(Math.abs(to.x - from.x), Math.abs(to.y - from.y)));
+      for (let step = 0; step <= steps; step++) {
+        const ratio = steps ? step / steps : 0;
+        paint(Math.floor(from.x + (to.x - from.x) * ratio), Math.floor(from.y + (to.y - from.y) * ratio), width, width, "dirt");
+      }
+    }
+  };
   const state: ClanWorld = {
-    version: 2,
-    seed,
-    width: CLAN_WORLD_WIDTH,
-    height: CLAN_WORLD_HEIGHT,
-    tiles,
-    objects: [],
-    buildings: [],
-    units: [],
+    version: 2, seed, width: CLAN_WORLD_WIDTH, height: CLAN_WORLD_HEIGHT,
+    tiles, regions, clans,
+    monument: { id: "realm-monument", name: "The Great Monument", x: 55, y: 39, w: 5, h: 5, progress: 0, target: { timber: 2000, stone: 3000, iron: 600, gold: 1000 } },
+    objects: [], buildings: [], units: [],
     resources: { timber: 180, stone: 110, food: 140, iron: 20, gold: 85 },
-    elapsed: 0,
-    day: 1,
-    population: 13,
-    maxPopulation: 16,
-    happiness: 86,
-    logs: [],
-    nextId: 1000,
-    rallyUntil: 0,
-    equippedDoctrine: null,
-    stats: {
-      gathered: 0,
-      built: 0,
-      recruited: 0,
-      goldProgress: 0,
-      foodProgress: 0,
-    },
+    elapsed: 0, day: 1, population: 13, maxPopulation: 16, happiness: 86,
+    logs: [], nextId: 1000, rallyUntil: 0, equippedDoctrine: null,
+    stats: { gathered: 0, built: 0, recruited: 0, goldProgress: 0, foodProgress: 0 },
   };
-  const addBuilding = (
-    id: string,
-    kind: BuildingKind,
-    x: number,
-    y: number,
-  ) => {
+  const home = clans[0].base;
+  const dx = home.x - 23.5, dy = home.y - 22.5;
+  const local = (x: number, y: number): Point => ({ x: x + dx, y: y + dy });
+  // Settlement clearings leave room for entrances, courtyards, and construction.
+  paint(10 + dx, 10 + dy, 29, 24, "grass");
+  for (const clan of clans.slice(1)) paint(clan.base.x - 7, clan.base.y - 8, 15, 13, "grass");
+  paint(49, 34, 18, 16, "dirt");
+  const hub = { x: 61, y: 47 };
+  road([home, local(34, 22), { x: 44, y: 31 }, { x: 49, y: 36 }, { x: 50, y: 47 }, hub]);
+  road([clans[1].base, { x: 77, y: 34 }, { x: 68, y: 40 }, { x: 64, y: 47 }, hub]);
+  road([clans[2].base, { x: 35, y: 53 }, { x: 46, y: 47 }, hub]);
+  road([clans[3].base, { x: 76, y: 54 }, { x: 69, y: 48 }, hub]);
+  road([clans[4].base, { x: 30, y: 65 }, clans[2].base]);
+  road([clans[5].base, { x: 85, y: 65 }, clans[3].base]);
+  road([clans[6].base, { x: 68, y: 26 }, { x: 68, y: 40 }]);
+  road([clans[7].base, { x: 19, y: 78 }, clans[4].base]);
+  road([clans[2].base, { x: 24, y: 40 }, local(23, 32), home]);
+  // A quay is a walkable structure. Open water remains blocked on every side.
+  paint(27, 80, 5, 9, "bridge");
+  paint(80, 80, 5, 9, "bridge");
+  road([clans[4].base, { x: 29, y: 81 }]);
+  road([clans[5].base, { x: 82, y: 81 }]);
+  paint(14 + dx, 21 + dy, 22, 2, "dirt");
+  paint(25 + dx, 12 + dy, 2, 21, "dirt");
+  paint(18 + dx, 16 + dy, 2, 15, "dirt");
+  paint(18 + dx, 15 + dy, 12, 2, "dirt");
+  paint(18 + dx, 26 + dy, 14, 2, "dirt");
+  paint(20 + dx, 21 + dy, 7, 5, "dirt");
+  const addBuilding = (id: string, kind: BuildingKind, x: number, y: number, clanId = clans[0].id) => {
     const spec = BUILDING_SPECS[kind];
-    state.buildings.push({
-      id,
-      kind,
-      x,
-      y,
-      w: spec.w,
-      h: spec.h,
-      progress: 1,
-      hp: 100,
-      stock: kind === "farm" ? 250 : 0,
-    });
+    state.buildings.push({ id, kind, x: Math.floor(x), y: Math.floor(y), w: spec.w, h: spec.h, progress: 1, hp: 100, stock: kind === "farm" ? 250 : 0, clanId });
     paint(x, y, spec.w, spec.h, kind === "farm" ? "farm" : "dirt");
   };
-  addBuilding("hall", "hall", 21, 18);
-  addBuilding("house-west", "house", 15, 17);
-  addBuilding("house-east", "house", 27, 17);
-  addBuilding("house-south", "house", 20, 24);
-  addBuilding("lumber-lodge", "lumber", 13, 24);
-  addBuilding("quarry-lodge", "mine", 30, 23);
-  addBuilding("wheat-field", "farm", 22, 28);
-  addBuilding("village-well", "well", 24, 24);
-  addBuilding("north-watch", "watchtower", 29, 11);
-  const buildingNear = (x: number, y: number, margin = 1) =>
-    state.buildings.some(
-      (building) =>
-        x >= building.x - margin &&
-        y >= building.y - margin &&
-        x < building.x + building.w + margin &&
-        y < building.y + building.h + margin,
-    );
-  const addObject = (kind: ObjectKind, x: number, y: number, stock: number) => {
-    if (
-      tiles[y]?.[x]?.terrain !== "grass" ||
-      buildingNear(x, y) ||
-      state.objects.some(
-        (object) => Math.floor(object.x) === x && Math.floor(object.y) === y,
-      )
-    )
-      return;
-    state.objects.push({
-      id: `resource-${state.objects.length}`,
-      kind,
-      x: x + 0.5,
-      y: y + 0.5,
-      stock,
-      maxStock: stock,
-      variant: Math.floor(rng() * 4),
-    });
-  };
-  for (let y = 2; y < 38; y++)
-    for (let x = 2; x < 46; x++) {
-      const westGrove = x < 14 && y > 8 && y < 29;
-      const northGrove = y < 11 && x < 31;
-      const southGrove = y > 32;
-      const eastGrove = x > 39;
-      const edge = x < 4 || y < 4 || x > 44 || y > 36;
-      const chance = westGrove
-        ? 0.36
-        : northGrove
-          ? 0.33
-          : southGrove
-            ? 0.24
-            : eastGrove
-              ? 0.3
-              : edge
-                ? 0.4
-                : 0.023;
-      if (rng() < chance)
-        addObject(
-          rng() < 0.2 ? "oak" : rng() < 0.35 ? "pine" : "tree",
-          x,
-          y,
-          75 + Math.floor(rng() * 75),
-        );
-    }
-  for (const [x, y] of [
-    [32, 28],
-    [34, 27],
-    [34, 25],
-    [36, 26],
-    [33, 30],
-    [35, 29],
-    [31, 29],
-    [37, 28],
-  ])
-    addObject("rock", x, y, 160);
-  for (const [x, y] of [
-    [35, 24],
-    [37, 25],
-    [36, 30],
-  ])
-    addObject("iron", x, y, 100);
-  for (const [x, y] of [
-    [16, 29],
-    [17, 30],
-    [15, 31],
-    [28, 30],
-    [28, 31],
-    [29, 32],
-  ])
-    addObject("berry", x, y, 80);
-  // These young trees guarantee an accessible first logging task near the village.
-  for (const [x, y] of [
-    [12, 19],
-    [11, 20],
-    [12, 22],
-    [10, 22],
-  ])
-    addObject("tree", x, y, 100);
-  const starts = [
-    [23.5, 22.5],
-    [17.5, 22.5],
-    [19.5, 23.5],
-    [25.5, 24.5],
-    [28.5, 22.5],
-    [26.5, 26.5],
-    [20.5, 27.5],
-    [17.5, 25.5],
-    [29.5, 26.5],
-    [22.5, 22.5],
-    [25.5, 17.5],
-    [18.5, 20.5],
-    [27.5, 20.5],
+  const village: [string, BuildingKind, number, number][] = [
+    ["hall", "hall", 21, 18], ["house-west", "house", 15, 17],
+    ["house-east", "house", 27, 17], ["house-south", "house", 20, 24],
+    ["lumber-lodge", "lumber", 13, 24], ["quarry-lodge", "mine", 30, 23],
+    ["wheat-field", "farm", 22, 28], ["village-well", "well", 24, 24],
+    ["north-watch", "watchtower", 29, 11],
   ];
-  starts.forEach(([x, y], index) =>
-    state.units.push(
-      createUnit(
-        state,
-        index === 0 ? "Elder Aldric" : NAMES[index],
-        index === 0 ? "elder" : index === 12 ? "guard" : "clansman",
-        x,
-        y,
-        index,
-      ),
-    ),
-  );
-  state.maxPopulation = state.buildings.reduce(
-    (count, building) => count + BUILDING_SPECS[building.kind].housing,
-    0,
-  );
+  for (const [id, kind, x, y] of village) addBuilding(id, kind, x + dx, y + dy);
+  for (const clan of clans.slice(1)) {
+    const bx = Math.floor(clan.base.x), by = Math.floor(clan.base.y);
+    paint(bx - 5, by, 12, 2, "dirt");
+    addBuilding(`${clan.id}-hall`, "hall", bx - 2, by - 4, clan.id);
+    addBuilding(`${clan.id}-house`, "house", bx - 6, by - 2, clan.id);
+    addBuilding(`${clan.id}-store`, clan.regionId === "mountains" ? "forge" : clan.regionId.includes("farms") ? "farm" : clan.regionId.includes("docks") ? "storehouse" : "chapel", bx + 3, by - 3, clan.id);
+  }
+  addBuilding("unicorn-market", "market", 50, 35, "neutral");
+  addBuilding("unicorn-chapel", "chapel", 63, 35, "neutral");
+  addBuilding("unicorn-tavern", "tavern", 50, 43, "neutral");
+  addBuilding("west-gate", "watchtower", 47, 41, "neutral");
+  addBuilding("east-gate", "watchtower", 68, 43, "neutral");
+  for (const [x, y, w, h] of [[11, 49, 6, 8], [32, 57, 6, 5], [77, 56, 6, 6], [96, 49, 8, 8]]) {
+    paint(x, y, w, h, "farm");
+  }
+  const buildingNear = (x: number, y: number, margin = 1) => state.buildings.some((building) =>
+    x >= building.x - margin && y >= building.y - margin && x < building.x + building.w + margin && y < building.y + building.h + margin);
+  const occupied = new Set<number>();
+  const addObject = (kind: ObjectKind, x: number, y: number, stock: number) => {
+    x = Math.floor(x); y = Math.floor(y);
+    if (tiles[y]?.[x]?.terrain !== "grass" || buildingNear(x, y) || occupied.has(key(state, x, y))) return;
+    occupied.add(key(state, x, y));
+    state.objects.push({ id: `resource-${state.objects.length}`, kind, x: x + 0.5, y: y + 0.5, stock, maxStock: stock, variant: Math.floor(rng() * 4) });
+  };
+  // Nearby resources retain the established opening economy and travel distances.
+  for (const [x, y] of [[12, 19], [11, 20], [12, 22], [10, 22]]) addObject("tree", x + dx, y + dy, 100);
+  for (const [x, y] of [[32, 28], [34, 27], [34, 25], [36, 26], [33, 30], [35, 29], [31, 29], [37, 28]]) addObject("rock", x + dx, y + dy, 160);
+  for (const [x, y] of [[35, 24], [37, 25], [36, 30]]) addObject("iron", x + dx, y + dy, 100);
+  for (const [x, y] of [[16, 29], [17, 30], [15, 31], [28, 30], [28, 31], [29, 32]]) addObject("berry", x + dx, y + dy, 80);
+  for (let y = 1; y < state.height - 1; y++)
+    for (let x = 1; x < state.width - 1; x++) {
+      const inVillage = x >= 10 + dx && x < 39 + dx && y >= 10 + dy && y < 34 + dy;
+      const nearBase = clans.some((clan) => Math.abs(x - clan.base.x) < 8 && Math.abs(y - clan.base.y) < 8);
+      if (inVillage || nearBase) continue;
+      const grove = Math.sin(x * 0.19) + Math.cos(y * 0.23) + Math.sin((x + y) * 0.11);
+      const woodland = y < 38 && x < 73;
+      const chance = woodland ? (grove > -0.2 ? 0.43 : 0.16) : y < 81 ? (grove > 1 ? 0.15 : 0.028) : 0.015;
+      if (rng() < chance) addObject(rng() < 0.18 ? "oak" : y < 30 && rng() < 0.6 ? "pine" : "tree", x, y, 75 + Math.floor(rng() * 75));
+      if (x > 75 && y < 39 && rng() < 0.085) addObject(rng() < 0.28 ? "iron" : "rock", x, y, 160);
+      if (y > 40 && y < 70 && rng() < 0.012) addObject("berry", x, y, 80);
+    }
+  const starts = [[23.5, 22.5], [17.5, 22.5], [19.5, 23.5], [25.5, 24.5], [28.5, 22.5], [26.5, 26.5], [20.5, 27.5], [17.5, 25.5], [29.5, 26.5], [22.5, 22.5], [25.5, 17.5], [18.5, 20.5], [27.5, 20.5]];
+  starts.forEach(([x, y], index) => state.units.push(createUnit(state, index === 0 ? "Elder Aldric" : NAMES[index], index === 0 ? "elder" : index === 12 ? "guard" : "clansman", x + dx, y + dy, index)));
+  state.maxPopulation = state.buildings.filter((building) => isPlayerBuilding(state, building)).reduce((count, building) => count + BUILDING_SPECS[building.kind].housing, 0);
   log(state, "The clan awaits Elder Aldric's orders.", "clan");
-  const woods = state.objects
-    .filter((object) => resourceForObject(object) === "timber")
-    .sort(
-      (a, b) => distance(a, { x: 14, y: 22 }) - distance(b, { x: 14, y: 22 }),
-    );
-  const rocks = state.objects.filter((object) => object.kind === "rock");
-  for (const [index, object] of [
-    [1, woods[0]],
-    [2, woods[1]],
-    [4, rocks[0]],
-    [8, rocks[1]],
-  ] as const)
-    if (object)
-      assignOrder(state, state.units[index], {
-        type: "gather",
-        targetId: object.id,
-      });
-  assignOrder(state, state.units[5], {
-    type: "gather",
-    targetId: "wheat-field",
-  });
-  assignOrder(state, state.units[6], {
-    type: "gather",
-    targetId: "wheat-field",
-  });
-  assignOrder(state, state.units[12], { type: "guard", x: 29.5, y: 15.5 });
+  const woods = state.objects.filter((object) => resourceForObject(object) === "timber").sort((a, b) => distance(a, local(14, 22)) - distance(b, local(14, 22)));
+  const rocks = state.objects.filter((object) => object.kind === "rock").sort((a, b) => distance(a, local(33, 27)) - distance(b, local(33, 27)));
+  for (const [index, object] of [[1, woods[0]], [2, woods[1]], [4, rocks[0]], [8, rocks[1]]] as const)
+    if (object) assignOrder(state, state.units[index], { type: "gather", targetId: object.id });
+  assignOrder(state, state.units[5], { type: "gather", targetId: "wheat-field" });
+  assignOrder(state, state.units[6], { type: "gather", targetId: "wheat-field" });
+  assignOrder(state, state.units[12], { type: "guard", ...local(29.5, 15.5) });
   return state;
+}
+
+/** Neutral and neighboring clan buildings don't contribute to the player's economy. */
+export function isPlayerBuilding(state: ClanWorld, building: Building): boolean {
+  return !building.clanId || building.clanId === state.clans?.find((clan) => clan.player)?.id;
 }
 
 export function isClanWalkable(
@@ -599,7 +553,7 @@ export function isClanWalkable(
     ty < 0 ||
     tx >= state.width ||
     ty >= state.height ||
-    state.tiles[ty][tx].terrain === "water"
+    ["water", "mountain", "snow"].includes(state.tiles[ty][tx].terrain)
   )
     return false;
   if (
@@ -612,6 +566,9 @@ export function isClanWalkable(
         ty < building.y + building.h,
     )
   )
+    return false;
+  const monument = state.monument;
+  if (monument && tx >= monument.x && ty >= monument.y && tx < monument.x + monument.w && ty < monument.y + monument.h)
     return false;
   return !state.objects.some(
     (object) =>
@@ -626,15 +583,18 @@ function walkableGrid(state: ClanWorld): Uint8Array {
   const grid = new Uint8Array(state.width * state.height).fill(1);
   for (let y = 0; y < state.height; y++)
     for (let x = 0; x < state.width; x++)
-      if (state.tiles[y][x].terrain === "water") grid[key(x, y)] = 0;
+      if (["water", "mountain", "snow"].includes(state.tiles[y][x].terrain)) grid[key(state, x, y)] = 0;
+  if (state.monument)
+    for (let y = state.monument.y; y < state.monument.y + state.monument.h; y++)
+      for (let x = state.monument.x; x < state.monument.x + state.monument.w; x++) grid[key(state, x, y)] = 0;
   for (const building of state.buildings)
     if (building.kind !== "farm")
       for (let y = building.y; y < building.y + building.h; y++)
         for (let x = building.x; x < building.x + building.w; x++)
-          grid[key(x, y)] = 0;
+          grid[key(state, x, y)] = 0;
   for (const object of state.objects)
     if (object.kind !== "stump" && object.kind !== "reeds")
-      grid[key(Math.floor(object.x), Math.floor(object.y))] = 0;
+      grid[key(state, Math.floor(object.x), Math.floor(object.y))] = 0;
   return grid;
 }
 
@@ -729,8 +689,8 @@ export function findClanPath(
     tx = Math.floor(target.x),
     ty = Math.floor(target.y);
   if (sx < 0 || sy < 0 || sx >= state.width || sy >= state.height) return [];
-  const start = key(sx, sy),
-    end = key(tx, ty);
+  const start = key(state, sx, sy),
+    end = key(state, tx, ty);
   if (start === end) return distance(from, target) > 0.05 ? [target] : [];
   const grid = walkableGrid(state);
   const score = new Float64Array(grid.length).fill(Infinity);
@@ -767,12 +727,12 @@ export function findClanPath(
           y < 0 ||
           x >= state.width ||
           y >= state.height ||
-          !grid[key(x, y)]
+          !grid[key(state, x, y)]
         )
           continue;
-        if (dx && dy && (!grid[key(cx + dx, cy)] || !grid[key(cx, cy + dy)]))
+        if (dx && dy && (!grid[key(state, cx + dx, cy)] || !grid[key(state, cx, cy + dy)]))
           continue;
-        const id = key(x, y),
+        const id = key(state, x, y),
           next = score[current] + (dx && dy ? Math.SQRT2 : 1);
         if (next >= score[id]) continue;
         parents[id] = current;
@@ -822,6 +782,7 @@ function gatherTarget(
     state.buildings.find(
       (building) =>
         building.id === id &&
+        isPlayerBuilding(state, building) &&
         building.kind === "farm" &&
         building.progress >= 1 &&
         building.stock >= 1,
@@ -854,6 +815,7 @@ function returnCargo(state: ClanWorld, unit: ClanUnit): boolean {
     .filter(
       (building) =>
         building.progress >= 1 &&
+        isPlayerBuilding(state, building) &&
         (building.kind === "hall" ||
           building.kind === "storehouse" ||
           (resource === "timber" && building.kind === "lumber") ||
@@ -939,7 +901,7 @@ function assignOrder(state: ClanWorld, unit: ClanUnit, order: ClanOrder) {
   }
   if (order.type === "construct") {
     const building = state.buildings.find(
-      (item) => item.id === order.targetId && item.progress < 1,
+      (item) => item.id === order.targetId && item.progress < 1 && isPlayerBuilding(state, item),
     );
     if (!building || !routeAdjacent(state, unit, building)) {
       completeOrder(state, unit);
@@ -1031,6 +993,7 @@ export function issueOrder(
     const spec = BUILDING_SPECS[order.buildingKind];
     const building: Building = {
       id: `building-${next.nextId++}`,
+      clanId: next.clans.find((clan) => clan.player)?.id,
       kind: order.buildingKind,
       x: Math.floor(order.x),
       y: Math.floor(order.y),
@@ -1138,7 +1101,7 @@ export function issueOrder(
 export function elderWorkMultiplier(state: ClanWorld, unit: ClanUnit): number {
   const elder = state.units.find((member) => member.role === "elder");
   const radius = state.buildings.some(
-    (building) => building.kind === "chapel" && building.progress >= 1,
+    (building) => building.kind === "chapel" && building.progress >= 1 && isPlayerBuilding(state, building),
   )
     ? 10
     : 6;
@@ -1176,6 +1139,15 @@ function face(unit: ClanUnit, target: Point) {
   unit.facing = directions[(Math.round(angle / (Math.PI / 4)) + 8) % 8];
 }
 
+/** Continuous motion obeys the same corner rule as the tile pathfinder. */
+function canWalkStep(state: ClanWorld, from: Point, to: Point): boolean {
+  if (!isClanWalkable(state, to.x, to.y)) return false;
+  const fromX = Math.floor(from.x), fromY = Math.floor(from.y);
+  const toX = Math.floor(to.x), toY = Math.floor(to.y);
+  return fromX === toX || fromY === toY ||
+    (isClanWalkable(state, toX, fromY) && isClanWalkable(state, fromX, toY));
+}
+
 function walk(state: ClanWorld, unit: ClanUnit, seconds: number) {
   let budget =
     CLAN_WALK_SPEED *
@@ -1187,19 +1159,28 @@ function walk(state: ClanWorld, unit: ClanUnit, seconds: number) {
   while (budget > 0 && unit.path.length) {
     const target = unit.path[0];
     if (!isClanWalkable(state, target.x, target.y)) {
-      if (unit.routeTarget) routeTo(state, unit, unit.routeTarget);
+      if (!unit.routeTarget || !routeTo(state, unit, unit.routeTarget)) completeOrder(state, unit);
       break;
     }
     const length = distance(unit, target);
     face(unit, target);
+    const ratio = length > 0 ? Math.min(1, budget / length) : 1;
+    const position = {
+      x: unit.x + (target.x - unit.x) * ratio,
+      y: unit.y + (target.y - unit.y) * ratio,
+    };
+    if (!canWalkStep(state, unit, position)) {
+      if (!unit.routeTarget || !routeTo(state, unit, unit.routeTarget)) completeOrder(state, unit);
+      break;
+    }
     if (length <= budget) {
-      unit.x = target.x;
-      unit.y = target.y;
+      unit.x = position.x;
+      unit.y = position.y;
       unit.path.shift();
       budget -= length;
     } else {
-      unit.x += ((target.x - unit.x) / length) * budget;
-      unit.y += ((target.y - unit.y) / length) * budget;
+      unit.x = position.x;
+      unit.y = position.y;
       budget = 0;
     }
   }
@@ -1341,7 +1322,7 @@ function advanceUnit(state: ClanWorld, unit: ClanUnit, seconds: number) {
     );
     const resource = targetResource(target);
     const tools = state.buildings.some(
-      (building) => building.kind === "forge" && building.progress >= 1,
+      (building) => building.kind === "forge" && building.progress >= 1 && isPlayerBuilding(state, building),
     )
       ? 1.2
       : 1;
@@ -1351,6 +1332,7 @@ function advanceUnit(state: ClanWorld, unit: ClanUnit, seconds: number) {
         (building) =>
           building.kind === "lumber" &&
           building.progress >= 1 &&
+          isPlayerBuilding(state, building) &&
           distance(unit, {
             x: building.x + building.w / 2,
             y: building.y + building.h / 2,
@@ -1404,7 +1386,7 @@ function separateUnits(state: ClanWorld) {
       ] as const) {
         const x = unit.x + dx * push * sign,
           y = unit.y + dy * push * sign;
-        if (isClanWalkable(state, x, y)) {
+        if (canWalkStep(state, unit, { x, y })) {
           unit.x = x;
           unit.y = y;
         }
@@ -1432,7 +1414,7 @@ export function tickClan(state: ClanWorld, seconds: number): ClanWorld {
       next.stats.foodProgress -= food;
     }
     const market = next.buildings.filter(
-      (building) => building.kind === "market" && building.progress >= 1,
+      (building) => building.kind === "market" && building.progress >= 1 && isPlayerBuilding(next, building),
     ).length;
     next.stats.goldProgress += step * (0.035 + market * 0.18);
     if (next.stats.goldProgress >= 1) {
@@ -1440,7 +1422,7 @@ export function tickClan(state: ClanWorld, seconds: number): ClanWorld {
       next.stats.goldProgress %= 1;
     }
     const tavern = next.buildings.some(
-      (building) => building.kind === "tavern" && building.progress >= 1,
+      (building) => building.kind === "tavern" && building.progress >= 1 && isPlayerBuilding(next, building),
     );
     const targetHappiness = Math.min(
       100,
@@ -1454,6 +1436,7 @@ export function tickClan(state: ClanWorld, seconds: number): ClanWorld {
           (building) =>
             building.kind === "well" &&
             building.progress >= 1 &&
+            isPlayerBuilding(next, building) &&
             distance(unit, { x: building.x + 0.5, y: building.y + 0.5 }) < 4,
         )
       )
@@ -1474,7 +1457,7 @@ export function recruitClansman(state: ClanWorld): ClanWorld {
     return next;
   }
   const hall = next.buildings.find(
-    (building) => building.kind === "hall" && building.progress >= 1,
+    (building) => building.kind === "hall" && building.progress >= 1 && isPlayerBuilding(next, building),
   );
   if (!hall) return state;
   const spawn = adjacentPoints(next, hall).sort(
@@ -1521,17 +1504,48 @@ function validOrder(order: unknown): order is ClanOrder {
   return false;
 }
 
+/** Keep the original village and its economy intact inside the larger realm. */
+function expandSavedVillage(village: ClanWorld): ClanWorld {
+  const expanded = createClanWorld(village.seed);
+  const player = expanded.clans.find((clan) => clan.player)!;
+  const hall = village.buildings.find((building) => building.kind === "hall");
+  if (hall) player.base = { x: hall.x + hall.w / 2 + 0.5, y: hall.y + hall.h + 1.5 };
+  for (let y = 0; y < village.height; y++)
+    for (let x = 0; x < village.width; x++) expanded.tiles[y][x] = village.tiles[y][x];
+  expanded.objects = [
+    ...village.objects,
+    ...expanded.objects.filter((object) => object.x >= village.width || object.y >= village.height)
+      .map((object) => ({ ...object, id: `frontier-${object.id}` })),
+  ];
+  expanded.buildings = [
+    ...village.buildings.map((building) => ({ ...building, clanId: player.id })),
+    ...expanded.buildings.filter((building) => building.clanId !== player.id &&
+      (building.x >= village.width || building.y >= village.height)),
+  ];
+  return {
+    ...village,
+    width: expanded.width,
+    height: expanded.height,
+    tiles: expanded.tiles,
+    objects: expanded.objects,
+    buildings: expanded.buildings,
+    regions: expanded.regions,
+    clans: expanded.clans,
+    monument: expanded.monument,
+  };
+}
+
 /** Reject malformed saves rather than allowing stale paths or invalid map geometry. */
 export function loadClanWorld(storage: StorageLike, seed = 7331): ClanWorld {
   const fresh = () => createClanWorld(seed);
   try {
     const raw = storage.getItem(CLAN_SAVE_KEY);
     if (!raw || raw.length > 2_000_000) return fresh();
-    const data = JSON.parse(raw) as ClanWorld;
+    let data = JSON.parse(raw) as ClanWorld;
+    const legacy = data.width === 48 && data.height === 40;
     if (
       data.version !== 2 ||
-      data.width !== CLAN_WORLD_WIDTH ||
-      data.height !== CLAN_WORLD_HEIGHT ||
+      (!legacy && (data.width !== CLAN_WORLD_WIDTH || data.height !== CLAN_WORLD_HEIGHT)) ||
       !finite(data.seed) ||
       !finite(data.elapsed) ||
       data.elapsed < 0 ||
@@ -1540,15 +1554,15 @@ export function loadClanWorld(storage: StorageLike, seed = 7331): ClanWorld {
       return fresh();
     if (
       !Array.isArray(data.tiles) ||
-      data.tiles.length !== CLAN_WORLD_HEIGHT ||
+      data.tiles.length !== data.height ||
       data.tiles.some(
         (row) =>
           !Array.isArray(row) ||
-          row.length !== CLAN_WORLD_WIDTH ||
+          row.length !== data.width ||
           row.some(
             (tile) =>
               !tile ||
-              !["grass", "dirt", "water", "sand", "farm", "bridge"].includes(
+              !["grass", "dirt", "water", "sand", "farm", "bridge", "mountain", "snow"].includes(
                 tile.terrain,
               ),
           ),
@@ -1562,7 +1576,7 @@ export function loadClanWorld(storage: StorageLike, seed = 7331): ClanWorld {
       !Array.isArray(data.buildings) ||
       data.buildings.length > 150 ||
       !Array.isArray(data.objects) ||
-      data.objects.length > 1500
+      data.objects.length > 12000
     )
       return fresh();
     const validPoint = (point: Point) =>
@@ -1571,8 +1585,8 @@ export function loadClanWorld(storage: StorageLike, seed = 7331): ClanWorld {
       finite(point.y) &&
       point.x >= 0 &&
       point.y >= 0 &&
-      point.x < CLAN_WORLD_WIDTH &&
-      point.y < CLAN_WORLD_HEIGHT;
+      point.x < data.width &&
+      point.y < data.height;
     if (
       data.buildings.some(
         (building) =>
@@ -1667,9 +1681,23 @@ export function loadClanWorld(storage: StorageLike, seed = 7331): ClanWorld {
       new Set(data.units.map((unit) => unit.id)).size !== data.units.length
     )
       return fresh();
+    if (legacy) data = expandSavedVillage(data);
+    else {
+      const reference = createClanWorld(data.seed);
+      // Region names and objective costs are authored world data, not saved input.
+      data.regions = reference.regions;
+      data.clans = reference.clans.map((clan) => {
+        const saved = Array.isArray(data.clans) ? data.clans.find((item) => item?.id === clan.id) : undefined;
+        return saved && validPoint(saved.base) ? { ...clan, base: saved.base } : clan;
+      });
+      data.monument = {
+        ...reference.monument,
+        progress: finite(data.monument?.progress) ? Math.max(0, Math.min(1, data.monument.progress)) : 0,
+      };
+    }
     data.population = data.units.length;
     data.maxPopulation = data.buildings
-      .filter((building) => building.progress >= 1)
+      .filter((building) => building.progress >= 1 && isPlayerBuilding(data, building))
       .reduce(
         (sum, building) => sum + BUILDING_SPECS[building.kind].housing,
         0,

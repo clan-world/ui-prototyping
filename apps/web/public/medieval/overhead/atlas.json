@@ -1,0 +1,596 @@
+{
+  "buildings": {
+    "file": "overhead/buildings.png",
+    "width": 1448,
+    "height": 1086,
+    "columns": 4,
+    "rows": 3,
+    "hasAlpha": true,
+    "fullyTransparentPercent": 45.2,
+    "cells": [
+      {
+        "index": 0,
+        "name": "hall",
+        "source": [
+          0,
+          0,
+          440,
+          345
+        ],
+        "trim": [
+          12,
+          50,
+          421,
+          280
+        ],
+        "anchor": [
+          222.5,
+          330
+        ]
+      },
+      {
+        "index": 1,
+        "name": "house",
+        "source": [
+          440,
+          0,
+          318,
+          329
+        ],
+        "trim": [
+          450,
+          42,
+          283,
+          277
+        ],
+        "anchor": [
+          151.5,
+          319
+        ]
+      },
+      {
+        "index": 2,
+        "name": "lumber",
+        "source": [
+          758,
+          0,
+          361,
+          350
+        ],
+        "trim": [
+          781,
+          104,
+          322,
+          239
+        ],
+        "anchor": [
+          184.0,
+          343
+        ]
+      },
+      {
+        "index": 3,
+        "name": "mine",
+        "source": [
+          1119,
+          0,
+          329,
+          350
+        ],
+        "trim": [
+          1127,
+          57,
+          308,
+          273
+        ],
+        "anchor": [
+          162.0,
+          330
+        ]
+      },
+      {
+        "index": 4,
+        "name": "farm",
+        "source": [
+          0,
+          350,
+          445,
+          337
+        ],
+        "trim": [
+          13,
+          453,
+          401,
+          219
+        ],
+        "anchor": [
+          213.5,
+          322
+        ]
+      },
+      {
+        "index": 5,
+        "name": "watchtower",
+        "source": [
+          445,
+          329,
+          298,
+          378
+        ],
+        "trim": [
+          508,
+          332,
+          160,
+          363
+        ],
+        "anchor": [
+          143.0,
+          366
+        ]
+      },
+      {
+        "index": 6,
+        "name": "well",
+        "source": [
+          743,
+          350,
+          293,
+          357
+        ],
+        "trim": [
+          798,
+          466,
+          186,
+          223
+        ],
+        "anchor": [
+          148.0,
+          339
+        ]
+      },
+      {
+        "index": 7,
+        "name": "storehouse",
+        "source": [
+          1036,
+          350,
+          412,
+          337
+        ],
+        "trim": [
+          1081,
+          406,
+          358,
+          274
+        ],
+        "anchor": [
+          224.0,
+          330
+        ]
+      },
+      {
+        "index": 8,
+        "name": "tavern",
+        "source": [
+          0,
+          687,
+          406,
+          399
+        ],
+        "trim": [
+          36,
+          691,
+          344,
+          337
+        ],
+        "anchor": [
+          208.0,
+          341
+        ]
+      },
+      {
+        "index": 9,
+        "name": "forge",
+        "source": [
+          406,
+          707,
+          332,
+          379
+        ],
+        "trim": [
+          429,
+          720,
+          300,
+          319
+        ],
+        "anchor": [
+          173.0,
+          332
+        ]
+      },
+      {
+        "index": 10,
+        "name": "market",
+        "source": [
+          738,
+          707,
+          372,
+          379
+        ],
+        "trim": [
+          748,
+          818,
+          351,
+          209
+        ],
+        "anchor": [
+          185.5,
+          320
+        ]
+      },
+      {
+        "index": 11,
+        "name": "chapel",
+        "source": [
+          1110,
+          687,
+          338,
+          399
+        ],
+        "trim": [
+          1126,
+          689,
+          283,
+          353
+        ],
+        "anchor": [
+          157.5,
+          355
+        ]
+      }
+    ]
+  },
+  "props": {
+    "file": "overhead/props.png",
+    "width": 1448,
+    "height": 1086,
+    "columns": 4,
+    "rows": 3,
+    "hasAlpha": true,
+    "fullyTransparentPercent": 50.36,
+    "cells": [
+      {
+        "index": 0,
+        "name": "oak",
+        "source": [
+          0,
+          0,
+          410,
+          450
+        ],
+        "trim": [
+          26,
+          22,
+          370,
+          408
+        ],
+        "anchor": [
+          211.0,
+          430
+        ]
+      },
+      {
+        "index": 1,
+        "name": "birch",
+        "source": [
+          410,
+          0,
+          315,
+          450
+        ],
+        "trim": [
+          422,
+          22,
+          284,
+          407
+        ],
+        "anchor": [
+          154.0,
+          429
+        ]
+      },
+      {
+        "index": 2,
+        "name": "pine",
+        "source": [
+          725,
+          0,
+          353,
+          450
+        ],
+        "trim": [
+          776,
+          20,
+          276,
+          409
+        ],
+        "anchor": [
+          189.0,
+          429
+        ]
+      },
+      {
+        "index": 3,
+        "name": "appletree",
+        "source": [
+          1078,
+          0,
+          370,
+          450
+        ],
+        "trim": [
+          1098,
+          79,
+          330,
+          348
+        ],
+        "anchor": [
+          185.0,
+          427
+        ]
+      },
+      {
+        "index": 4,
+        "name": "granite",
+        "source": [
+          0,
+          450,
+          410,
+          279
+        ],
+        "trim": [
+          30,
+          473,
+          313,
+          242
+        ],
+        "anchor": [
+          186.5,
+          265
+        ]
+      },
+      {
+        "index": 5,
+        "name": "iron",
+        "source": [
+          410,
+          450,
+          315,
+          279
+        ],
+        "trim": [
+          441,
+          485,
+          249,
+          224
+        ],
+        "anchor": [
+          155.5,
+          259
+        ]
+      },
+      {
+        "index": 6,
+        "name": "copper",
+        "source": [
+          725,
+          450,
+          353,
+          279
+        ],
+        "trim": [
+          782,
+          493,
+          257,
+          222
+        ],
+        "anchor": [
+          185.5,
+          265
+        ]
+      },
+      {
+        "index": 7,
+        "name": "berry",
+        "source": [
+          1078,
+          450,
+          370,
+          279
+        ],
+        "trim": [
+          1135,
+          506,
+          270,
+          209
+        ],
+        "anchor": [
+          192.0,
+          265
+        ]
+      },
+      {
+        "index": 8,
+        "name": "logs",
+        "source": [
+          0,
+          729,
+          410,
+          357
+        ],
+        "trim": [
+          37,
+          782,
+          315,
+          264
+        ],
+        "anchor": [
+          194.5,
+          317
+        ]
+      },
+      {
+        "index": 9,
+        "name": "crate",
+        "source": [
+          410,
+          729,
+          315,
+          357
+        ],
+        "trim": [
+          446,
+          770,
+          229,
+          260
+        ],
+        "anchor": [
+          150.5,
+          301
+        ]
+      },
+      {
+        "index": 10,
+        "name": "cart",
+        "source": [
+          725,
+          729,
+          353,
+          357
+        ],
+        "trim": [
+          744,
+          756,
+          314,
+          295
+        ],
+        "anchor": [
+          176.0,
+          322
+        ]
+      },
+      {
+        "index": 11,
+        "name": "runestone",
+        "source": [
+          1078,
+          729,
+          370,
+          357
+        ],
+        "trim": [
+          1167,
+          743,
+          223,
+          296
+        ],
+        "anchor": [
+          200.5,
+          310
+        ]
+      }
+    ]
+  },
+  "note": "PNG files are unmodified image generation outputs. Trim rectangles use alpha > 32. Source cells have explicit boundaries because generated layouts do not have perfectly uniform column widths or row heights. Anchors are bottom-center relative to source. Camera is raised orthographic with horizontal front edges.",
+  "landmarks": {
+    "file": "overhead/landmarks.png",
+    "width": 1254,
+    "height": 1254,
+    "columns": 2,
+    "rows": 2,
+    "hasAlpha": true,
+    "fullyTransparentPercent": 44.44,
+    "cells": [
+      {
+        "index": 0,
+        "name": "granite-ridge",
+        "source": [
+          0,
+          0,
+          630,
+          605
+        ],
+        "trim": [
+          9,
+          54,
+          613,
+          515
+        ],
+        "anchor": [
+          315.5,
+          569
+        ]
+      },
+      {
+        "index": 1,
+        "name": "snowy-ridge",
+        "source": [
+          630,
+          0,
+          624,
+          605
+        ],
+        "trim": [
+          639,
+          47,
+          603,
+          528
+        ],
+        "anchor": [
+          310.5,
+          575
+        ]
+      },
+      {
+        "index": 2,
+        "name": "monument",
+        "source": [
+          0,
+          605,
+          630,
+          649
+        ],
+        "trim": [
+          27,
+          615,
+          586,
+          552
+        ],
+        "anchor": [
+          320.0,
+          562
+        ]
+      },
+      {
+        "index": 3,
+        "name": "ruins",
+        "source": [
+          630,
+          605,
+          624,
+          649
+        ],
+        "trim": [
+          639,
+          657,
+          586,
+          519
+        ],
+        "anchor": [
+          302.0,
+          571
+        ]
+      }
+    ]
+  }
+}
