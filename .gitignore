@@ -14,3 +14,4 @@ artifacts/qa/village/*-trace.zip
 
 __pycache__/
 *.pyc
+ui-prototyping.bundle
