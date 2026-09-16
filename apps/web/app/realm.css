@@ -1,14 +1,3 @@
-@font-face {
-  font-family: "Uncial Antiqua";
-  src: url("/fonts/uncial-antiqua.ttf") format("truetype");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Cinzel";
-  src: url("/fonts/cinzel.woff2") format("woff2");
-  font-weight: 400 900;
-  font-display: swap;
-}
 :root {
   --realm-black: #141312;
   --realm-panel: #1b1a18;
@@ -17,11 +6,6 @@
   --realm-cream: #eee1bc;
   --realm-muted: #a69e85;
   --realm-frame: inset 0 0 0 1px #0c0c0b, inset 0 0 0 2px #75654a45, 0 3px 0 #0b0a09, 0 7px 22px #0a090770;
-  --game-arrow: url("/medieval/cursors/arrow.svg") 4 3, default;
-  --game-pointer: url("/medieval/cursors/pointer.svg") 6 3, pointer;
-  --game-grab: url("/medieval/cursors/grab.svg") 19 20, grab;
-  --game-grabbing: url("/medieval/cursors/grabbing.svg") 19 20, grabbing;
-  --game-blocked: url("/medieval/cursors/blocked.svg") 20 20, not-allowed;
 }
 body { font-family: "Uncial Antiqua", Georgia, serif; background: #161411; color: var(--realm-cream); }
 .clan-game { min-height: 320px; cursor: var(--game-arrow); }
@@ -214,8 +198,6 @@ body { font-family: "Uncial Antiqua", Georgia, serif; background: #161411; color
   --realm-black: #17130f;
   --realm-panel: #241c16;
   --realm-muted: #b8a68c;
-  --realm-stone: url("/medieval/hud/stone-frame.png");
-  --realm-paper: url("/medieval/hud/parchment.png");
   --realm-frame: 0 4px 0 #120d09, 0 7px 12px #130e0860;
 }
 body { background: #211d17; }
@@ -232,7 +214,7 @@ body { background: #211d17; }
 }
 .resource-bar { height: 65px; padding: 0 10px 0 0; gap: 9px; border-image-width: 9px; border-width: 6px; }
 .clan-wordmark { width: 206px; min-width: 206px; padding: 0; height: 77px; background: none; overflow: visible; }
-.clan-wordmark > .wordmark-art { display: block; width: 212px; height: 75px; background: url("/medieval/hud/wordmark.png") center / contain no-repeat; image-rendering: pixelated; filter: drop-shadow(0 3px 1px #120b06); }
+.clan-wordmark > .wordmark-art { display: block; width: 212px; height: 75px; background: var(--realm-wordmark) center / contain no-repeat; image-rendering: pixelated; filter: drop-shadow(0 3px 1px #120b06); }
 .clan-wordmark .mobile-crest { display: none; }
 .resource-counter { background: #16110de8; border: 2px solid #615040; border-radius: 5px; box-shadow: inset 0 2px 0 #0b0806, 0 1px 0 #ae947149; }
 .resource-counter > span { color: #f2dfb7; text-shadow: 2px 2px #060503; }
@@ -292,7 +274,7 @@ body { background: #211d17; }
 .wood-button, .wood-button:hover {
   border: 0;
   border-radius: 0;
-  background: url("/medieval/hud/button.png") center / 100% 135% no-repeat;
+  background: var(--realm-button) center / 100% 135% no-repeat;
   box-shadow: none;
   color: #fff0c6;
   text-shadow: 1px 2px #251407;
@@ -335,7 +317,7 @@ body { background: #211d17; }
 .manual-controls { background: #21170e; border-color: #78532f; }
 .charter-book-heading h2, .seal-opening h2 { color: #edd3a0; }
 .map-loading { background: linear-gradient(#21170ef0,#17110cf5), var(--realm-paper) center / 500px; }
-.map-loading strong { display: block; width: min(430px,75vw); height: 160px; color: transparent; background: url("/medieval/hud/wordmark.png") center / contain no-repeat; image-rendering: pixelated; }
+.map-loading strong { display: block; width: min(430px,75vw); height: 160px; color: transparent; background: var(--realm-wordmark) center / contain no-repeat; image-rendering: pixelated; }
 
 @media (min-width: 1500px) {
   .command-console { gap: 20px; }

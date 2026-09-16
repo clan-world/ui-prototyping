@@ -1,4 +1,5 @@
 import type { BuildingKind, ObjectKind, ClanUnit } from "@clan-world/shared";
+import { assetPath } from "../asset-path";
 
 export interface SpriteFrame {
   sx: number;
@@ -73,7 +74,7 @@ type WorldMeta = {
 };
 async function loadImage(path: string) {
   const img = new Image();
-  img.src = path;
+  img.src = assetPath(path);
   await img.decode();
   return img;
 }
@@ -115,11 +116,11 @@ let artPromise: Promise<VillageArt> | undefined;
 export function loadVillageArt(): Promise<VillageArt> {
   artPromise ??= (async () => {
     const [units, world] = await Promise.all([
-      fetch("/medieval/units-atlas.json").then((r) => {
+      fetch(assetPath("/medieval/units-atlas.json")).then((r) => {
         if (!r.ok) throw new Error("Unit atlas unavailable");
         return r.json() as Promise<Record<string, UnitMeta>>;
       }),
-      fetch("/medieval/overhead/atlas.json").then((r) => {
+      fetch(assetPath("/medieval/overhead/atlas.json")).then((r) => {
         if (!r.ok) throw new Error("World atlas unavailable");
         return r.json() as Promise<Record<string, WorldMeta>>;
       }),

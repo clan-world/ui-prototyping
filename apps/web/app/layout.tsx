@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { publicAssetCss } from "../lib/asset-path";
 import "./medieval.css";
 import "./realm.css";
 
@@ -28,7 +29,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <style>{publicAssetCss()}</style>
+        {children}
+      </body>
     </html>
   );
 }

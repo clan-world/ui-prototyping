@@ -24,8 +24,41 @@ Open [Clan World locally](http://localhost:3010). On this Mac, [Play Clan World.
 
 - Gameplay needs no database, API server, environment variables, or account.
 - For development access from a physical phone, add the computer's exact local network address to `allowedDevOrigins` in `apps/web/next.config.ts`, restart the server, and use that address on the same network.
-- To serve a production build, run `pnpm build`, then `pnpm --filter @clan-world/web start`. Both development and production use port 3010.
+- To serve a production build, run `pnpm --filter @clan-world/web build`, then `pnpm --filter @clan-world/web start`. The build is a static export in `apps/web/out`; both development and the static preview use port 3010.
 - The optional `pnpm dev:api` command starts the Effect API on `127.0.0.1:3011`. Its implemented endpoint is `GET /health`; the village does not call it.
+
+## Share the game (GitHub Pages)
+
+The playable village is a static site. Friends can open the project Pages URL after the first deploy:
+
+**https://clan-world.github.io/ui-prototyping/**
+
+Pushes to `main` build `apps/web` with `NEXT_PUBLIC_BASE_PATH=/ui-prototyping` and deploy through [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). Pull requests run the same static build without deploying.
+
+### First deploy (one-time)
+
+1. Merge this workflow to `main` (or run **Actions → Deploy GitHub Pages → Run workflow** on `main` after it lands).
+2. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+3. If the first deploy fails with a Pages-not-enabled error, set that source, then re-run the failed **deploy** job.
+4. Wait for the **Deploy GitHub Pages** workflow to finish. The environment URL is `https://clan-world.github.io/ui-prototyping/`.
+
+This repository is private. GitHub Pages on a private repo is either unavailable (Free org plan) or only visible to people who can see the repo. For a link friends can open without a GitHub login, use the least-painful path:
+
+- **Settings → General → Danger Zone → Change repository visibility → Public**, then keep Pages source as GitHub Actions, or
+- **Settings → Pages** and set visibility to public if the org plan shows that control.
+
+The game still saves only in each browser's `localStorage`. No account or backend is required.
+
+To preview the Pages path locally:
+
+```sh
+NEXT_PUBLIC_BASE_PATH=/ui-prototyping pnpm --filter @clan-world/web build
+mkdir -p /tmp/clan-pages && rm -rf /tmp/clan-pages/ui-prototyping
+cp -R apps/web/out /tmp/clan-pages/ui-prototyping
+python3 -m http.server 4010 --directory /tmp/clan-pages
+```
+
+Then open [http://localhost:4010/ui-prototyping/](http://localhost:4010/ui-prototyping/).
 
 ## Run your village
 
