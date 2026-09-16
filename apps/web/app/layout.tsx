@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { publicAssetCss } from "../lib/asset-path";
+import { assetPath, publicAssetCss } from "../lib/asset-path";
 import "./medieval.css";
 import "./realm.css";
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Command a medieval clan. Lead your clansmen, build a village, and write its history.",
   applicationName: "Clan World",
-  icons: { icon: "/icon.svg" },
+  icons: { icon: assetPath("/icon.svg") },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

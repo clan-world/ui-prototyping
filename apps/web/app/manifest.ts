@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { assetPath } from "../lib/asset-path";
 
+export const dynamic = "force-static";
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Clan World",
