@@ -16,6 +16,7 @@ import {
   type ClanWorld,
   type Point,
 } from "@clan-world/shared";
+import { cssAssetUrl } from "../../lib/asset-path";
 import {
   loadVillageArt,
   drawSprite,
@@ -72,11 +73,11 @@ export { project } from "./map-terrain";
 const MIN_ZOOM = 0.1, MAX_ZOOM = 2.4;
 const clampZoom = (zoom: number) => Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoom));
 const CURSORS = {
-  arrow: "url('/medieval/cursors/arrow.svg') 4 3, default",
-  pointer: "url('/medieval/cursors/pointer.svg') 6 3, pointer",
-  grab: "url('/medieval/cursors/grab.svg') 19 20, grab",
-  grabbing: "url('/medieval/cursors/grabbing.svg') 19 20, grabbing",
-  blocked: "url('/medieval/cursors/blocked.svg') 20 20, not-allowed",
+  arrow: cssAssetUrl("/medieval/cursors/arrow.svg", "4 3, default"),
+  pointer: cssAssetUrl("/medieval/cursors/pointer.svg", "6 3, pointer"),
+  grab: cssAssetUrl("/medieval/cursors/grab.svg", "19 20, grab"),
+  grabbing: cssAssetUrl("/medieval/cursors/grabbing.svg", "19 20, grabbing"),
+  blocked: cssAssetUrl("/medieval/cursors/blocked.svg", "20 20, not-allowed"),
 };
 function home(world: ClanWorld) {
   const base = world.clans?.find((clan) => clan.player)?.base;

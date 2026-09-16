@@ -3,6 +3,7 @@ node_modules/
 .next/
 .turbo/
 dist/
+out/
 coverage/
 playwright-report/
 test-results/

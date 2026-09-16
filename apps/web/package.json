@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0 --port 3010",
     "build": "next build --webpack",
-    "start": "next start --hostname 0.0.0.0 --port 3010",
+    "start": "npx --yes serve out --listen 3010",
+    "preview": "npx --yes serve out --listen 3010",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests",
     "test:e2e": "playwright test"
